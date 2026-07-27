@@ -1,0 +1,76 @@
+<view class="page safe-bottom">
+  <view class="card edit-head">
+    <view>
+      <text class="edit-title">{{isEditing ? '编辑健康记录' : '新增健康记录'}}</text>
+      <text class="edit-meta">{{record.type}} · {{record.visitDate}}</text>
+    </view>
+    <text class="pill">{{record.type}}</text>
+  </view>
+
+  <view class="section">
+    <view class="field">
+      <text class="field-label">记录类型</text>
+      <picker mode="selector" range="{{typeOptions}}" value="{{typeIndex}}" bindchange="onTypeChange">
+        <view class="picker-value">{{record.type}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <text class="field-label">日期</text>
+      <picker mode="date" value="{{record.visitDate}}" bindchange="onDateChange">
+        <view class="picker-value">{{record.visitDate}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <text class="field-label">标题</text>
+      <input class="input" value="{{record.title}}" data-field="title" bindinput="onInput" placeholder="例如：年度体检、心内科门诊" />
+    </view>
+    <view class="field">
+      <text class="field-label">医院</text>
+      <input class="input" value="{{record.hospital}}" data-field="hospital" bindinput="onInput" placeholder="请输入医院名称" />
+    </view>
+    <view class="field">
+      <text class="field-label">科室</text>
+      <input class="input" value="{{record.department}}" data-field="department" bindinput="onInput" placeholder="例如：心内科、消化科" />
+    </view>
+    <view class="field">
+      <text class="field-label">医生</text>
+      <input class="input" value="{{record.doctor}}" data-field="doctor" bindinput="onInput" placeholder="请输入医生姓名" />
+    </view>
+    <view class="field">
+      <text class="field-label">主要情况</text>
+      <textarea class="textarea" value="{{record.summary}}" data-field="summary" bindinput="onInput" placeholder="症状、体检异常项、检查原因" />
+    </view>
+    <view class="field">
+      <text class="field-label">诊断结果</text>
+      <textarea class="textarea" value="{{record.diagnosis}}" data-field="diagnosis" bindinput="onInput" placeholder="医生诊断或报告结论" />
+    </view>
+    <view class="field">
+      <text class="field-label">药方 / 用药</text>
+      <textarea class="textarea" value="{{record.medicines}}" data-field="medicines" bindinput="onInput" placeholder="药名、剂量、频次、疗程" />
+    </view>
+    <view class="field">
+      <text class="field-label">医生建议</text>
+      <textarea class="textarea" value="{{record.advice}}" data-field="advice" bindinput="onInput" placeholder="复查、复诊、饮食、运动等建议" />
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="row">
+      <text class="section-title">报告附件</text>
+      <button class="small-button" bindtap="chooseAttachment">添加</button>
+    </view>
+
+    <block wx:if="{{record.files.length}}">
+      <view class="file-item" wx:for="{{record.files}}" wx:key="path" data-index="{{index}}" bindtap="previewAttachment">
+        <text class="file-name">{{item.name}}</text>
+        <button class="file-remove" data-index="{{index}}" catchtap="removeAttachment">删除</button>
+      </view>
+    </block>
+    <view wx:else class="empty">暂无附件</view>
+  </view>
+
+  <view class="action-bar">
+    <button wx:if="{{isEditing}}" class="danger-button" bindtap="deleteRecord">删除</button>
+    <button class="primary-button" bindtap="saveRecord">保存记录</button>
+  </view>
+</view>

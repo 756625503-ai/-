@@ -1,0 +1,71 @@
+.edit-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.edit-title,
+.edit-meta {
+  display: block;
+}
+
+.edit-title {
+  color: #101828;
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.edit-meta {
+  margin-top: 12rpx;
+  color: #667085;
+  font-size: 25rpx;
+}
+
+.small-button {
+  min-width: 104rpx;
+  min-height: 56rpx;
+  color: #147d7e;
+  background: #ecfdf3;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.file-item {
+  display: flex;
+  min-height: 84rpx;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  margin-bottom: 14rpx;
+  padding: 18rpx 20rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.file-name {
+  flex: 1;
+  color: #344054;
+  font-size: 27rpx;
+  word-break: break-all;
+}
+
+.file-remove {
+  width: 96rpx;
+  min-height: 52rpx;
+  color: #b42318;
+  background: #fff1f0;
+  font-size: 24rpx;
+}
+
+.action-bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16rpx;
+  margin-top: 30rpx;
+}
+
+.danger-button + .primary-button {
+  margin-top: 0;
+}

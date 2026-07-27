@@ -1,0 +1,55 @@
+<view class="page safe-bottom">
+  <view class="hero">
+    <view>
+      <text class="eyebrow">个人健康档案</text>
+      <text class="hero-title">把体检、报告、处方放在一处</text>
+    </view>
+    <button class="hero-action" bindtap="goDoctor">医生查看</button>
+  </view>
+
+  <view class="stats">
+    <view class="stat-card">
+      <text class="stat-value">{{stats.total}}</text>
+      <text class="stat-label">健康记录</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{stats.latestDate}}</text>
+      <text class="stat-label">最近更新</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{stats.profileReady ? '已建档' : '待完善'}}</text>
+      <text class="stat-label">个人档案</text>
+    </view>
+  </view>
+
+  <view class="quick-grid section">
+    <button class="primary-button" bindtap="goAdd">新增记录</button>
+    <button class="secondary-button" bindtap="goProfile">完善档案</button>
+  </view>
+
+  <view class="section">
+    <view class="row">
+      <text class="section-title">最近记录</text>
+      <button class="link-button" bindtap="goRecords">全部</button>
+    </view>
+
+    <block wx:if="{{recentRecords.length}}">
+      <view
+        class="record-card"
+        wx:for="{{recentRecords}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="openRecord"
+      >
+        <view class="record-head">
+          <text class="pill {{item.type === '处方' ? 'pill-amber' : item.type === '体检' ? 'pill-green' : ''}}">{{item.type}}</text>
+          <text class="record-date">{{item.displayDate}}</text>
+        </view>
+        <text class="record-title">{{item.displayTitle}}</text>
+        <text class="record-meta">{{item.hospital || '未填写医院'}} {{item.department || ''}}</text>
+      </view>
+    </block>
+
+    <view wx:else class="empty">暂无记录</view>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/records/index",
+    "pages/doctor-view/index",
+    "pages/profile/index",
+    "pages/record-edit/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "健康档案",
+    "navigationBarBackgroundColor": "#f7f9fb",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f9fb"
+  },
+  "tabBar": {
+    "color": "#667085",
+    "selectedColor": "#147d7e",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/records/index",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/doctor-view/index",
+        "text": "医生查看"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "档案"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

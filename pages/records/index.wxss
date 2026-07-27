@@ -1,0 +1,125 @@
+.list-head {
+  margin-bottom: 22rpx;
+}
+
+.page-title,
+.page-meta {
+  display: block;
+}
+
+.page-title {
+  color: #101828;
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.page-meta {
+  margin-top: 8rpx;
+  color: #667085;
+  font-size: 25rpx;
+}
+
+.add-button {
+  width: 112rpx;
+  min-height: 64rpx;
+  color: #ffffff;
+  background: #147d7e;
+  font-size: 27rpx;
+  font-weight: 800;
+}
+
+.search-wrap {
+  margin-bottom: 18rpx;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 84rpx;
+  padding: 0 24rpx;
+  border: 1rpx solid #d0d5dd;
+  border-radius: 8rpx;
+  background: #ffffff;
+  font-size: 28rpx;
+}
+
+.filter-scroll {
+  width: 100%;
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+}
+
+.filter-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.filter-chip {
+  display: inline-flex;
+  min-width: 92rpx;
+  min-height: 58rpx;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22rpx;
+  color: #344054;
+  background: #ffffff;
+  border: 1rpx solid #e4e7ec;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.filter-active {
+  color: #ffffff;
+  background: #175cd3;
+  border-color: #175cd3;
+}
+
+.record-card {
+  margin-bottom: 18rpx;
+  padding: 24rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.record-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.record-date,
+.record-line,
+.record-summary {
+  display: block;
+  color: #667085;
+  font-size: 25rpx;
+}
+
+.record-title {
+  display: block;
+  margin-top: 18rpx;
+  color: #101828;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.record-line {
+  margin-top: 10rpx;
+}
+
+.record-summary {
+  margin-top: 14rpx;
+  line-height: 1.5;
+}
+
+.file-count {
+  display: inline-flex;
+  margin-top: 16rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  color: #475467;
+  background: #f2f4f7;
+  font-size: 23rpx;
+  font-weight: 700;
+}

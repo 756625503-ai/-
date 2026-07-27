@@ -1,0 +1,138 @@
+.summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 30rpx;
+  border-radius: 8rpx;
+  color: #ffffff;
+  background: #194185;
+}
+
+.summary-title,
+.summary-meta {
+  display: block;
+}
+
+.summary-title {
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.summary-meta {
+  margin-top: 12rpx;
+  font-size: 25rpx;
+  opacity: 0.86;
+}
+
+.copy-button {
+  flex: 0 0 auto;
+  min-width: 96rpx;
+  min-height: 60rpx;
+  color: #194185;
+  background: #ffffff;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.alert-band {
+  margin-top: 18rpx;
+  padding: 24rpx;
+  border: 1rpx solid #fedf89;
+  border-radius: 8rpx;
+  background: #fffaeb;
+}
+
+.alert-label,
+.alert-text {
+  display: block;
+}
+
+.alert-label {
+  color: #b54708;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.alert-text {
+  margin-top: 10rpx;
+  color: #7a2e0e;
+  font-size: 30rpx;
+  line-height: 1.5;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14rpx;
+  margin-top: 18rpx;
+}
+
+.info-card {
+  min-height: 150rpx;
+  padding: 22rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.info-label,
+.info-text {
+  display: block;
+}
+
+.info-label {
+  color: #667085;
+  font-size: 23rpx;
+  font-weight: 800;
+}
+
+.info-text {
+  margin-top: 12rpx;
+  color: #101828;
+  font-size: 27rpx;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 168rpx 1fr;
+  gap: 18rpx;
+  margin-bottom: 18rpx;
+}
+
+.timeline-date {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  color: #667085;
+  font-size: 24rpx;
+}
+
+.timeline-body {
+  padding: 22rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.timeline-title,
+.timeline-meta,
+.timeline-text {
+  display: block;
+}
+
+.timeline-title {
+  color: #101828;
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.timeline-meta,
+.timeline-text {
+  margin-top: 10rpx;
+  color: #667085;
+  font-size: 25rpx;
+  line-height: 1.5;
+}
