@@ -25,6 +25,31 @@ function getDefaultRecord() {
   }
 }
 
+function getTypeGroups() {
+  return [
+    {
+      label: '医疗记录',
+      themeClass: 'type-green',
+      items: ['门诊', '体检', '检查报告', '住院', '其他']
+    },
+    {
+      label: '用药 / 不适',
+      themeClass: 'type-purple',
+      items: ['处方', '用药情况', '身体不适']
+    }
+  ]
+}
+
+function getTypeOptions() {
+  return getTypeGroups().reduce(function (options, group) {
+    return options.concat(group.items)
+  }, [])
+}
+
+function getTypeThemeClass(type) {
+  return ['处方', '用药情况', '身体不适'].indexOf(type) >= 0 ? 'pill-purple' : 'pill-green'
+}
+
 Page({
   data: {
     isEditing: false,
@@ -32,8 +57,10 @@ Page({
     profileNames: [],
     profileIndex: 0,
     activeProfileName: '',
-    typeOptions: ['门诊', '体检', '检查报告', '处方', '用药情况', '身体不适', '住院', '其他'],
+    typeGroups: getTypeGroups(),
+    typeOptions: getTypeOptions(),
     typeIndex: 0,
+    typeThemeClass: getTypeThemeClass('门诊'),
     record: getDefaultRecord()
   },
 
@@ -67,6 +94,7 @@ Page({
         this.setData({
           isEditing: true,
           typeIndex: typeIndex,
+          typeThemeClass: getTypeThemeClass(record.type),
           profileIndex: profileIndex,
           activeProfileName: storage.getProfileDisplayName(profile),
           record: Object.assign(getDefaultRecord(), record)
@@ -84,9 +112,21 @@ Page({
 
   onTypeChange(event) {
     const index = Number(event.detail.value)
+    const type = this.data.typeOptions[index]
     this.setData({
       typeIndex: index,
-      'record.type': this.data.typeOptions[index]
+      typeThemeClass: getTypeThemeClass(type),
+      'record.type': type
+    })
+  },
+
+  onTypeTap(event) {
+    const type = event.currentTarget.dataset.type
+    const typeIndex = Math.max(0, this.data.typeOptions.indexOf(type))
+    this.setData({
+      typeIndex: typeIndex,
+      typeThemeClass: getTypeThemeClass(type),
+      'record.type': type
     })
   },
 

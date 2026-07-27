@@ -22,6 +22,86 @@
   font-size: 25rpx;
 }
 
+.pill-green {
+  color: #067647;
+  background: #ecfdf3;
+}
+
+.pill-purple {
+  color: #6d28d9;
+  background: #f3e8ff;
+}
+
+.type-priority {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.priority-label,
+.group-label {
+  display: block;
+}
+
+.priority-label {
+  color: #101828;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.type-group {
+  margin-top: 20rpx;
+}
+
+.group-label {
+  margin-bottom: 12rpx;
+  color: #667085;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.type-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.type-chip {
+  display: inline-flex;
+  min-width: 138rpx;
+  min-height: 64rpx;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20rpx;
+  border: 2rpx solid transparent;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.type-chip.type-green {
+  color: #08756f;
+  background: #e7f8f5;
+}
+
+.type-chip.type-purple {
+  color: #7c3aed;
+  background: #f3e8ff;
+}
+
+.type-chip.type-active.type-green {
+  color: #ffffff;
+  background: #159185;
+  border-color: #0f766e;
+}
+
+.type-chip.type-active.type-purple {
+  color: #ffffff;
+  background: #8b5cf6;
+  border-color: #7c3aed;
+}
+
 .small-button {
   min-width: 104rpx;
   min-height: 56rpx;

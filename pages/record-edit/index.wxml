@@ -4,7 +4,26 @@
       <text class="edit-title">{{isEditing ? '编辑健康记录' : '新增健康记录'}}</text>
       <text class="edit-meta">{{record.type}} · {{record.visitDate}}</text>
     </view>
-    <text class="pill">{{record.type}}</text>
+    <text class="pill {{typeThemeClass}}">{{record.type}}</text>
+  </view>
+
+  <view class="type-priority">
+    <text class="priority-label">记录类型</text>
+    <view class="type-group" wx:for="{{typeGroups}}" wx:for-item="group" wx:key="label">
+      <text class="group-label">{{group.label}}</text>
+      <view class="type-chip-row">
+        <button
+          class="type-chip {{group.themeClass}} {{record.type === item ? 'type-active' : ''}}"
+          wx:for="{{group.items}}"
+          wx:for-item="item"
+          wx:key="*this"
+          data-type="{{item}}"
+          bindtap="onTypeTap"
+        >
+          {{item}}
+        </button>
+      </view>
+    </view>
   </view>
 
   <view class="section">
@@ -12,13 +31,6 @@
       <text class="field-label">家庭成员</text>
       <picker mode="selector" range="{{profileNames}}" value="{{profileIndex}}" bindchange="onProfileChange">
         <view class="picker-value">{{activeProfileName}}</view>
-      </picker>
-    </view>
-
-    <view class="field">
-      <text class="field-label">记录类型</text>
-      <picker mode="selector" range="{{typeOptions}}" value="{{typeIndex}}" bindchange="onTypeChange">
-        <view class="picker-value">{{record.type}}</view>
       </picker>
     </view>
     <view class="field">
