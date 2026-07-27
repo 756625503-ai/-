@@ -227,6 +227,46 @@
   white-space: nowrap;
 }
 
+.date-bubble.event-purple {
+  background: #8b5cf6;
+}
+
+.date-bubble.event-purple::after {
+  border-top-color: #8b5cf6;
+}
+
+.node.event-purple {
+  background: #8b5cf6;
+}
+
+.record-brief.event-purple {
+  border-bottom-color: #8b5cf6;
+}
+
+.record-brief.event-purple .brief-title {
+  color: #7c3aed;
+}
+
+.record-brief.event-purple .brief-meta {
+  color: #9b7bd9;
+}
+
+.date-bubble.event-green {
+  background: #159185;
+}
+
+.date-bubble.event-green::after {
+  border-top-color: #159185;
+}
+
+.node.event-green {
+  background: #159185;
+}
+
+.record-brief.event-green {
+  border-bottom-color: #159185;
+}
+
 .empty-timeline {
   position: relative;
   z-index: 2;

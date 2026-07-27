@@ -32,7 +32,7 @@ Page({
     profileNames: [],
     profileIndex: 0,
     activeProfileName: '',
-    typeOptions: ['门诊', '体检', '检查报告', '处方', '住院', '其他'],
+    typeOptions: ['门诊', '体检', '检查报告', '处方', '用药情况', '身体不适', '住院', '其他'],
     typeIndex: 0,
     record: getDefaultRecord()
   },

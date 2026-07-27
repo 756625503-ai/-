@@ -42,13 +42,13 @@
           data-id="{{item.id}}"
           bindtap="openRecord"
         >
-          <view class="date-bubble">
+          <view class="date-bubble {{item.themeClass}}">
             <text>{{item.displayDate}}</text>
           </view>
-          <view class="node"></view>
-          <view class="record-brief">
+          <view class="node {{item.themeClass}}"></view>
+          <view class="record-brief {{item.themeClass}}">
             <text class="brief-title">{{item.timelineTitle}}</text>
-            <text class="brief-meta">{{item.hospital || '未填写医院'}} {{item.department || ''}}</text>
+            <text class="brief-meta">{{item.timelineMeta}}</text>
           </view>
         </view>
       </block>

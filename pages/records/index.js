@@ -3,7 +3,26 @@ const storage = require('../../utils/storage')
 function getTimelineTitle(record) {
   if (record.title) return record.title
   if (record.type === '门诊') return '门诊记录'
+  if (record.type === '处方' || record.type === '用药情况') return '用药情况'
+  if (record.type === '身体不适') return '身体不适'
   return record.type || '看诊记录'
+}
+
+function getTimelineThemeClass(record) {
+  const purpleTypes = ['处方', '用药情况', '身体不适']
+  return purpleTypes.indexOf(record.type) >= 0 ? 'event-purple' : 'event-green'
+}
+
+function getTimelineMeta(record) {
+  if (record.type === '处方' || record.type === '用药情况') {
+    return record.medicines || record.summary || record.advice || '未填写用药情况'
+  }
+
+  if (record.type === '身体不适') {
+    return record.summary || record.diagnosis || record.advice || '未填写不适描述'
+  }
+
+  return [record.hospital || '未填写医院', record.department || '', record.doctor || ''].join(' ')
 }
 
 Page({
@@ -15,7 +34,7 @@ Page({
     filteredRecords: [],
     keyword: '',
     activeType: '全部',
-    filterOptions: ['全部', '门诊', '体检', '检查报告', '处方', '住院', '其他']
+    filterOptions: ['全部', '门诊', '体检', '检查报告', '处方', '用药情况', '身体不适', '住院', '其他']
   },
 
   onShow() {
@@ -35,6 +54,8 @@ Page({
         displayDate: storage.formatDate(record.visitDate || record.createdAt),
         displayTitle: storage.getRecordTitle(record),
         timelineTitle: getTimelineTitle(record),
+        timelineMeta: getTimelineMeta(record),
+        themeClass: getTimelineThemeClass(record),
         files: record.files || []
       })
     })
