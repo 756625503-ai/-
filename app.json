@@ -1,8 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/records/index",
-    "pages/doctor-view/index",
     "pages/profile/index",
     "pages/record-edit/index"
   ],
@@ -19,16 +17,8 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
         "pagePath": "pages/records/index",
         "text": "记录"
-      },
-      {
-        "pagePath": "pages/doctor-view/index",
-        "text": "医生查看"
       },
       {
         "pagePath": "pages/profile/index",

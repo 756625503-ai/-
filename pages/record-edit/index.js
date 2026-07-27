@@ -28,19 +28,47 @@ function getDefaultRecord() {
 Page({
   data: {
     isEditing: false,
+    profiles: [],
+    profileNames: [],
+    profileIndex: 0,
+    activeProfileName: '',
     typeOptions: ['门诊', '体检', '检查报告', '处方', '住院', '其他'],
     typeIndex: 0,
     record: getDefaultRecord()
   },
 
   onLoad(options) {
+    const profiles = storage.getProfiles()
+    const activeProfileId = storage.getSelectedProfileId()
+    const profileNames = profiles.map(function (profile) {
+      return storage.getProfileDisplayName(profile)
+    })
+    const activeProfileName = storage.getProfileDisplayName(storage.getProfileById(activeProfileId))
+
+    this.setData({
+      profiles: profiles,
+      profileNames: profileNames,
+      profileIndex: Math.max(0, profiles.findIndex(function (profile) {
+        return profile.id === activeProfileId
+      })),
+      activeProfileName: activeProfileName,
+      'record.profileId': activeProfileId,
+      'record.profileName': activeProfileName
+    })
+
     if (options.id) {
       const record = storage.getRecordById(options.id)
       if (record) {
         const typeIndex = Math.max(0, this.data.typeOptions.indexOf(record.type))
+        const profileIndex = Math.max(0, profiles.findIndex(function (profile) {
+          return profile.id === record.profileId
+        }))
+        const profile = profiles[profileIndex] || profiles[0]
         this.setData({
           isEditing: true,
           typeIndex: typeIndex,
+          profileIndex: profileIndex,
+          activeProfileName: storage.getProfileDisplayName(profile),
           record: Object.assign(getDefaultRecord(), record)
         })
       }
@@ -59,6 +87,19 @@ Page({
     this.setData({
       typeIndex: index,
       'record.type': this.data.typeOptions[index]
+    })
+  },
+
+  onProfileChange(event) {
+    const index = Number(event.detail.value)
+    const profile = this.data.profiles[index]
+    if (!profile) return
+
+    this.setData({
+      profileIndex: index,
+      activeProfileName: storage.getProfileDisplayName(profile),
+      'record.profileId': profile.id,
+      'record.profileName': storage.getProfileDisplayName(profile)
     })
   },
 

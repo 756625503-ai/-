@@ -1,3 +1,64 @@
+.profile-toolbar {
+  margin-bottom: 18rpx;
+}
+
+.page-title,
+.page-meta {
+  display: block;
+}
+
+.page-title {
+  color: #101828;
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.page-meta {
+  margin-top: 8rpx;
+  color: #667085;
+  font-size: 25rpx;
+}
+
+.add-button {
+  width: 112rpx;
+  min-height: 64rpx;
+  color: #ffffff;
+  background: #147d7e;
+  font-size: 27rpx;
+  font-weight: 800;
+}
+
+.member-scroll {
+  width: 100%;
+  white-space: nowrap;
+  margin-bottom: 18rpx;
+}
+
+.member-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.member-chip {
+  display: inline-flex;
+  min-width: 116rpx;
+  min-height: 64rpx;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22rpx;
+  color: #344054;
+  background: #ffffff;
+  border: 1rpx solid #e4e7ec;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.member-active {
+  color: #ffffff;
+  background: #147d7e;
+  border-color: #147d7e;
+}
+
 .profile-head {
   display: flex;
   align-items: flex-start;
@@ -20,4 +81,30 @@
   margin-top: 12rpx;
   color: #667085;
   font-size: 25rpx;
+}
+
+.advice-card {
+  margin-bottom: 16rpx;
+  padding: 24rpx;
+  border: 1rpx solid #d1e9ff;
+  border-radius: 8rpx;
+  background: #f5fbff;
+}
+
+.advice-title,
+.advice-text {
+  display: block;
+}
+
+.advice-title {
+  color: #175cd3;
+  font-size: 29rpx;
+  font-weight: 800;
+}
+
+.advice-text {
+  margin-top: 12rpx;
+  color: #344054;
+  font-size: 26rpx;
+  line-height: 1.55;
 }

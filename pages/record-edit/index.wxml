@@ -9,6 +9,13 @@
 
   <view class="section">
     <view class="field">
+      <text class="field-label">家庭成员</text>
+      <picker mode="selector" range="{{profileNames}}" value="{{profileIndex}}" bindchange="onProfileChange">
+        <view class="picker-value">{{activeProfileName}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
       <text class="field-label">记录类型</text>
       <picker mode="selector" range="{{typeOptions}}" value="{{typeIndex}}" bindchange="onTypeChange">
         <view class="picker-value">{{record.type}}</view>

@@ -1,8 +1,12 @@
 const PROFILE_KEY = 'health_profile'
+const PROFILES_KEY = 'health_profiles'
+const SELECTED_PROFILE_KEY = 'health_selected_profile_id'
 const RECORDS_KEY = 'health_records'
 
 function getDefaultProfile() {
   return {
+    id: '',
+    relation: '本人',
     name: '',
     gender: '',
     birthday: '',
@@ -17,23 +21,134 @@ function getDefaultProfile() {
   }
 }
 
-function getProfile() {
-  return Object.assign(getDefaultProfile(), wx.getStorageSync(PROFILE_KEY) || {})
+function createId(prefix) {
+  return prefix + '_' + Date.now() + '_' + Math.floor(Math.random() * 100000)
+}
+
+function createProfile(overrides) {
+  return Object.assign(getDefaultProfile(), overrides || {}, {
+    id: overrides && overrides.id ? overrides.id : createId('profile'),
+    updatedAt: new Date().toISOString()
+  })
+}
+
+function ensureData() {
+  const profiles = getProfiles()
+  const records = wx.getStorageSync(RECORDS_KEY)
+
+  if (!Array.isArray(records)) {
+    wx.setStorageSync(RECORDS_KEY, [])
+    return
+  }
+
+  const defaultProfile = profiles[0]
+  const migratedRecords = records.map(function (record) {
+    if (record.profileId) return record
+    return Object.assign({}, record, {
+      profileId: defaultProfile.id,
+      profileName: getProfileDisplayName(defaultProfile)
+    })
+  })
+
+  wx.setStorageSync(RECORDS_KEY, migratedRecords)
+}
+
+function getProfiles() {
+  const profiles = wx.getStorageSync(PROFILES_KEY)
+  if (Array.isArray(profiles) && profiles.length) {
+    return profiles.map(function (profile) {
+      return Object.assign(getDefaultProfile(), profile)
+    })
+  }
+
+  const oldProfile = wx.getStorageSync(PROFILE_KEY) || {}
+  const firstProfile = createProfile(Object.assign({}, oldProfile, {
+    id: oldProfile.id || 'profile_self',
+    relation: oldProfile.relation || '本人'
+  }))
+
+  wx.setStorageSync(PROFILES_KEY, [firstProfile])
+  wx.setStorageSync(SELECTED_PROFILE_KEY, firstProfile.id)
+  return [firstProfile]
+}
+
+function getSelectedProfileId() {
+  const profiles = getProfiles()
+  const selectedId = wx.getStorageSync(SELECTED_PROFILE_KEY)
+  const exists = profiles.some(function (profile) {
+    return profile.id === selectedId
+  })
+
+  if (exists) return selectedId
+
+  wx.setStorageSync(SELECTED_PROFILE_KEY, profiles[0].id)
+  return profiles[0].id
+}
+
+function setSelectedProfileId(id) {
+  wx.setStorageSync(SELECTED_PROFILE_KEY, id)
+  return id
+}
+
+function getProfileById(id) {
+  const profiles = getProfiles()
+  return profiles.find(function (profile) {
+    return profile.id === id
+  }) || profiles[0]
+}
+
+function getActiveProfile() {
+  return getProfileById(getSelectedProfileId())
 }
 
 function saveProfile(profile) {
+  const profiles = getProfiles()
+  const now = new Date().toISOString()
   const nextProfile = Object.assign(getDefaultProfile(), profile, {
-    updatedAt: new Date().toISOString()
+    id: profile.id || createId('profile'),
+    relation: profile.relation || '家人',
+    updatedAt: now
   })
-  wx.setStorageSync(PROFILE_KEY, nextProfile)
+
+  const index = profiles.findIndex(function (item) {
+    return item.id === nextProfile.id
+  })
+
+  if (index >= 0) {
+    profiles[index] = nextProfile
+  } else {
+    profiles.push(nextProfile)
+  }
+
+  wx.setStorageSync(PROFILES_KEY, profiles)
+  wx.setStorageSync(SELECTED_PROFILE_KEY, nextProfile.id)
   return nextProfile
 }
 
-function getRecords() {
+function addProfile(relation) {
+  const profile = createProfile({
+    relation: relation || '家人'
+  })
+  const profiles = getProfiles().concat(profile)
+
+  wx.setStorageSync(PROFILES_KEY, profiles)
+  wx.setStorageSync(SELECTED_PROFILE_KEY, profile.id)
+  return profile
+}
+
+function getProfileDisplayName(profile) {
+  if (!profile) return '未选择成员'
+  return profile.name || profile.relation || '未命名成员'
+}
+
+function getRecords(options) {
+  const profileId = options && options.profileId
   const records = wx.getStorageSync(RECORDS_KEY)
   if (!Array.isArray(records)) return []
 
-  return records.sort(function (a, b) {
+  return records.filter(function (record) {
+    return !profileId || record.profileId === profileId
+  }).sort(function (a, b) {
     const aTime = new Date(a.visitDate || a.createdAt || 0).getTime()
     const bTime = new Date(b.visitDate || b.createdAt || 0).getTime()
     return bTime - aTime
@@ -49,8 +164,11 @@ function getRecordById(id) {
 function saveRecord(record) {
   const records = getRecords()
   const now = new Date().toISOString()
+  const profile = getProfileById(record.profileId || getSelectedProfileId())
   const nextRecord = Object.assign({}, record, {
-    id: record.id || 'record_' + Date.now(),
+    id: record.id || createId('record'),
+    profileId: profile.id,
+    profileName: getProfileDisplayName(profile),
     updatedAt: now,
     createdAt: record.createdAt || now
   })
@@ -88,8 +206,8 @@ function getRecordTitle(record) {
 }
 
 function getStats() {
-  const records = getRecords()
-  const profile = getProfile()
+  const profile = getActiveProfile()
+  const records = getRecords({ profileId: profile.id })
   const typeMap = {}
 
   records.forEach(function (record) {
@@ -106,13 +224,20 @@ function getStats() {
 }
 
 module.exports = {
+  addProfile: addProfile,
   deleteRecord: deleteRecord,
+  ensureData: ensureData,
   formatDate: formatDate,
-  getProfile: getProfile,
+  getActiveProfile: getActiveProfile,
+  getProfileById: getProfileById,
+  getProfileDisplayName: getProfileDisplayName,
+  getProfiles: getProfiles,
   getRecordById: getRecordById,
   getRecordTitle: getRecordTitle,
   getRecords: getRecords,
+  getSelectedProfileId: getSelectedProfileId,
   getStats: getStats,
   saveProfile: saveProfile,
-  saveRecord: saveRecord
+  saveRecord: saveRecord,
+  setSelectedProfileId: setSelectedProfileId
 }

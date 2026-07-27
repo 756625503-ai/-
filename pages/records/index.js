@@ -2,6 +2,9 @@ const storage = require('../../utils/storage')
 
 Page({
   data: {
+    profiles: [],
+    activeProfileId: '',
+    activeProfileName: '',
     records: [],
     filteredRecords: [],
     keyword: '',
@@ -14,7 +17,14 @@ Page({
   },
 
   loadRecords() {
-    const records = storage.getRecords().map(function (record) {
+    const profiles = storage.getProfiles().map(function (profile) {
+      return Object.assign({}, profile, {
+        displayName: storage.getProfileDisplayName(profile)
+      })
+    })
+    const activeProfileId = storage.getSelectedProfileId()
+    const activeProfile = storage.getProfileById(activeProfileId)
+    const records = storage.getRecords({ profileId: activeProfileId }).map(function (record) {
       return Object.assign({}, record, {
         displayDate: storage.formatDate(record.visitDate || record.createdAt),
         displayTitle: storage.getRecordTitle(record),
@@ -22,7 +32,12 @@ Page({
       })
     })
 
-    this.setData({ records: records })
+    this.setData({
+      profiles: profiles,
+      activeProfileId: activeProfileId,
+      activeProfileName: storage.getProfileDisplayName(activeProfile),
+      records: records
+    })
     this.applyFilters()
   },
 
@@ -36,6 +51,11 @@ Page({
       activeType: event.currentTarget.dataset.type
     })
     this.applyFilters()
+  },
+
+  changeProfile(event) {
+    storage.setSelectedProfileId(event.currentTarget.dataset.id)
+    this.loadRecords()
   },
 
   applyFilters() {

@@ -28,6 +28,37 @@
   font-weight: 800;
 }
 
+.member-scroll {
+  width: 100%;
+  white-space: nowrap;
+  margin-bottom: 18rpx;
+}
+
+.member-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.member-chip {
+  display: inline-flex;
+  min-width: 116rpx;
+  min-height: 64rpx;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22rpx;
+  color: #344054;
+  background: #ffffff;
+  border: 1rpx solid #e4e7ec;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.member-active {
+  color: #ffffff;
+  background: #147d7e;
+  border-color: #147d7e;
+}
+
 .search-wrap {
   margin-bottom: 18rpx;
 }

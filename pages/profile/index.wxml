@@ -1,13 +1,39 @@
 <view class="page safe-bottom">
+  <view class="row profile-toolbar">
+    <view>
+      <text class="page-title">家庭档案</text>
+      <text class="page-meta">当前：{{activeProfileName}}</text>
+    </view>
+    <button class="add-button" bindtap="addProfile">新增</button>
+  </view>
+
+  <scroll-view scroll-x class="member-scroll">
+    <view class="member-row">
+      <button
+        class="member-chip {{profile.id === item.id ? 'member-active' : ''}}"
+        wx:for="{{profiles}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="selectProfile"
+      >
+        {{item.displayName}}
+      </button>
+    </view>
+  </scroll-view>
+
   <view class="card profile-head">
     <view>
-      <text class="profile-name">{{profile.name || '未填写姓名'}}</text>
-      <text class="profile-meta">{{profile.gender || '性别'}} · {{profile.birthday || '出生日期'}} · {{profile.bloodType || '血型'}}</text>
+      <text class="profile-name">{{profile.name || profile.relation || '未命名成员'}}</text>
+      <text class="profile-meta">{{profile.relation || '关系'}} · {{profile.gender || '性别'}} · {{profile.birthday || '出生日期'}} · {{profile.bloodType || '血型'}}</text>
     </view>
     <text class="pill {{profile.name ? 'pill-green' : 'pill-amber'}}">{{profile.name ? '已建档' : '待完善'}}</text>
   </view>
 
   <view class="section">
+    <view class="field">
+      <text class="field-label">与本人关系</text>
+      <input class="input" value="{{profile.relation}}" data-field="relation" bindinput="onInput" placeholder="例如：本人、父亲、母亲、孩子" />
+    </view>
     <view class="field">
       <text class="field-label">姓名</text>
       <input class="input" value="{{profile.name}}" data-field="name" bindinput="onInput" placeholder="请输入姓名" />
@@ -57,4 +83,12 @@
   </view>
 
   <button class="primary-button" bindtap="saveProfile">保存档案</button>
+
+  <view class="section">
+    <text class="section-title">健康建议</text>
+    <view class="advice-card" wx:for="{{adviceCards}}" wx:key="title">
+      <text class="advice-title">{{item.title}}</text>
+      <text class="advice-text">{{item.text}}</text>
+    </view>
+  </view>
 </view>
