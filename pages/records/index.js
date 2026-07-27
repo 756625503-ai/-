@@ -3,6 +3,7 @@ const storage = require('../../utils/storage')
 function getTimelineTitle(record) {
   if (record.title) return record.title
   if (record.type === '门诊') return '门诊记录'
+  if (record.type === '检查报告' || record.type === '检查') return '检查'
   if (record.type === '处方' || record.type === '用药情况') return '用药情况'
   if (record.type === '身体不适') return '身体不适'
   return record.type || '看诊记录'
@@ -34,7 +35,7 @@ Page({
     filteredRecords: [],
     keyword: '',
     activeType: '全部',
-    filterOptions: ['全部', '门诊', '体检', '检查报告', '处方', '用药情况', '身体不适', '住院', '其他']
+    filterOptions: ['全部', '门诊', '体检', '检查', '用药情况', '身体不适', '住院', '其他']
   },
 
   onShow() {

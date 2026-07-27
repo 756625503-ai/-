@@ -34,7 +34,7 @@
 
 .type-priority {
   margin-top: 24rpx;
-  padding: 24rpx;
+  padding: 26rpx;
   border: 1rpx solid #e4e7ec;
   border-radius: 8rpx;
   background: #ffffff;
@@ -52,7 +52,12 @@
 }
 
 .type-group {
-  margin-top: 20rpx;
+  margin-top: 22rpx;
+}
+
+.type-group + .type-group {
+  padding-top: 22rpx;
+  border-top: 1rpx solid #eef2f6;
 }
 
 .group-label {
@@ -63,19 +68,20 @@
 }
 
 .type-chip-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 14rpx;
 }
 
 .type-chip {
-  display: inline-flex;
-  min-width: 138rpx;
+  display: flex;
+  width: 100%;
   min-height: 64rpx;
   align-items: center;
   justify-content: center;
-  padding: 0 20rpx;
+  padding: 0 14rpx;
   border: 2rpx solid transparent;
+  border-radius: 8rpx;
   font-size: 26rpx;
   font-weight: 800;
 }

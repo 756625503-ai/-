@@ -30,12 +30,12 @@ function getTypeGroups() {
     {
       label: '医疗记录',
       themeClass: 'type-green',
-      items: ['门诊', '体检', '检查报告', '住院', '其他']
+      items: ['门诊', '体检', '检查', '住院', '其他']
     },
     {
       label: '用药 / 不适',
       themeClass: 'type-purple',
-      items: ['处方', '用药情况', '身体不适']
+      items: ['用药情况', '身体不适']
     }
   ]
 }
@@ -48,6 +48,12 @@ function getTypeOptions() {
 
 function getTypeThemeClass(type) {
   return ['处方', '用药情况', '身体不适'].indexOf(type) >= 0 ? 'pill-purple' : 'pill-green'
+}
+
+function normalizeType(type) {
+  if (type === '检查报告') return '检查'
+  if (type === '处方') return '用药情况'
+  return type || '门诊'
 }
 
 Page({
@@ -86,7 +92,10 @@ Page({
     if (options.id) {
       const record = storage.getRecordById(options.id)
       if (record) {
-        const typeIndex = Math.max(0, this.data.typeOptions.indexOf(record.type))
+        const normalizedRecord = Object.assign({}, record, {
+          type: normalizeType(record.type)
+        })
+        const typeIndex = Math.max(0, this.data.typeOptions.indexOf(normalizedRecord.type))
         const profileIndex = Math.max(0, profiles.findIndex(function (profile) {
           return profile.id === record.profileId
         }))
@@ -94,10 +103,10 @@ Page({
         this.setData({
           isEditing: true,
           typeIndex: typeIndex,
-          typeThemeClass: getTypeThemeClass(record.type),
+          typeThemeClass: getTypeThemeClass(normalizedRecord.type),
           profileIndex: profileIndex,
           activeProfileName: storage.getProfileDisplayName(profile),
-          record: Object.assign(getDefaultRecord(), record)
+          record: Object.assign(getDefaultRecord(), normalizedRecord)
         })
       }
     }
@@ -248,7 +257,7 @@ Page({
 
   saveRecord() {
     const record = Object.assign({}, this.data.record)
-    if (!record.title && !record.hospital && !record.summary) {
+    if (!record.title && !record.hospital && !record.summary && !record.diagnosis && !record.medicines && !record.advice) {
       wx.showToast({
         title: '请填写记录内容',
         icon: 'none'
