@@ -10,8 +10,12 @@ function getDefaultProfile() {
     name: '',
     gender: '',
     birthday: '',
+    birthTime: '',
     phone: '',
     bloodType: '',
+    province: '',
+    city: '',
+    district: '',
     allergies: '',
     medicalHistory: '',
     familyHistory: '',
@@ -141,6 +145,17 @@ function getProfileDisplayName(profile) {
   return profile.name || profile.relation || '未命名成员'
 }
 
+function getProfileLocation(profile) {
+  if (!profile) return '未填写地区'
+  const location = [profile.province, profile.city, profile.district].filter(Boolean).join(' ')
+  return location || '未填写地区'
+}
+
+function getProfileBirthText(profile) {
+  if (!profile || !profile.birthday) return '出生日期未填'
+  return profile.birthday + ' ' + (profile.birthTime || '00:00')
+}
+
 function getRecords(options) {
   const profileId = options && options.profileId
   const records = wx.getStorageSync(RECORDS_KEY)
@@ -230,7 +245,9 @@ module.exports = {
   formatDate: formatDate,
   getActiveProfile: getActiveProfile,
   getProfileById: getProfileById,
+  getProfileBirthText: getProfileBirthText,
   getProfileDisplayName: getProfileDisplayName,
+  getProfileLocation: getProfileLocation,
   getProfiles: getProfiles,
   getRecordById: getRecordById,
   getRecordTitle: getRecordTitle,

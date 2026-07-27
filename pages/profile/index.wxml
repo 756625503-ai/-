@@ -1,94 +1,36 @@
-<view class="page safe-bottom">
-  <view class="row profile-toolbar">
-    <view>
-      <text class="page-title">家庭档案</text>
-      <text class="page-meta">当前：{{activeProfileName}}</text>
-    </view>
-    <button class="add-button" bindtap="addProfile">新增</button>
-  </view>
+<view class="profile-page">
+  <view class="profile-list">
+    <view
+      class="profile-row"
+      wx:for="{{profiles}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="openProfile"
+    >
+      <view class="check-wrap" data-id="{{item.id}}" catchtap="selectProfile">
+        <view class="check-box {{activeProfileId === item.id ? 'check-active' : ''}}">
+          <text wx:if="{{activeProfileId === item.id}}" class="check-mark">✓</text>
+        </view>
+      </view>
 
-  <scroll-view scroll-x class="member-scroll">
-    <view class="member-row">
-      <button
-        class="member-chip {{profile.id === item.id ? 'member-active' : ''}}"
-        wx:for="{{profiles}}"
-        wx:key="id"
-        data-id="{{item.id}}"
-        bindtap="selectProfile"
-      >
-        {{item.displayName}}
-      </button>
-    </view>
-  </scroll-view>
+      <view class="profile-main">
+        <view class="name-line">
+          <text class="person-name">{{item.displayName}}</text>
+          <text class="person-location">（{{item.locationText}}）</text>
+        </view>
+        <view class="birth-line">
+          <text class="gender-dot {{item.gender === '男' ? 'gender-male' : 'gender-female'}}">{{item.genderIcon}}</text>
+          <text class="birth-text">{{item.birthText}}</text>
+        </view>
+      </view>
 
-  <view class="card profile-head">
-    <view>
-      <text class="profile-name">{{profile.name || profile.relation || '未命名成员'}}</text>
-      <text class="profile-meta">{{profile.relation || '关系'}} · {{profile.gender || '性别'}} · {{profile.birthday || '出生日期'}} · {{profile.bloodType || '血型'}}</text>
-    </view>
-    <text class="pill {{profile.name ? 'pill-green' : 'pill-amber'}}">{{profile.name ? '已建档' : '待完善'}}</text>
-  </view>
-
-  <view class="section">
-    <view class="field">
-      <text class="field-label">与本人关系</text>
-      <input class="input" value="{{profile.relation}}" data-field="relation" bindinput="onInput" placeholder="例如：本人、父亲、母亲、孩子" />
-    </view>
-    <view class="field">
-      <text class="field-label">姓名</text>
-      <input class="input" value="{{profile.name}}" data-field="name" bindinput="onInput" placeholder="请输入姓名" />
-    </view>
-    <view class="field">
-      <text class="field-label">性别</text>
-      <picker mode="selector" range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
-        <view class="picker-value">{{profile.gender || '请选择'}}</view>
-      </picker>
-    </view>
-    <view class="field">
-      <text class="field-label">出生日期</text>
-      <picker mode="date" value="{{profile.birthday}}" bindchange="onBirthdayChange">
-        <view class="picker-value">{{profile.birthday || '请选择'}}</view>
-      </picker>
-    </view>
-    <view class="field">
-      <text class="field-label">血型</text>
-      <picker mode="selector" range="{{bloodOptions}}" value="{{bloodIndex}}" bindchange="onBloodChange">
-        <view class="picker-value">{{profile.bloodType || '请选择'}}</view>
-      </picker>
-    </view>
-    <view class="field">
-      <text class="field-label">手机号</text>
-      <input class="input" type="number" value="{{profile.phone}}" data-field="phone" bindinput="onInput" placeholder="请输入手机号" />
-    </view>
-    <view class="field">
-      <text class="field-label">过敏史</text>
-      <textarea class="textarea" value="{{profile.allergies}}" data-field="allergies" bindinput="onInput" placeholder="例如：青霉素、海鲜；没有可填无" />
-    </view>
-    <view class="field">
-      <text class="field-label">既往病史</text>
-      <textarea class="textarea" value="{{profile.medicalHistory}}" data-field="medicalHistory" bindinput="onInput" placeholder="例如：高血压、糖尿病、手术史" />
-    </view>
-    <view class="field">
-      <text class="field-label">家族病史</text>
-      <textarea class="textarea" value="{{profile.familyHistory}}" data-field="familyHistory" bindinput="onInput" placeholder="例如：心血管疾病、肿瘤史" />
-    </view>
-    <view class="field">
-      <text class="field-label">长期用药</text>
-      <textarea class="textarea" value="{{profile.longTermMedication}}" data-field="longTermMedication" bindinput="onInput" placeholder="药名、剂量、频次" />
-    </view>
-    <view class="field">
-      <text class="field-label">紧急联系人</text>
-      <input class="input" value="{{profile.emergencyContact}}" data-field="emergencyContact" bindinput="onInput" placeholder="姓名和电话" />
+      <view class="open-icon">
+        <text>↗</text>
+      </view>
     </view>
   </view>
 
-  <button class="primary-button" bindtap="saveProfile">保存档案</button>
+  <view class="list-footer">总档案：{{profiles.length}} 个</view>
 
-  <view class="section">
-    <text class="section-title">健康建议</text>
-    <view class="advice-card" wx:for="{{adviceCards}}" wx:key="title">
-      <text class="advice-title">{{item.title}}</text>
-      <text class="advice-text">{{item.text}}</text>
-    </view>
-  </view>
+  <button class="float-add" bindtap="addProfile">+</button>
 </view>
