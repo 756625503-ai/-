@@ -1,5 +1,11 @@
 const storage = require('../../utils/storage')
 
+function getTimelineTitle(record) {
+  if (record.title) return record.title
+  if (record.type === '门诊') return '门诊记录'
+  return record.type || '看诊记录'
+}
+
 Page({
   data: {
     profiles: [],
@@ -28,6 +34,7 @@ Page({
       return Object.assign({}, record, {
         displayDate: storage.formatDate(record.visitDate || record.createdAt),
         displayTitle: storage.getRecordTitle(record),
+        timelineTitle: getTimelineTitle(record),
         files: record.files || []
       })
     })

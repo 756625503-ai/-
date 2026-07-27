@@ -1,62 +1,61 @@
-<view class="page safe-bottom">
-  <view class="row list-head">
-    <view>
-      <text class="page-title">健康记录</text>
-      <text class="page-meta">{{activeProfileName}} · 共 {{filteredRecords.length}} 条</text>
-    </view>
-    <button class="add-button" bindtap="goAdd">新增</button>
-  </view>
-
-  <scroll-view scroll-x class="member-scroll">
-    <view class="member-row">
-      <button
-        class="member-chip {{activeProfileId === item.id ? 'member-active' : ''}}"
-        wx:for="{{profiles}}"
-        wx:key="id"
-        data-id="{{item.id}}"
-        bindtap="changeProfile"
-      >
-        {{item.displayName}}
-      </button>
-    </view>
-  </scroll-view>
-
-  <view class="search-wrap">
-    <input class="search-input" value="{{keyword}}" bindinput="onSearch" placeholder="搜索医院、诊断、药名" />
-  </view>
-
-  <scroll-view scroll-x class="filter-scroll">
-    <view class="filter-row">
-      <button
-        class="filter-chip {{activeType === item ? 'filter-active' : ''}}"
-        wx:for="{{filterOptions}}"
-        wx:key="*this"
-        data-type="{{item}}"
-        bindtap="changeFilter"
-      >
-        {{item}}
-      </button>
-    </view>
-  </scroll-view>
-
-  <block wx:if="{{filteredRecords.length}}">
-    <view
-      class="record-card"
-      wx:for="{{filteredRecords}}"
-      wx:key="id"
-      data-id="{{item.id}}"
-      bindtap="openRecord"
-    >
-      <view class="record-head">
-        <text class="pill {{item.type === '处方' ? 'pill-amber' : item.type === '体检' ? 'pill-green' : ''}}">{{item.type}}</text>
-        <text class="record-date">{{item.displayDate}}</text>
+<view class="records-page">
+  <view class="records-header">
+    <view class="person-row">
+      <view>
+        <text class="greeting">健康记录</text>
+        <text class="person-name">{{activeProfileName}}</text>
       </view>
-      <text class="record-title">{{item.displayTitle}}</text>
-      <text class="record-line">{{item.profileName || activeProfileName}} · {{item.hospital || '未填写医院'}} {{item.department || ''}} {{item.doctor || ''}}</text>
-      <text wx:if="{{item.diagnosis || item.summary}}" class="record-summary">{{item.diagnosis || item.summary}}</text>
-      <view wx:if="{{item.files.length}}" class="file-count">{{item.files.length}} 个附件</view>
+      <button class="header-add" bindtap="goAdd">+</button>
     </view>
-  </block>
 
-  <view wx:else class="empty">暂无匹配记录</view>
+    <scroll-view scroll-x class="member-scroll">
+      <view class="member-row">
+        <button
+          class="member-chip {{activeProfileId === item.id ? 'member-active' : ''}}"
+          wx:for="{{profiles}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="changeProfile"
+        >
+          {{item.displayName}}
+        </button>
+      </view>
+    </scroll-view>
+
+    <view class="search-box">
+      <input class="search-input" value="{{keyword}}" bindinput="onSearch" placeholder="搜索医院、检查报告、ct胶片、药物..." />
+      <text class="search-icon">⌕</text>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="timeline-scroll">
+    <view class="timeline">
+      <view class="timeline-add">
+        <button class="timeline-plus" bindtap="goAdd">+</button>
+      </view>
+
+      <block wx:if="{{filteredRecords.length}}">
+        <view
+          class="timeline-row"
+          wx:for="{{filteredRecords}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="openRecord"
+        >
+          <view class="date-bubble">
+            <text>{{item.displayDate}}</text>
+          </view>
+          <view class="node"></view>
+          <view class="record-brief">
+            <text class="brief-title">{{item.timelineTitle}}</text>
+            <text class="brief-meta">{{item.hospital || '未填写医院'}} {{item.department || ''}}</text>
+          </view>
+        </view>
+      </block>
+
+      <view wx:else class="empty-timeline">
+        <text>暂无匹配记录</text>
+      </view>
+    </view>
+  </scroll-view>
 </view>
