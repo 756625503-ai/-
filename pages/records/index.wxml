@@ -22,7 +22,7 @@
     </scroll-view>
 
     <view class="search-box">
-      <input class="search-input" value="{{keyword}}" bindinput="onSearch" placeholder="搜索医院、检查报告、ct胶片、药物..." />
+      <input class="search-input" value="{{keyword}}" bindinput="onSearch" placeholder="搜索日期、标题、医院、检查或附件..." />
       <text class="search-icon">⌕</text>
     </view>
   </view>

@@ -26,6 +26,37 @@ function getTimelineMeta(record) {
   return [record.hospital || '未填写医院', record.department || '', record.doctor || ''].join(' ')
 }
 
+function buildSearchText(record) {
+  const files = Array.isArray(record.files) ? record.files : []
+  return [
+    record.type,
+    record.title,
+    record.displayTitle,
+    record.visitDate,
+    record.displayDate,
+    record.createdAt,
+    record.updatedAt,
+    record.hospital,
+    record.department,
+    record.doctor,
+    record.summary,
+    record.diagnosis,
+    record.medicines,
+    record.advice,
+    record.timelineTitle,
+    record.timelineMeta
+  ]
+    .concat(files.reduce(function (items, file) {
+      return items.concat([
+        file.title,
+        file.name,
+        file.date
+      ])
+    }, []))
+    .join(' ')
+    .toLowerCase()
+}
+
 Page({
   data: {
     profiles: [],
@@ -92,17 +123,7 @@ Page({
     const activeType = this.data.activeType
     const filteredRecords = this.data.records.filter(function (record) {
       const typeMatched = activeType === '全部' || record.type === activeType
-      const text = [
-        record.type,
-        record.title,
-        record.hospital,
-        record.department,
-        record.doctor,
-        record.summary,
-        record.diagnosis,
-        record.medicines,
-        record.advice
-      ].join(' ').toLowerCase()
+      const text = buildSearchText(record)
 
       return typeMatched && (!keyword || text.indexOf(keyword) >= 0)
     })
