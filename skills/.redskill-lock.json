@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "01-gsap": {
+      "name": "01-gsap",
+      "version": "1.0.0",
+      "source": "redskill",
+      "install_dir": "/Users/chenxi/Documents/New project/skills/01-gsap",
+      "installed_at": "1785497955015",
+      "sha256": "64b74d38a645f7397450a0c015103a56e582d5638ff966698f5e7a8e551f1dba"
+    }
+  }
+}
