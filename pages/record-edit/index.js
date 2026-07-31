@@ -71,6 +71,17 @@ function saveTempFile(tempFilePath) {
   })
 }
 
+function getDefaultAttachmentTitle(index) {
+  return 'No.' + (index + 1)
+}
+
+function normalizeAttachment(file, index, fallbackDate) {
+  return Object.assign({}, file, {
+    title: file.title || getDefaultAttachmentTitle(index),
+    date: file.date || file.uploadDate || fallbackDate || getToday()
+  })
+}
+
 Page({
   data: {
     isEditing: false,
@@ -109,7 +120,10 @@ Page({
       const record = storage.getRecordById(options.id)
       if (record) {
         const normalizedRecord = Object.assign({}, record, {
-          type: normalizeType(record.type)
+          type: normalizeType(record.type),
+          files: (record.files || []).map(function (file, index) {
+            return normalizeAttachment(file, index, record.visitDate)
+          })
         })
         const typeIndex = Math.max(0, this.data.typeOptions.indexOf(normalizedRecord.type))
         const profileIndex = Math.max(0, profiles.findIndex(function (profile) {
@@ -171,6 +185,34 @@ Page({
   onDateChange(event) {
     this.setData({
       'record.visitDate': event.detail.value
+    })
+  },
+
+  onAttachmentTitleInput(event) {
+    const index = Number(event.currentTarget.dataset.index)
+    const files = (this.data.record.files || []).slice()
+    if (!files[index]) return
+
+    files[index] = Object.assign({}, files[index], {
+      title: event.detail.value
+    })
+
+    this.setData({
+      'record.files': files
+    })
+  },
+
+  onAttachmentDateChange(event) {
+    const index = Number(event.currentTarget.dataset.index)
+    const files = (this.data.record.files || []).slice()
+    if (!files[index]) return
+
+    files[index] = Object.assign({}, files[index], {
+      date: event.detail.value
+    })
+
+    this.setData({
+      'record.files': files
     })
   },
 
@@ -268,7 +310,12 @@ Page({
   },
 
   appendFiles(files) {
-    const nextFiles = (this.data.record.files || []).concat(files).slice(0, MAX_ATTACHMENTS)
+    const existingFiles = this.data.record.files || []
+    const today = getToday()
+    const filesWithMeta = files.map(function (file, index) {
+      return normalizeAttachment(file, existingFiles.length + index, today)
+    })
+    const nextFiles = existingFiles.concat(filesWithMeta).slice(0, MAX_ATTACHMENTS)
     this.setData({
       'record.files': nextFiles
     })
@@ -276,11 +323,21 @@ Page({
 
   removeAttachment(event) {
     const index = Number(event.currentTarget.dataset.index)
-    const files = (this.data.record.files || []).filter(function (_, fileIndex) {
-      return fileIndex !== index
-    })
-    this.setData({
-      'record.files': files
+    wx.showModal({
+      title: '删除附件',
+      content: '删除后需要重新上传。',
+      confirmText: '删除',
+      confirmColor: '#b42318',
+      success: (res) => {
+        if (!res.confirm) return
+
+        const files = (this.data.record.files || []).filter(function (_, fileIndex) {
+          return fileIndex !== index
+        })
+        this.setData({
+          'record.files': files
+        })
+      }
     })
   },
 
