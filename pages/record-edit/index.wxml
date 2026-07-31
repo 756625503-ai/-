@@ -26,6 +26,46 @@
     </view>
   </view>
 
+  <view class="attachment-panel">
+    <view class="attachment-head">
+      <view>
+        <text class="attachment-title">上传附件</text>
+        <text class="attachment-count">{{record.files.length}}/{{maxAttachments}}</text>
+      </view>
+      <view class="attachment-add" bindtap="chooseAttachment">+</view>
+    </view>
+
+    <scroll-view wx:if="{{record.files.length}}" scroll-x class="attachment-scroll">
+      <view class="attachment-strip">
+        <view
+          class="attachment-card"
+          wx:for="{{record.files}}"
+          wx:key="path"
+          data-index="{{index}}"
+          bindtap="previewAttachment"
+        >
+          <view class="attachment-preview">
+            <image wx:if="{{item.type === 'image'}}" class="attachment-image" src="{{item.path}}" mode="aspectFill" />
+            <view wx:else class="attachment-file">
+              <text class="file-badge">FILE</text>
+              <text class="file-card-name">{{item.name}}</text>
+            </view>
+          </view>
+          <text class="attachment-no">No.{{index + 1}}</text>
+          <view class="attachment-date-row">
+            <text class="attachment-date">— {{record.visitDate}} —</text>
+            <view class="attachment-menu" data-index="{{index}}" catchtap="removeAttachment">⋮</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view wx:else class="attachment-empty" bindtap="chooseAttachment">
+      <view class="empty-plus">+</view>
+      <text>添加报告、处方、检查图片或文件</text>
+    </view>
+  </view>
+
   <view class="section">
     <view class="field">
       <text class="field-label">家庭成员</text>
@@ -71,21 +111,6 @@
       <text class="field-label">医生建议</text>
       <textarea class="textarea" value="{{record.advice}}" data-field="advice" bindinput="onInput" placeholder="复查、复诊、饮食、运动等建议" />
     </view>
-  </view>
-
-  <view class="section">
-    <view class="row">
-      <text class="section-title">报告附件</text>
-      <button class="small-button" bindtap="chooseAttachment">添加</button>
-    </view>
-
-    <block wx:if="{{record.files.length}}">
-      <view class="file-item" wx:for="{{record.files}}" wx:key="path" data-index="{{index}}" bindtap="previewAttachment">
-        <text class="file-name">{{item.name}}</text>
-        <button class="file-remove" data-index="{{index}}" catchtap="removeAttachment">删除</button>
-      </view>
-    </block>
-    <view wx:else class="empty">暂无附件</view>
   </view>
 
   <view class="action-bar">

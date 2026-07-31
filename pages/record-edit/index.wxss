@@ -108,41 +108,176 @@
   border-color: #7c3aed;
 }
 
-.small-button {
-  min-width: 104rpx;
-  min-height: 56rpx;
-  color: #147d7e;
-  background: #ecfdf3;
-  font-size: 25rpx;
-  font-weight: 700;
-}
-
-.file-item {
-  display: flex;
-  min-height: 84rpx;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20rpx;
-  margin-bottom: 14rpx;
-  padding: 18rpx 20rpx;
-  border: 1rpx solid #e4e7ec;
+.attachment-panel {
+  margin-top: 24rpx;
+  padding: 26rpx 0 30rpx;
+  border: 1rpx solid #eef2f6;
   border-radius: 8rpx;
   background: #ffffff;
 }
 
-.file-name {
-  flex: 1;
+.attachment-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 0 26rpx;
+}
+
+.attachment-title,
+.attachment-count,
+.attachment-no,
+.attachment-date {
+  display: block;
+}
+
+.attachment-title {
+  color: #101828;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.attachment-count {
+  margin-top: 12rpx;
+  color: #98a2b3;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.attachment-add,
+.empty-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  background: #22b9aa;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.attachment-add {
+  width: 72rpx;
+  height: 72rpx;
+  min-width: 72rpx;
+  min-height: 72rpx;
+  font-size: 58rpx;
+}
+
+.attachment-scroll {
+  width: 100%;
+  margin-top: 24rpx;
+  white-space: nowrap;
+}
+
+.attachment-strip {
+  display: flex;
+  gap: 24rpx;
+  padding: 0 26rpx;
+}
+
+.attachment-card {
+  flex: 0 0 auto;
+  width: 520rpx;
+  padding: 26rpx 24rpx 24rpx;
+  border-radius: 8rpx;
+  background: #ffffff;
+  box-shadow: 0 12rpx 34rpx rgba(16, 24, 40, 0.08);
+}
+
+.attachment-preview {
+  width: 100%;
+  height: 430rpx;
+  overflow: hidden;
+  border-radius: 4rpx;
+  background: #f2f4f7;
+}
+
+.attachment-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.attachment-file {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22rpx;
+  padding: 30rpx;
+}
+
+.file-badge {
+  padding: 10rpx 18rpx;
+  border-radius: 8rpx;
+  color: #175cd3;
+  background: #eaf2ff;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.file-card-name {
+  width: 100%;
   color: #344054;
-  font-size: 27rpx;
+  font-size: 28rpx;
+  line-height: 1.45;
+  text-align: center;
   word-break: break-all;
 }
 
-.file-remove {
-  width: 96rpx;
-  min-height: 52rpx;
-  color: #b42318;
-  background: #fff1f0;
-  font-size: 24rpx;
+.attachment-no {
+  margin-top: 32rpx;
+  color: #344054;
+  font-size: 38rpx;
+  font-weight: 800;
+  text-align: center;
+}
+
+.attachment-date-row {
+  position: relative;
+  margin-top: 34rpx;
+}
+
+.attachment-date {
+  color: #98a2b3;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.attachment-menu {
+  position: absolute;
+  right: 18rpx;
+  top: 50%;
+  width: 44rpx;
+  min-height: 60rpx;
+  transform: translateY(-50%);
+  color: #d0d5dd;
+  font-size: 42rpx;
+  line-height: 1;
+  text-align: center;
+}
+
+.attachment-empty {
+  display: flex;
+  min-height: 210rpx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18rpx;
+  margin: 24rpx 26rpx 0;
+  border: 2rpx dashed #b7ebe5;
+  border-radius: 8rpx;
+  color: #667085;
+  background: #f7fffd;
+  font-size: 26rpx;
+}
+
+.empty-plus {
+  width: 72rpx;
+  height: 72rpx;
+  font-size: 58rpx;
 }
 
 .action-bar {

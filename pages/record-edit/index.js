@@ -1,4 +1,5 @@
 const storage = require('../../utils/storage')
+const MAX_ATTACHMENTS = 100
 
 function getToday() {
   const date = new Date()
@@ -67,6 +68,7 @@ Page({
     typeOptions: getTypeOptions(),
     typeIndex: 0,
     typeThemeClass: getTypeThemeClass('门诊'),
+    maxAttachments: MAX_ATTACHMENTS,
     record: getDefaultRecord()
   },
 
@@ -159,6 +161,14 @@ Page({
   },
 
   chooseAttachment() {
+    if ((this.data.record.files || []).length >= MAX_ATTACHMENTS) {
+      wx.showToast({
+        title: '最多上传100个',
+        icon: 'none'
+      })
+      return
+    }
+
     wx.showActionSheet({
       itemList: ['图片', '微信文件'],
       success: (res) => {
@@ -172,8 +182,9 @@ Page({
   },
 
   chooseImage() {
+    const remaining = MAX_ATTACHMENTS - (this.data.record.files || []).length
     wx.chooseMedia({
-      count: 9,
+      count: Math.min(9, remaining),
       mediaType: ['image'],
       sourceType: ['album', 'camera'],
       success: (res) => {
@@ -190,8 +201,9 @@ Page({
   },
 
   chooseFile() {
+    const remaining = MAX_ATTACHMENTS - (this.data.record.files || []).length
     wx.chooseMessageFile({
-      count: 9,
+      count: Math.min(9, remaining),
       type: 'file',
       success: (res) => {
         const files = res.tempFiles.map(function (file) {
@@ -207,7 +219,7 @@ Page({
   },
 
   appendFiles(files) {
-    const nextFiles = (this.data.record.files || []).concat(files)
+    const nextFiles = (this.data.record.files || []).concat(files).slice(0, MAX_ATTACHMENTS)
     this.setData({
       'record.files': nextFiles
     })
@@ -257,7 +269,7 @@ Page({
 
   saveRecord() {
     const record = Object.assign({}, this.data.record)
-    if (!record.title && !record.hospital && !record.summary && !record.diagnosis && !record.medicines && !record.advice) {
+    if (!record.title && !record.hospital && !record.summary && !record.diagnosis && !record.medicines && !record.advice && !(record.files || []).length) {
       wx.showToast({
         title: '请填写记录内容',
         icon: 'none'
