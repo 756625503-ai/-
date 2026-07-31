@@ -178,16 +178,10 @@
 .attachment-card {
   flex: 0 0 auto;
   width: 520rpx;
-  padding: 18rpx 24rpx 24rpx;
+  padding: 24rpx;
   border-radius: 8rpx;
   background: #ffffff;
   box-shadow: 0 12rpx 34rpx rgba(16, 24, 40, 0.08);
-}
-
-.attachment-card-head {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 16rpx;
 }
 
 .attachment-delete {
@@ -296,6 +290,12 @@
   color: #98a2b3;
   font-size: 28rpx;
   text-align: center;
+}
+
+.attachment-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28rpx;
 }
 
 .attachment-empty {

@@ -43,9 +43,6 @@
           wx:key="path"
           data-index="{{index}}"
         >
-          <view class="attachment-card-head">
-            <button class="attachment-delete" data-index="{{index}}" catchtap="removeAttachment">删除</button>
-          </view>
           <view class="attachment-preview" data-index="{{index}}" bindtap="previewAttachment">
             <image wx:if="{{item.type === 'image'}}" class="attachment-image" src="{{item.path}}" mode="aspectFill" />
             <view wx:elif="{{item.type === 'video'}}" class="attachment-video-wrap">
@@ -71,6 +68,9 @@
           <picker mode="date" value="{{item.date}}" data-index="{{index}}" bindchange="onAttachmentDateChange">
             <view class="attachment-date">— {{item.date}} —</view>
           </picker>
+          <view class="attachment-actions">
+            <button class="attachment-delete" data-index="{{index}}" catchtap="removeAttachment">删除</button>
+          </view>
         </view>
       </view>
     </scroll-view>
