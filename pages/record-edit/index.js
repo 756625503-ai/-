@@ -57,6 +57,20 @@ function normalizeType(type) {
   return type || '门诊'
 }
 
+function saveTempFile(tempFilePath) {
+  return new Promise(function (resolve) {
+    wx.saveFile({
+      tempFilePath: tempFilePath,
+      success: function (res) {
+        resolve(res.savedFilePath)
+      },
+      fail: function () {
+        resolve(tempFilePath)
+      }
+    })
+  })
+}
+
 Page({
   data: {
     isEditing: false,
@@ -190,14 +204,17 @@ Page({
       mediaType: ['image'],
       sourceType: ['album', 'camera'],
       success: (res) => {
-        const files = res.tempFiles.map(function (file, index) {
-          return {
-            name: '报告图片-' + (index + 1) + '.jpg',
-            path: file.tempFilePath,
-            type: 'image'
-          }
+        Promise.all(res.tempFiles.map(function (file, index) {
+          return saveTempFile(file.tempFilePath).then(function (savedPath) {
+            return {
+              name: '报告图片-' + (index + 1) + '.jpg',
+              path: savedPath,
+              type: 'image'
+            }
+          })
+        })).then((files) => {
+          this.appendFiles(files)
         })
-        this.appendFiles(files)
       }
     })
   },
@@ -208,14 +225,17 @@ Page({
       count: Math.min(9, remaining),
       type: 'file',
       success: (res) => {
-        const files = res.tempFiles.map(function (file) {
-          return {
-            name: file.name,
-            path: file.path,
-            type: 'file'
-          }
+        Promise.all(res.tempFiles.map(function (file) {
+          return saveTempFile(file.path).then(function (savedPath) {
+            return {
+              name: file.name,
+              path: savedPath,
+              type: 'file'
+            }
+          })
+        })).then((files) => {
+          this.appendFiles(files)
         })
-        this.appendFiles(files)
       }
     })
   },
@@ -227,16 +247,22 @@ Page({
       mediaType: ['video'],
       sourceType: ['album', 'camera'],
       success: (res) => {
-        const files = res.tempFiles.map(function (file, index) {
-          return {
-            name: '胶片视频-' + (index + 1) + '.mp4',
-            path: file.tempFilePath,
-            poster: file.thumbTempFilePath || '',
-            duration: file.duration || 0,
-            type: 'video'
-          }
+        Promise.all(res.tempFiles.map(function (file, index) {
+          return Promise.all([
+            saveTempFile(file.tempFilePath),
+            file.thumbTempFilePath ? saveTempFile(file.thumbTempFilePath) : Promise.resolve('')
+          ]).then(function (result) {
+            return {
+              name: '胶片视频-' + (index + 1) + '.mp4',
+              path: result[0],
+              poster: result[1] || '',
+              duration: file.duration || 0,
+              type: 'video'
+            }
+          })
+        })).then((files) => {
+          this.appendFiles(files)
         })
-        this.appendFiles(files)
       }
     })
   },
