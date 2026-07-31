@@ -5,7 +5,6 @@
         <text class="greeting">健康记录</text>
         <text class="person-name">{{activeProfileName}}</text>
       </view>
-      <button class="header-add" bindtap="goAdd">+</button>
     </view>
 
     <scroll-view scroll-x class="member-scroll">
@@ -31,7 +30,7 @@
   <scroll-view scroll-y class="timeline-scroll">
     <view class="timeline">
       <view class="timeline-add">
-        <button class="timeline-plus" bindtap="goAdd">+</button>
+        <view class="timeline-plus" bindtap="goAdd">+</view>
       </view>
 
       <block wx:if="{{filteredRecords.length}}">

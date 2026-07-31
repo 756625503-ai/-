@@ -15,7 +15,7 @@
 .person-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 28rpx;
 }
 
@@ -39,20 +39,6 @@
   font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.header-add {
-  display: flex;
-  width: 82rpx;
-  height: 82rpx;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8rpx;
-  color: #ffffff;
-  background: rgba(4, 104, 98, 0.36);
-  font-size: 60rpx;
-  font-weight: 300;
-  line-height: 1;
 }
 
 .member-scroll {
@@ -125,8 +111,9 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 334rpx;
+  left: 50%;
   width: 2rpx;
+  transform: translateX(-1rpx);
   background: #58beb4;
   content: "";
 }
@@ -145,6 +132,8 @@
   display: flex;
   width: 70rpx;
   height: 70rpx;
+  min-width: 70rpx;
+  min-height: 70rpx;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
@@ -158,7 +147,7 @@
 .timeline-row {
   position: relative;
   display: grid;
-  grid-template-columns: 282rpx 36rpx 1fr;
+  grid-template-columns: calc(50% - 18rpx) 36rpx calc(50% - 18rpx);
   min-height: 170rpx;
   align-items: center;
 }
@@ -170,11 +159,14 @@
   min-height: 48rpx;
   align-items: center;
   justify-content: center;
+  justify-self: end;
+  margin-right: 30rpx;
   border-radius: 50%;
   color: #ffffff;
   background: #159185;
   font-size: 30rpx;
   font-weight: 700;
+  text-align: center;
 }
 
 .date-bubble::after {
@@ -193,7 +185,7 @@
   z-index: 2;
   width: 20rpx;
   height: 20rpx;
-  margin-left: 9rpx;
+  margin: 0 auto;
   border-radius: 50%;
   background: #159185;
 }
@@ -270,7 +262,8 @@
 .empty-timeline {
   position: relative;
   z-index: 2;
-  margin: 80rpx 0 0 338rpx;
+  margin-top: 80rpx;
   color: #98a2b3;
   font-size: 28rpx;
+  text-align: center;
 }
