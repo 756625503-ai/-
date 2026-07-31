@@ -8,6 +8,38 @@
       "install_dir": "/Users/chenxi/Documents/New project/skills/01-gsap",
       "installed_at": "1785497955015",
       "sha256": "64b74d38a645f7397450a0c015103a56e582d5638ff966698f5e7a8e551f1dba"
+    },
+    "tasteskill": {
+      "name": "tasteskill",
+      "version": "1.0.0",
+      "source": "redskill",
+      "install_dir": "/Users/chenxi/Documents/New project/skills/tasteskill",
+      "installed_at": "1785508950386",
+      "sha256": "c6a395c38d5de1665c9969dd5e61dc946fcef808136cc0ebd94bbde6da2660a9"
+    },
+    "impeccable": {
+      "name": "impeccable",
+      "version": "3.9.1",
+      "source": "redskill",
+      "install_dir": "/Users/chenxi/Documents/New project/skills/impeccable",
+      "installed_at": "1785509021066",
+      "sha256": "6b5bc8c24b34dad3b9abe32f4a7ecec4e531a843b3ed0e2debb60275c972c18f"
+    },
+    "gy-shadcn-ui": {
+      "name": "gy-shadcn-ui",
+      "version": "1.0.0",
+      "source": "redskill",
+      "install_dir": "/Users/chenxi/Documents/New project/skills/gy-shadcn-ui",
+      "installed_at": "1785509115680",
+      "sha256": "0f38a382b146f952b309f35f5de383f52aa27f5bf87cea44c1a236429d4b1112"
+    },
+    "ui-ux-pro-max1": {
+      "name": "ui-ux-pro-max1",
+      "version": "1.0.0",
+      "source": "redskill",
+      "install_dir": "/Users/chenxi/Documents/New project/skills/ui-ux-pro-max1",
+      "installed_at": "1785509189762",
+      "sha256": "a086bf0505a72b17ea5640c976ab6d4325191de3e3633205df567b4fc4019262"
     }
   }
 }
