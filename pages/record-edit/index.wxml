@@ -46,6 +46,14 @@
         >
           <view class="attachment-preview">
             <image wx:if="{{item.type === 'image'}}" class="attachment-image" src="{{item.path}}" mode="aspectFill" />
+            <view wx:elif="{{item.type === 'video'}}" class="attachment-video-wrap">
+              <image wx:if="{{item.poster}}" class="attachment-image" src="{{item.poster}}" mode="aspectFill" />
+              <view wx:else class="attachment-file attachment-video-fallback">
+                <text class="file-badge">VIDEO</text>
+                <text class="file-card-name">{{item.name}}</text>
+              </view>
+              <view class="video-play">▶</view>
+            </view>
             <view wx:else class="attachment-file">
               <text class="file-badge">FILE</text>
               <text class="file-card-name">{{item.name}}</text>

@@ -170,10 +170,12 @@ Page({
     }
 
     wx.showActionSheet({
-      itemList: ['图片', '微信文件'],
+      itemList: ['图片', '视频', '微信文件'],
       success: (res) => {
         if (res.tapIndex === 0) {
           this.chooseImage()
+        } else if (res.tapIndex === 1) {
+          this.chooseVideo()
         } else {
           this.chooseFile()
         }
@@ -218,6 +220,27 @@ Page({
     })
   },
 
+  chooseVideo() {
+    const remaining = MAX_ATTACHMENTS - (this.data.record.files || []).length
+    wx.chooseMedia({
+      count: Math.min(9, remaining),
+      mediaType: ['video'],
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        const files = res.tempFiles.map(function (file, index) {
+          return {
+            name: '胶片视频-' + (index + 1) + '.mp4',
+            path: file.tempFilePath,
+            poster: file.thumbTempFilePath || '',
+            duration: file.duration || 0,
+            type: 'video'
+          }
+        })
+        this.appendFiles(files)
+      }
+    })
+  },
+
   appendFiles(files) {
     const nextFiles = (this.data.record.files || []).concat(files).slice(0, MAX_ATTACHMENTS)
     this.setData({
@@ -252,6 +275,24 @@ Page({
       wx.previewImage({
         current: file.path,
         urls: urls
+        })
+      return
+    }
+
+    if (file.type === 'video') {
+      wx.previewMedia({
+        sources: [{
+          url: file.path,
+          type: 'video',
+          poster: file.poster || ''
+        }],
+        current: 0,
+        fail: function () {
+          wx.showToast({
+            title: '暂无法预览',
+            icon: 'none'
+          })
+        }
       })
       return
     }
