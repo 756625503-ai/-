@@ -32,5 +32,5 @@
 
   <view class="list-footer">总档案：{{profiles.length}} 个</view>
 
-  <button class="float-add" bindtap="addProfile">+</button>
+  <view class="float-add" bindtap="addProfile">+</view>
 </view>
