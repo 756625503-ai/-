@@ -4,7 +4,7 @@
       <text class="hero-kicker">体检报告对比</text>
       <text class="hero-name">{{activeProfileName}}</text>
     </view>
-    <text class="hero-count">{{comparedRecords.length}}/{{maxCompare}}</text>
+    <text class="hero-count">已选 {{comparedRecords.length}}/{{maxCompare}}</text>
   </view>
 
   <scroll-view scroll-x class="member-scroll">
@@ -45,7 +45,8 @@
           </view>
           <text class="report-title">{{item.reportTitle}}</text>
           <text class="report-meta">{{item.reportMeta}}</text>
-          <text class="report-files">{{item.ocrSummaryText}} · {{item.metricCountText}}</text>
+          <text class="report-files">{{item.ocrSummaryText}}</text>
+          <text class="report-metrics">{{item.metricCountText}}</text>
         </view>
       </view>
     </scroll-view>

@@ -25,6 +25,17 @@ button::after {
   border: none;
 }
 
+button:active,
+.primary-button:active,
+.secondary-button:active,
+.danger-button:active {
+  opacity: 0.82;
+}
+
+button[disabled] {
+  opacity: 0.48;
+}
+
 .page {
   padding: 28rpx;
 }

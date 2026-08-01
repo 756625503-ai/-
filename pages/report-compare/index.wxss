@@ -1,6 +1,6 @@
 .compare-page {
   min-height: 100vh;
-  padding: 28rpx;
+  padding: 28rpx 28rpx 34rpx;
   background: #f7f9fb;
 }
 
@@ -13,6 +13,7 @@
   border-radius: 8rpx;
   color: #ffffff;
   background: #147d7e;
+  box-shadow: 0 16rpx 36rpx rgba(20, 125, 126, 0.18);
 }
 
 .hero-kicker,
@@ -24,6 +25,7 @@
 .report-title,
 .report-meta,
 .report-files,
+.report-metrics,
 .head-year,
 .head-title {
   display: block;
@@ -43,7 +45,7 @@
 }
 
 .hero-count {
-  min-width: 96rpx;
+  min-width: 126rpx;
   padding: 10rpx 18rpx;
   border-radius: 999rpx;
   color: #0d6f67;
@@ -97,6 +99,7 @@
   border: 1rpx solid #e4e7ec;
   border-radius: 8rpx;
   background: #ffffff;
+  box-shadow: 0 10rpx 26rpx rgba(16, 24, 40, 0.04);
 }
 
 .select-panel {
@@ -143,8 +146,8 @@
 
 .report-card {
   flex: 0 0 auto;
-  width: 300rpx;
-  min-height: 210rpx;
+  width: 324rpx;
+  min-height: 230rpx;
   padding: 22rpx;
   border: 2rpx solid #e4e7ec;
   border-radius: 8rpx;
@@ -154,6 +157,7 @@
 .report-selected {
   border-color: #147d7e;
   background: #f0fdfa;
+  box-shadow: 0 12rpx 26rpx rgba(20, 125, 126, 0.12);
 }
 
 .report-topline {
@@ -194,7 +198,8 @@
 }
 
 .report-meta,
-.report-files {
+.report-files,
+.report-metrics {
   overflow: hidden;
   color: #667085;
   font-size: 23rpx;
@@ -211,6 +216,12 @@
   margin-top: 12rpx;
   color: #8b5cf6;
   font-weight: 700;
+}
+
+.report-metrics {
+  margin-top: 8rpx;
+  color: #147d7e;
+  font-weight: 800;
 }
 
 .compare-section {
@@ -233,12 +244,12 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 180rpx repeat(3, 1fr);
+  grid-template-columns: 200rpx repeat(3, 1fr);
   border-bottom: 1rpx solid #eef2f6;
 }
 
 .compare-table.columns-2 .table-row {
-  grid-template-columns: 180rpx repeat(2, 1fr);
+  grid-template-columns: 200rpx repeat(2, 1fr);
 }
 
 .table-head {
@@ -248,7 +259,7 @@
 .table-label,
 .table-cell {
   min-height: 96rpx;
-  padding: 22rpx 20rpx;
+  padding: 24rpx 22rpx;
   color: #344054;
   font-size: 25rpx;
   line-height: 1.55;
@@ -258,7 +269,7 @@
 
 .table-label {
   color: #101828;
-  background: #fcfcfd;
+  background: #f9fafb;
   font-weight: 800;
 }
 

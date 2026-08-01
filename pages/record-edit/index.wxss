@@ -186,10 +186,14 @@
 
 .attachment-delete,
 .attachment-ocr {
-  width: 104rpx;
-  min-width: 104rpx;
+  display: flex;
+  flex: 1;
+  width: auto;
+  min-width: 0;
   height: 52rpx;
   min-height: 52rpx;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
   border: 1rpx solid #fecdca;
@@ -202,8 +206,6 @@
 }
 
 .attachment-ocr {
-  width: 148rpx;
-  min-width: 148rpx;
   border-color: #b7ebe5;
   color: #147d7e;
   background: #e7f8f5;
@@ -304,10 +306,10 @@
 
 .ocr-panel {
   margin-top: 24rpx;
-  padding: 18rpx;
+  padding: 20rpx;
   border: 1rpx solid #e4e7ec;
   border-radius: 8rpx;
-  background: #fcfcfd;
+  background: #f9fafb;
 }
 
 .ocr-head {
@@ -330,7 +332,10 @@
 }
 
 .ocr-status {
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
   color: #147d7e;
+  background: #e7f8f5;
   font-size: 23rpx;
   font-weight: 800;
 }
@@ -339,7 +344,8 @@
   width: 100%;
   min-height: 150rpx;
   margin-top: 14rpx;
-  padding: 14rpx;
+  padding: 16rpx;
+  border: 1rpx solid #eef2f6;
   border-radius: 8rpx;
   color: #344054;
   background: #ffffff;
@@ -355,9 +361,9 @@
 }
 
 .attachment-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 14rpx;
-  justify-content: flex-end;
   margin-top: 28rpx;
 }
 

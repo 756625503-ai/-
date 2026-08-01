@@ -2,11 +2,12 @@
   position: relative;
   min-height: 100vh;
   padding-bottom: calc(150rpx + env(safe-area-inset-bottom));
-  background: #ffffff;
+  background: #f7f9fb;
 }
 
 .profile-list {
-  background: #ffffff;
+  padding-top: 12rpx;
+  background: #f7f9fb;
 }
 
 .profile-row {
@@ -14,8 +15,11 @@
   grid-template-columns: 86rpx 1fr 88rpx;
   min-height: 160rpx;
   align-items: center;
-  border-bottom: 1rpx solid #edf0f2;
+  margin: 0 24rpx 18rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
   background: #ffffff;
+  box-shadow: 0 8rpx 20rpx rgba(16, 24, 40, 0.04);
 }
 
 .check-wrap {
@@ -37,8 +41,8 @@
 }
 
 .check-active {
-  border-color: #ff8748;
-  background: #ff8748;
+  border-color: #147d7e;
+  background: #147d7e;
 }
 
 .check-mark {
@@ -145,9 +149,9 @@
   padding: 0;
   border-radius: 50%;
   color: #ffffff;
-  background: #ff8748;
+  background: #147d7e;
   font-size: 72rpx;
   font-weight: 300;
   line-height: 1;
-  box-shadow: 0 10rpx 28rpx rgba(255, 135, 72, 0.28);
+  box-shadow: 0 14rpx 30rpx rgba(20, 125, 126, 0.26);
 }
