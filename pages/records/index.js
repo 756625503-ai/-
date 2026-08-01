@@ -139,6 +139,12 @@ Page({
     })
   },
 
+  goCompare() {
+    wx.navigateTo({
+      url: '/pages/report-compare/index'
+    })
+  },
+
   openRecord(event) {
     wx.navigateTo({
       url: '/pages/record-edit/index?id=' + event.currentTarget.dataset.id

@@ -1,0 +1,110 @@
+<view class="compare-page safe-bottom">
+  <view class="compare-hero">
+    <view>
+      <text class="hero-kicker">体检报告对比</text>
+      <text class="hero-name">{{activeProfileName}}</text>
+    </view>
+    <text class="hero-count">{{comparedRecords.length}}/{{maxCompare}}</text>
+  </view>
+
+  <scroll-view scroll-x class="member-scroll">
+    <view class="member-row">
+      <button
+        class="member-chip {{activeProfileId === item.id ? 'member-active' : ''}}"
+        wx:for="{{profiles}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="changeProfile"
+      >
+        {{item.displayName}}
+      </button>
+    </view>
+  </scroll-view>
+
+  <view class="select-panel">
+    <view class="panel-head">
+      <view>
+        <text class="panel-title">选择要对比的报告</text>
+        <text class="panel-meta">选择2到3份体检或检查记录</text>
+      </view>
+      <button class="add-record-btn" bindtap="goAddRecord">新增</button>
+    </view>
+
+    <scroll-view wx:if="{{reports.length}}" scroll-x class="report-scroll">
+      <view class="report-row">
+        <view
+          class="report-card {{item.selectedClass}}"
+          wx:for="{{reports}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="toggleReport"
+        >
+          <view class="report-topline">
+            <text class="report-year">{{item.compareYear}}</text>
+            <text class="report-check">{{item.selected ? '已选' : '选择'}}</text>
+          </view>
+          <text class="report-title">{{item.reportTitle}}</text>
+          <text class="report-meta">{{item.reportMeta}}</text>
+          <text class="report-files">{{item.fileCountText}}</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view wx:else class="empty-compare">
+      <text>还没有可对比的体检报告</text>
+    </view>
+  </view>
+
+  <view wx:if="{{comparedRecords.length >= minCompare}}" class="compare-section">
+    <scroll-view scroll-x class="compare-table-scroll">
+      <view class="compare-table columns-{{comparedRecords.length}}">
+        <view class="table-row table-head">
+          <view class="table-label">项目</view>
+          <view
+            class="table-cell head-cell"
+            wx:for="{{comparedRecords}}"
+            wx:for-item="report"
+            wx:key="id"
+          >
+            <text class="head-year">{{report.compareYear}}</text>
+            <text class="head-title">{{report.reportTitle}}</text>
+          </view>
+        </view>
+
+        <view
+          class="table-row"
+          wx:for="{{compareRows}}"
+          wx:for-item="row"
+          wx:key="label"
+        >
+          <view class="table-label">{{row.label}}</view>
+          <view
+            class="table-cell"
+            wx:for="{{row.values}}"
+            wx:for-item="value"
+            wx:key="*this"
+          >
+            {{value}}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="detail-actions">
+      <button
+        class="detail-button"
+        wx:for="{{comparedRecords}}"
+        wx:for-item="report"
+        wx:key="id"
+        data-id="{{report.id}}"
+        bindtap="openRecord"
+      >
+        查看{{report.compareYear}}
+      </button>
+    </view>
+  </view>
+
+  <view wx:else class="empty-compare">
+    <text>请至少选择2份报告进行对比</text>
+  </view>
+</view>

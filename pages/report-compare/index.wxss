@@ -1,0 +1,302 @@
+.compare-page {
+  min-height: 100vh;
+  padding: 28rpx;
+  background: #f7f9fb;
+}
+
+.compare-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22rpx;
+  padding: 30rpx;
+  border-radius: 8rpx;
+  color: #ffffff;
+  background: #147d7e;
+}
+
+.hero-kicker,
+.hero-name,
+.hero-count,
+.panel-title,
+.panel-meta,
+.report-year,
+.report-title,
+.report-meta,
+.report-files,
+.head-year,
+.head-title {
+  display: block;
+}
+
+.hero-kicker {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.hero-name {
+  margin-top: 8rpx;
+  color: #ffffff;
+  font-size: 44rpx;
+  font-weight: 800;
+}
+
+.hero-count {
+  min-width: 96rpx;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  color: #0d6f67;
+  background: #ffffff;
+  font-size: 26rpx;
+  font-weight: 800;
+  text-align: center;
+}
+
+.member-scroll,
+.report-scroll,
+.compare-table-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.member-scroll {
+  margin-top: 22rpx;
+}
+
+.member-row,
+.report-row {
+  display: flex;
+  gap: 14rpx;
+}
+
+.member-chip {
+  display: inline-flex;
+  min-width: 104rpx;
+  min-height: 58rpx;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22rpx;
+  border: 1rpx solid #d0d5dd;
+  color: #344054;
+  background: #ffffff;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.member-active {
+  color: #ffffff;
+  background: #147d7e;
+  border-color: #147d7e;
+}
+
+.select-panel,
+.compare-section,
+.empty-compare {
+  margin-top: 24rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.select-panel {
+  padding: 24rpx 0 26rpx;
+}
+
+.panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18rpx;
+  padding: 0 24rpx;
+}
+
+.panel-title {
+  color: #101828;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.panel-meta {
+  margin-top: 8rpx;
+  color: #667085;
+  font-size: 24rpx;
+}
+
+.add-record-btn {
+  width: 104rpx;
+  min-width: 104rpx;
+  min-height: 58rpx;
+  color: #147d7e;
+  background: #e7f8f5;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.report-scroll {
+  margin-top: 22rpx;
+}
+
+.report-row {
+  padding: 0 24rpx;
+}
+
+.report-card {
+  flex: 0 0 auto;
+  width: 300rpx;
+  min-height: 210rpx;
+  padding: 22rpx;
+  border: 2rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.report-selected {
+  border-color: #147d7e;
+  background: #f0fdfa;
+}
+
+.report-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.report-year {
+  color: #147d7e;
+  font-size: 36rpx;
+  font-weight: 900;
+}
+
+.report-check {
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  color: #475467;
+  background: #f2f4f7;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.report-selected .report-check {
+  color: #ffffff;
+  background: #147d7e;
+}
+
+.report-title {
+  margin-top: 18rpx;
+  overflow: hidden;
+  color: #101828;
+  font-size: 29rpx;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.report-meta,
+.report-files {
+  overflow: hidden;
+  color: #667085;
+  font-size: 23rpx;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.report-meta {
+  margin-top: 10rpx;
+}
+
+.report-files {
+  margin-top: 12rpx;
+  color: #8b5cf6;
+  font-weight: 700;
+}
+
+.compare-section {
+  padding: 0 0 24rpx;
+  overflow: hidden;
+}
+
+.compare-table {
+  display: grid;
+  min-width: 900rpx;
+}
+
+.compare-table.columns-2 {
+  min-width: 860rpx;
+}
+
+.compare-table.columns-3 {
+  min-width: 1120rpx;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 180rpx repeat(3, 1fr);
+  border-bottom: 1rpx solid #eef2f6;
+}
+
+.compare-table.columns-2 .table-row {
+  grid-template-columns: 180rpx repeat(2, 1fr);
+}
+
+.table-head {
+  background: #f9fafb;
+}
+
+.table-label,
+.table-cell {
+  min-height: 96rpx;
+  padding: 22rpx 20rpx;
+  color: #344054;
+  font-size: 25rpx;
+  line-height: 1.55;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.table-label {
+  color: #101828;
+  background: #fcfcfd;
+  font-weight: 800;
+}
+
+.head-cell {
+  color: #101828;
+}
+
+.head-year {
+  color: #147d7e;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+.head-title {
+  margin-top: 6rpx;
+  color: #344054;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.detail-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14rpx;
+  padding: 24rpx 24rpx 0;
+}
+
+.detail-button {
+  min-height: 68rpx;
+  color: #175cd3;
+  background: #eaf2ff;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.empty-compare {
+  padding: 44rpx 24rpx;
+  color: #98a2b3;
+  font-size: 28rpx;
+  text-align: center;
+}
