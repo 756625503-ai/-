@@ -1,4 +1,5 @@
 const storage = require('../../utils/storage')
+const reportMetrics = require('../../utils/report-metrics')
 
 const MAX_COMPARE = 3
 const MIN_COMPARE = 2
@@ -17,21 +18,19 @@ function getReportTitle(record) {
 }
 
 function getReportMeta(record) {
-  return [
-    storage.formatDate(record.visitDate || record.createdAt),
-    record.hospital || '未填写医院',
-    record.department || ''
-  ].filter(Boolean).join(' · ')
+  return storage.formatDate(record.visitDate || record.createdAt)
 }
 
 function isReportCandidate(record) {
   const files = Array.isArray(record.files) ? record.files : []
+  const ocrText = reportMetrics.getOcrText(record)
   const text = [
     record.type,
     record.title,
     record.summary,
     record.diagnosis,
-    record.advice
+    record.advice,
+    ocrText
   ].concat(files.map(function (file) {
     return [file.title, file.name].join(' ')
   })).join(' ')
@@ -54,6 +53,12 @@ function getFilesText(files) {
 
 function normalizeRecord(record, selectedIds) {
   const files = Array.isArray(record.files) ? record.files : []
+  const ocrText = reportMetrics.getOcrText(record)
+  const extractedMetrics = reportMetrics.extractMetricsFromText(ocrText)
+  const metricCount = Object.keys(extractedMetrics).length
+  const recognizedCount = files.filter(function (file) {
+    return Boolean(file.ocrText)
+  }).length
   const selected = selectedIds.indexOf(record.id) >= 0
 
   return Object.assign({}, record, {
@@ -64,6 +69,10 @@ function normalizeRecord(record, selectedIds) {
     selected: selected,
     selectedClass: selected ? 'report-selected' : '',
     fileCountText: files.length ? files.length + '个附件' : '无附件',
+    metricCountText: metricCount ? metricCount + '项指标' : '未识别指标',
+    ocrSummaryText: recognizedCount ? '已识别' + recognizedCount + '/' + files.length + '个附件' : '待识别附件',
+    extractedMetrics: extractedMetrics,
+    ocrText: ocrText,
     filesText: getFilesText(files),
     files: files
   })
@@ -74,27 +83,46 @@ function getText(value) {
 }
 
 function buildCompareRows(records) {
-  const rowDefs = [
-    { label: '日期', field: 'displayDate' },
-    { label: '记录类型', field: 'type' },
-    { label: '医院', field: 'hospital' },
-    { label: '科室', field: 'department' },
-    { label: '医生', field: 'doctor' },
-    { label: '主要情况', field: 'summary' },
-    { label: '诊断结果', field: 'diagnosis' },
-    { label: '医生建议', field: 'advice' },
-    { label: '药方 / 用药', field: 'medicines' },
-    { label: '附件', field: 'filesText' }
-  ]
-
-  return rowDefs.map(function (row) {
-    return {
-      label: row.label,
+  const baseRows = [
+    {
+      label: '报告日期',
       values: records.map(function (record) {
-        return getText(record[row.field])
+        return getText(record.displayDate)
+      })
+    },
+    {
+      label: '附件识别',
+      values: records.map(function (record) {
+        return record.ocrSummaryText
       })
     }
-  })
+  ]
+  const metricRows = reportMetrics.METRIC_DEFINITIONS.map(function (definition) {
+    const values = records.map(function (record) {
+      return reportMetrics.formatMetric(record.extractedMetrics[definition.key])
+    })
+    const hasMetric = values.some(function (value) {
+      return value !== '未识别'
+    })
+
+    if (!hasMetric) return null
+
+    return {
+      label: definition.label,
+      values: values
+    }
+  }).filter(Boolean)
+
+  if (!metricRows.length) {
+    return baseRows.concat({
+      label: '识别结果',
+      values: records.map(function () {
+        return '未识别到可对比指标'
+      })
+    })
+  }
+
+  return baseRows.concat(metricRows)
 }
 
 Page({

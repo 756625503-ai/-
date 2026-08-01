@@ -68,7 +68,31 @@
           <picker mode="date" value="{{item.date}}" data-index="{{index}}" bindchange="onAttachmentDateChange">
             <view class="attachment-date">— {{item.date}} —</view>
           </picker>
+          <view class="ocr-panel">
+            <view class="ocr-head">
+              <text class="ocr-title">附件内容</text>
+              <text class="ocr-status">{{item.ocrStatusText}}</text>
+            </view>
+            <textarea
+              wx:if="{{item.ocrText}}"
+              class="ocr-textarea"
+              value="{{item.ocrText}}"
+              data-index="{{index}}"
+              bindinput="onAttachmentOcrInput"
+              placeholder="识别出的报告文字"
+            />
+            <text wx:else class="ocr-empty">{{item.canRecognize ? '点击识别后自动提取报告文字' : '当前附件暂不支持自动识别'}}</text>
+          </view>
           <view class="attachment-actions">
+            <button
+              wx:if="{{item.canRecognize}}"
+              class="attachment-ocr"
+              disabled="{{item.ocrStatus === 'recognizing'}}"
+              data-index="{{index}}"
+              catchtap="recognizeAttachment"
+            >
+              识别内容
+            </button>
             <button class="attachment-delete" data-index="{{index}}" catchtap="removeAttachment">删除</button>
           </view>
         </view>
@@ -97,18 +121,6 @@
     <view class="field">
       <text class="field-label">标题</text>
       <input class="input" value="{{record.title}}" data-field="title" bindinput="onInput" placeholder="例如：年度体检、心内科门诊" />
-    </view>
-    <view class="field">
-      <text class="field-label">医院</text>
-      <input class="input" value="{{record.hospital}}" data-field="hospital" bindinput="onInput" placeholder="请输入医院名称" />
-    </view>
-    <view class="field">
-      <text class="field-label">科室</text>
-      <input class="input" value="{{record.department}}" data-field="department" bindinput="onInput" placeholder="例如：心内科、消化科" />
-    </view>
-    <view class="field">
-      <text class="field-label">医生</text>
-      <input class="input" value="{{record.doctor}}" data-field="doctor" bindinput="onInput" placeholder="请输入医生姓名" />
     </view>
     <view class="field">
       <text class="field-label">主要情况</text>

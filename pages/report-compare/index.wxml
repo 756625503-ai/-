@@ -25,7 +25,7 @@
     <view class="panel-head">
       <view>
         <text class="panel-title">选择要对比的报告</text>
-        <text class="panel-meta">选择2到3份体检或检查记录</text>
+        <text class="panel-meta">选择2到3份已识别附件的体检记录</text>
       </view>
       <button class="add-record-btn" bindtap="goAddRecord">新增</button>
     </view>
@@ -45,7 +45,7 @@
           </view>
           <text class="report-title">{{item.reportTitle}}</text>
           <text class="report-meta">{{item.reportMeta}}</text>
-          <text class="report-files">{{item.fileCountText}}</text>
+          <text class="report-files">{{item.ocrSummaryText}} · {{item.metricCountText}}</text>
         </view>
       </view>
     </scroll-view>
@@ -59,7 +59,7 @@
     <scroll-view scroll-x class="compare-table-scroll">
       <view class="compare-table columns-{{comparedRecords.length}}">
         <view class="table-row table-head">
-          <view class="table-label">项目</view>
+          <view class="table-label">识别项目</view>
           <view
             class="table-cell head-cell"
             wx:for="{{comparedRecords}}"

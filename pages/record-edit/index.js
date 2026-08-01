@@ -1,4 +1,5 @@
 const storage = require('../../utils/storage')
+const ocr = require('../../utils/ocr')
 const MAX_ATTACHMENTS = 100
 
 function getToday() {
@@ -75,10 +76,27 @@ function getDefaultAttachmentTitle(index) {
   return 'No.' + (index + 1)
 }
 
+function getOcrStatusText(file) {
+  if (file.ocrStatus === 'done') return '已识别'
+  if (file.ocrStatus === 'recognizing') return '识别中'
+  if (file.ocrStatus === 'failed') return '识别失败'
+  return file.ocrText ? '已识别' : '未识别'
+}
+
+function getOcrPreview(text) {
+  const value = String(text || '').replace(/\s+/g, ' ').trim()
+  return value.length > 72 ? value.slice(0, 72) + '...' : value
+}
+
 function normalizeAttachment(file, index, fallbackDate) {
   return Object.assign({}, file, {
     title: file.title || getDefaultAttachmentTitle(index),
-    date: file.date || file.uploadDate || fallbackDate || getToday()
+    date: file.date || file.uploadDate || fallbackDate || getToday(),
+    ocrText: file.ocrText || '',
+    ocrStatus: file.ocrStatus || (file.ocrText ? 'done' : ''),
+    ocrStatusText: getOcrStatusText(file),
+    ocrPreview: getOcrPreview(file.ocrText),
+    canRecognize: ocr.canRecognizeAttachment(file)
   })
 }
 
@@ -213,6 +231,84 @@ Page({
 
     this.setData({
       'record.files': files
+    })
+  },
+
+  onAttachmentOcrInput(event) {
+    const index = Number(event.currentTarget.dataset.index)
+    const files = (this.data.record.files || []).slice()
+    if (!files[index]) return
+
+    files[index] = normalizeAttachment(Object.assign({}, files[index], {
+      ocrText: event.detail.value,
+      ocrStatus: event.detail.value ? 'done' : ''
+    }), index, this.data.record.visitDate)
+
+    this.setData({
+      'record.files': files
+    })
+  },
+
+  recognizeAttachment(event) {
+    const index = Number(event.currentTarget.dataset.index)
+    const files = (this.data.record.files || []).slice()
+    const file = files[index]
+    if (!file) return
+
+    if (!ocr.canRecognizeAttachment(file)) {
+      wx.showToast({
+        title: '当前只支持图片识别',
+        icon: 'none'
+      })
+      return
+    }
+
+    files[index] = normalizeAttachment(Object.assign({}, file, {
+      ocrStatus: 'recognizing'
+    }), index, this.data.record.visitDate)
+    this.setData({
+      'record.files': files
+    })
+
+    wx.showLoading({
+      title: '识别中'
+    })
+
+    ocr.recognizeAttachment(file).then((result) => {
+      const latestFiles = (this.data.record.files || []).slice()
+      const latestFile = latestFiles[index]
+      if (!latestFile) return
+
+      latestFiles[index] = normalizeAttachment(Object.assign({}, latestFile, {
+        ocrText: result.text || '',
+        ocrStatus: result.text ? 'done' : 'failed',
+        cloudFileID: result.cloudFileID || latestFile.cloudFileID || ''
+      }), index, this.data.record.visitDate)
+      this.setData({
+        'record.files': latestFiles
+      })
+
+      wx.showToast({
+        title: result.text ? '已识别' : '未识别到文字',
+        icon: 'none'
+      })
+    }).catch((error) => {
+      const latestFiles = (this.data.record.files || []).slice()
+      if (latestFiles[index]) {
+        latestFiles[index] = normalizeAttachment(Object.assign({}, latestFiles[index], {
+          ocrStatus: 'failed'
+        }), index, this.data.record.visitDate)
+        this.setData({
+          'record.files': latestFiles
+        })
+      }
+
+      wx.showToast({
+        title: error && error.message ? error.message : '识别失败',
+        icon: 'none'
+      })
+    }).finally(function () {
+      wx.hideLoading()
     })
   },
 
@@ -393,7 +489,7 @@ Page({
 
   saveRecord() {
     const record = Object.assign({}, this.data.record)
-    if (!record.title && !record.hospital && !record.summary && !record.diagnosis && !record.medicines && !record.advice && !(record.files || []).length) {
+    if (!record.title && !record.summary && !record.diagnosis && !record.medicines && !record.advice && !(record.files || []).length) {
       wx.showToast({
         title: '请填写记录内容',
         icon: 'none'

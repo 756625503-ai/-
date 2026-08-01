@@ -1,4 +1,5 @@
 const storage = require('../../utils/storage')
+const reportMetrics = require('../../utils/report-metrics')
 
 function getTimelineTitle(record) {
   if (record.title) return record.title
@@ -23,7 +24,18 @@ function getTimelineMeta(record) {
     return record.summary || record.diagnosis || record.advice || '未填写不适描述'
   }
 
-  return [record.hospital || '未填写医院', record.department || '', record.doctor || ''].join(' ')
+  if (record.summary || record.diagnosis || record.advice) {
+    return record.summary || record.diagnosis || record.advice
+  }
+
+  const files = Array.isArray(record.files) ? record.files : []
+  const ocrCount = files.filter(function (file) {
+    return Boolean(file.ocrText)
+  }).length
+
+  if (ocrCount) return '已识别' + ocrCount + '个附件'
+  if (files.length) return files.length + '个附件待识别'
+  return '未填写记录内容'
 }
 
 function buildSearchText(record) {
@@ -44,7 +56,8 @@ function buildSearchText(record) {
     record.medicines,
     record.advice,
     record.timelineTitle,
-    record.timelineMeta
+    record.timelineMeta,
+    reportMetrics.getOcrText(record)
   ]
     .concat(files.reduce(function (items, file) {
       return items.concat([

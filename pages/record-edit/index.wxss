@@ -184,7 +184,8 @@
   box-shadow: 0 12rpx 34rpx rgba(16, 24, 40, 0.08);
 }
 
-.attachment-delete {
+.attachment-delete,
+.attachment-ocr {
   width: 104rpx;
   min-width: 104rpx;
   height: 52rpx;
@@ -200,7 +201,16 @@
   line-height: 50rpx;
 }
 
-.attachment-delete::after {
+.attachment-ocr {
+  width: 148rpx;
+  min-width: 148rpx;
+  border-color: #b7ebe5;
+  color: #147d7e;
+  background: #e7f8f5;
+}
+
+.attachment-delete::after,
+.attachment-ocr::after {
   border: 0;
 }
 
@@ -292,8 +302,61 @@
   text-align: center;
 }
 
+.ocr-panel {
+  margin-top: 24rpx;
+  padding: 18rpx;
+  border: 1rpx solid #e4e7ec;
+  border-radius: 8rpx;
+  background: #fcfcfd;
+}
+
+.ocr-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.ocr-title,
+.ocr-status,
+.ocr-empty {
+  display: block;
+}
+
+.ocr-title {
+  color: #344054;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.ocr-status {
+  color: #147d7e;
+  font-size: 23rpx;
+  font-weight: 800;
+}
+
+.ocr-textarea {
+  width: 100%;
+  min-height: 150rpx;
+  margin-top: 14rpx;
+  padding: 14rpx;
+  border-radius: 8rpx;
+  color: #344054;
+  background: #ffffff;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.ocr-empty {
+  margin-top: 14rpx;
+  color: #98a2b3;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
 .attachment-actions {
   display: flex;
+  gap: 14rpx;
   justify-content: flex-end;
   margin-top: 28rpx;
 }
