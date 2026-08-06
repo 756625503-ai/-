@@ -20,7 +20,7 @@
       <text class="group-label">{{group.label}}</text>
       <view class="type-chip-row">
         <button
-          class="type-chip {{group.themeClass}} {{record.type === item.value ? 'type-active' : ''}}"
+          class="type-chip {{group.themeClass}} {{record.type === item.value ? 'type-active' : ''}} {{item.value === '其他' ? 'type-other' : ''}}"
           wx:for="{{group.items}}"
           wx:for-item="item"
           wx:key="value"
