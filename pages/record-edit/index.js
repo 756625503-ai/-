@@ -60,7 +60,7 @@ function getTypeGroups() {
         { value: '住院', icon: '院', hint: '入院出院' },
         { value: '其他', icon: '记', hint: '补充记录' }
       ],
-      3
+      2
     ),
     createTypeGroup(
       '用药 / 不适',
