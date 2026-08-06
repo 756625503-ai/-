@@ -5,9 +5,11 @@
 }
 
 .records-header {
-  padding: 34rpx 34rpx 28rpx;
-  color: #1d2b3a;
-  background: #efefef;
+  padding: 34rpx 34rpx 38rpx;
+  border-bottom-left-radius: 48rpx;
+  border-bottom-right-radius: 48rpx;
+  color: #ffffff;
+  background: #72b0be;
 }
 
 .person-row {
@@ -29,15 +31,16 @@
 
 .greeting {
   margin-bottom: 6rpx;
-  color: #708087;
+  color: #ffffff;
   font-size: 26rpx;
   font-weight: 700;
+  opacity: 0.76;
 }
 
 .person-name {
   max-width: 100%;
   overflow: hidden;
-  color: #1d2b3a;
+  color: #ffffff;
   font-size: 42rpx;
   font-weight: 800;
   text-overflow: ellipsis;
@@ -52,7 +55,7 @@
   gap: 18rpx;
   margin-top: 24rpx;
   padding: 0 26rpx;
-  border: 1rpx solid #dfe8ea;
+  border: 1rpx solid #cde9f2;
   border-radius: 16rpx;
   background: #ffffff;
   box-shadow: 0 8rpx 22rpx rgba(41, 75, 84, 0.08);
