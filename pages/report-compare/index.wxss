@@ -217,7 +217,7 @@
 
 .report-files {
   margin-top: 12rpx;
-  color: #8b5cf6;
+  color: #72b0be;
   font-weight: 700;
 }
 

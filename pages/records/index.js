@@ -11,8 +11,8 @@ function getTimelineTitle(record) {
 }
 
 function getTimelineThemeClass(record) {
-  const purpleTypes = ['处方', '用药情况', '身体不适']
-  return purpleTypes.indexOf(record.type) >= 0 ? 'event-purple' : 'event-green'
+  const healthTypes = ['处方', '用药情况', '身体不适']
+  return healthTypes.indexOf(record.type) >= 0 ? 'event-health' : 'event-primary'
 }
 
 function getTimelineMeta(record) {

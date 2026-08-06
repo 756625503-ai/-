@@ -4,7 +4,7 @@
       <text class="profile-name">{{profile.name || profile.relation || '未命名成员'}}</text>
       <text class="profile-meta">{{profile.relation || '关系'}} · {{profile.gender || '性别'}} · {{profile.birthday || '出生日期'}} · {{profile.bloodType || '血型'}}</text>
     </view>
-    <text class="pill {{profile.name ? 'pill-green' : 'pill-amber'}}">{{profile.name ? '已建档' : '待完善'}}</text>
+    <text class="pill {{profile.name ? 'pill-green' : 'pill-info'}}">{{profile.name ? '已建档' : '待完善'}}</text>
   </view>
 
   <view class="section">

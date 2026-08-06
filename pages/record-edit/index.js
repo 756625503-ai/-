@@ -52,7 +52,7 @@ function getTypeGroups() {
   return [
     createTypeGroup(
       '医疗记录',
-      'type-green',
+      'type-primary',
       [
         { value: '门诊', icon: '诊', hint: '看诊复诊' },
         { value: '体检', icon: '检', hint: '年度筛查' },
@@ -64,7 +64,7 @@ function getTypeGroups() {
     ),
     createTypeGroup(
       '用药 / 不适',
-      'type-purple',
+      'type-health',
       [
         { value: '用药情况', icon: '药', hint: '药名剂量' },
         { value: '身体不适', icon: '感', hint: '日常症状' }
@@ -83,7 +83,7 @@ function getTypeOptions() {
 }
 
 function getTypeThemeClass(type) {
-  return ['处方', '用药情况', '身体不适'].indexOf(type) >= 0 ? 'pill-purple' : 'pill-green'
+  return ['处方', '用药情况', '身体不适'].indexOf(type) >= 0 ? 'pill-health' : 'pill-primary'
 }
 
 function normalizeType(type) {

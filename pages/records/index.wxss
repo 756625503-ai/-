@@ -246,56 +246,57 @@
   white-space: nowrap;
 }
 
-.date-bubble.event-purple {
-  color: #ffffff;
-  background: #8b5cf6;
-  box-shadow: 0 10rpx 22rpx rgba(139, 92, 246, 0.18);
+.date-bubble.event-health {
+  color: #243b31;
+  background: #d6ebb4;
+  box-shadow: 0 10rpx 22rpx rgba(84, 112, 66, 0.14);
 }
 
-.date-bubble.event-purple::after {
-  border-left-color: #8b5cf6;
+.date-bubble.event-health::after {
+  border-left-color: #d6ebb4;
 }
 
-.node.event-purple {
-  background: #8b5cf6;
+.node.event-health {
+  background: #d6ebb4;
+  box-shadow: 0 0 0 2rpx #d6ebb4;
 }
 
-.record-brief.event-purple {
-  border-color: #ded0fa;
-  background: #f5efff;
+.record-brief.event-health {
+  border-color: #d6ebb4;
+  background: #ffffff;
 }
 
-.record-brief.event-purple::before {
-  border-right-color: #f5efff;
+.record-brief.event-health::before {
+  border-right-color: #ffffff;
 }
 
-.record-brief.event-purple .brief-title {
-  color: #7c3aed;
+.record-brief.event-health .brief-title {
+  color: #243b31;
 }
 
-.record-brief.event-purple .brief-meta {
-  color: #9b7bd9;
+.record-brief.event-health .brief-meta {
+  color: #71858b;
 }
 
-.date-bubble.event-green {
+.date-bubble.event-primary {
   color: #1f4f5b;
   background: #72b0be;
 }
 
-.date-bubble.event-green::after {
+.date-bubble.event-primary::after {
   border-left-color: #72b0be;
 }
 
-.node.event-green {
+.node.event-primary {
   background: #72b0be;
 }
 
-.record-brief.event-green {
+.record-brief.event-primary {
   border-color: #dfe8ea;
   background: #ffffff;
 }
 
-.record-brief.event-green::before {
+.record-brief.event-primary::before {
   border-right-color: #ffffff;
 }
 

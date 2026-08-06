@@ -22,14 +22,14 @@
   font-size: 25rpx;
 }
 
-.pill-green {
-  color: #067647;
-  background: #ecfdf3;
+.pill-primary {
+  color: #315f6a;
+  background: #cde9f2;
 }
 
-.pill-purple {
-  color: #6d28d9;
-  background: #f3e8ff;
+.pill-health {
+  color: #243b31;
+  background: #d6ebb4;
 }
 
 .type-priority {
@@ -95,14 +95,14 @@
   white-space: nowrap;
 }
 
-.type-current.type-green {
-  color: #355d3f;
-  background: #eff8dc;
+.type-current.pill-primary {
+  color: #315f6a;
+  background: #cde9f2;
 }
 
-.type-current.type-purple {
-  color: #6d3bd1;
-  background: #f3e8ff;
+.type-current.pill-health {
+  color: #243b31;
+  background: #d6ebb4;
 }
 
 .type-group {
@@ -192,22 +192,22 @@
   white-space: nowrap;
 }
 
-.type-chip.type-green {
-  border-color: #e1ecee;
+.type-chip.type-primary {
+  border-color: #cde9f2;
 }
 
-.type-chip.type-purple {
-  border-color: #eadfff;
+.type-chip.type-health {
+  border-color: #d6ebb4;
 }
 
-.type-chip.type-green .type-icon {
+.type-chip.type-primary .type-icon {
   color: #315f6a;
   background: #cde9f2;
 }
 
-.type-chip.type-purple .type-icon {
-  color: #7c3aed;
-  background: #f3e8ff;
+.type-chip.type-health .type-icon {
+  color: #243b31;
+  background: #d6ebb4;
 }
 
 .attachment-panel {
