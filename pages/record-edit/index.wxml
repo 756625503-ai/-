@@ -8,19 +8,31 @@
   </view>
 
   <view class="type-priority">
-    <text class="priority-label">记录类型</text>
+    <view class="type-priority-head">
+      <view>
+        <text class="priority-label">记录类型</text>
+      </view>
+      <view class="type-current {{typeThemeClass}}">
+        <text>{{record.type}}</text>
+      </view>
+    </view>
     <view class="type-group" wx:for="{{typeGroups}}" wx:for-item="group" wx:key="label">
       <text class="group-label">{{group.label}}</text>
       <view class="type-chip-row">
         <button
-          class="type-chip {{group.themeClass}} {{record.type === item ? 'type-active' : ''}}"
+          class="type-chip {{group.themeClass}} {{record.type === item.value ? 'type-active' : ''}}"
           wx:for="{{group.items}}"
           wx:for-item="item"
-          wx:key="*this"
-          data-type="{{item}}"
+          wx:key="value"
+          data-type="{{item.value}}"
           bindtap="onTypeTap"
         >
-          {{item}}
+          <text class="type-icon">{{item.icon}}</text>
+          <view class="type-copy">
+            <text class="type-name">{{item.value}}</text>
+            <text class="type-hint">{{item.hint}}</text>
+          </view>
+          <text wx:if="{{record.type === item.value}}" class="type-check">✓</text>
         </button>
       </view>
     </view>

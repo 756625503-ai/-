@@ -32,19 +32,30 @@ function getTypeGroups() {
     {
       label: '医疗记录',
       themeClass: 'type-green',
-      items: ['门诊', '体检', '检查', '住院', '其他']
+      items: [
+        { value: '门诊', icon: '诊', hint: '看诊复诊' },
+        { value: '体检', icon: '检', hint: '年度筛查' },
+        { value: '检查', icon: '查', hint: '影像化验' },
+        { value: '住院', icon: '院', hint: '入院出院' },
+        { value: '其他', icon: '记', hint: '补充记录' }
+      ]
     },
     {
       label: '用药 / 不适',
       themeClass: 'type-purple',
-      items: ['用药情况', '身体不适']
+      items: [
+        { value: '用药情况', icon: '药', hint: '药名剂量' },
+        { value: '身体不适', icon: '感', hint: '日常症状' }
+      ]
     }
   ]
 }
 
 function getTypeOptions() {
   return getTypeGroups().reduce(function (options, group) {
-    return options.concat(group.items)
+    return options.concat(group.items.map(function (item) {
+      return item.value
+    }))
   }, [])
 }
 
