@@ -195,28 +195,34 @@
 .date-bubble {
   position: relative;
   display: flex;
-  width: 242rpx;
-  min-height: 48rpx;
+  box-sizing: border-box;
+  width: 224rpx;
+  min-height: 62rpx;
   align-items: center;
   justify-content: center;
   justify-self: end;
-  margin-right: 30rpx;
-  border-radius: 50%;
+  padding: 0 22rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.36);
+  border-radius: 8rpx;
   color: #ffffff;
   background: #159185;
-  font-size: 30rpx;
-  font-weight: 700;
+  font-size: 28rpx;
+  font-weight: 800;
+  line-height: 1.2;
   text-align: center;
+  box-shadow: 0 10rpx 22rpx rgba(21, 145, 133, 0.18);
 }
 
 .date-bubble::after {
   position: absolute;
-  right: 26rpx;
-  bottom: -18rpx;
+  top: 50%;
+  right: -18rpx;
   width: 0;
   height: 0;
-  border-top: 20rpx solid #159185;
-  border-left: 44rpx solid transparent;
+  border-top: 14rpx solid transparent;
+  border-bottom: 14rpx solid transparent;
+  border-left: 18rpx solid #159185;
+  transform: translateY(-50%);
   content: "";
 }
 
@@ -261,10 +267,11 @@
 
 .date-bubble.event-purple {
   background: #8b5cf6;
+  box-shadow: 0 10rpx 22rpx rgba(139, 92, 246, 0.18);
 }
 
 .date-bubble.event-purple::after {
-  border-top-color: #8b5cf6;
+  border-left-color: #8b5cf6;
 }
 
 .node.event-purple {
@@ -288,7 +295,7 @@
 }
 
 .date-bubble.event-green::after {
-  border-top-color: #159185;
+  border-left-color: #159185;
 }
 
 .node.event-green {
