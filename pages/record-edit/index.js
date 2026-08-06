@@ -27,27 +27,47 @@ function getDefaultRecord() {
   }
 }
 
+function chunkTypeRows(items) {
+  const rows = []
+  for (let index = 0; index < items.length; index += 2) {
+    rows.push({
+      key: 'row-' + index,
+      items: items.slice(index, index + 2)
+    })
+  }
+  return rows
+}
+
+function createTypeGroup(label, themeClass, items) {
+  return {
+    label: label,
+    themeClass: themeClass,
+    items: items,
+    rows: chunkTypeRows(items)
+  }
+}
+
 function getTypeGroups() {
   return [
-    {
-      label: '医疗记录',
-      themeClass: 'type-green',
-      items: [
+    createTypeGroup(
+      '医疗记录',
+      'type-green',
+      [
         { value: '门诊', icon: '诊', hint: '看诊复诊' },
         { value: '体检', icon: '检', hint: '年度筛查' },
         { value: '检查', icon: '查', hint: '影像化验' },
         { value: '住院', icon: '院', hint: '入院出院' },
         { value: '其他', icon: '记', hint: '补充记录' }
       ]
-    },
-    {
-      label: '用药 / 不适',
-      themeClass: 'type-purple',
-      items: [
+    ),
+    createTypeGroup(
+      '用药 / 不适',
+      'type-purple',
+      [
         { value: '用药情况', icon: '药', hint: '药名剂量' },
         { value: '身体不适', icon: '感', hint: '日常症状' }
       ]
-    }
+    )
   ]
 }
 

@@ -111,19 +111,24 @@
   font-weight: 800;
 }
 
+.type-chip-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+  width: 100%;
+}
+
 .type-chip-row {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  row-gap: 14rpx;
+  gap: 34rpx;
   width: 100%;
 }
 
 .type-chip {
   position: relative;
-  display: grid;
+  display: flex;
   box-sizing: border-box;
-  grid-template-columns: 34rpx minmax(0, 1fr);
+  flex: 0 0 calc((100% - 34rpx) / 2);
   width: calc((100% - 34rpx) / 2);
   min-width: 0;
   height: 62rpx;
@@ -141,8 +146,8 @@
   text-align: left;
 }
 
-.type-chip.type-other {
-  margin-right: auto;
+.type-chip-single {
+  flex-grow: 0;
 }
 
 .type-chip::after {
