@@ -119,26 +119,28 @@
 }
 
 .type-chip-row {
-  display: grid;
-  column-gap: 18rpx;
-  row-gap: 20rpx;
-  justify-content: start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18rpx;
+  box-sizing: border-box;
   width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
-.type-chip-row--3 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.type-chip-row--2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.type-chip-row--2 .type-chip,
+.type-chip-row--3 .type-chip {
+  flex: 0 0 calc(50% - 9rpx);
+  width: calc(50% - 9rpx);
+  max-width: calc(50% - 9rpx);
 }
 
 .type-chip {
   position: relative;
   display: flex;
   box-sizing: border-box;
-  width: 100%;
+  width: auto;
   min-width: 0;
   height: 76rpx;
   min-height: 76rpx;
