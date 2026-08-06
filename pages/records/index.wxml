@@ -1,7 +1,6 @@
 <view class="records-page">
   <view class="records-header">
     <view class="person-row">
-      <view class="profile-avatar">{{activeProfileAvatar}}</view>
       <view class="person-copy">
         <text class="greeting">健康记录</text>
         <text class="person-name">{{activeProfileName}}</text>

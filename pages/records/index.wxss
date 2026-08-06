@@ -19,24 +19,6 @@
   gap: 18rpx;
 }
 
-.profile-avatar {
-  display: flex;
-  width: 112rpx;
-  height: 112rpx;
-  min-width: 112rpx;
-  min-height: 112rpx;
-  align-items: center;
-  justify-content: center;
-  border: 2rpx solid rgba(255, 255, 255, 0.58);
-  border-radius: 50%;
-  color: #0d6f67;
-  background: #ffffff;
-  font-size: 44rpx;
-  font-weight: 900;
-  line-height: 1;
-  box-shadow: 0 10rpx 24rpx rgba(13, 111, 103, 0.14);
-}
-
 .person-copy {
   flex: 1;
   min-width: 0;

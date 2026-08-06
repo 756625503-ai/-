@@ -70,17 +70,11 @@ function buildSearchText(record) {
     .toLowerCase()
 }
 
-function getAvatarText(name) {
-  const text = String(name || '').trim()
-  return text ? text.slice(0, 1) : '健'
-}
-
 Page({
   data: {
     profiles: [],
     activeProfileId: '',
     activeProfileName: '',
-    activeProfileAvatar: '健',
     records: [],
     filteredRecords: [],
     keyword: '',
@@ -115,7 +109,6 @@ Page({
       profiles: profiles,
       activeProfileId: activeProfileId,
       activeProfileName: storage.getProfileDisplayName(activeProfile),
-      activeProfileAvatar: getAvatarText(storage.getProfileDisplayName(activeProfile)),
       records: records
     })
     this.applyFilters()
