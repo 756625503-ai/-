@@ -27,33 +27,24 @@ function getDefaultRecord() {
   }
 }
 
-function chunkTypeRows(items) {
+function chunkTypeRows(items, rowColumns) {
   const rows = []
-  for (let index = 0; index < items.length; index += 2) {
-    const cells = items.slice(index, index + 2)
-    while (cells.length < 2) {
-      cells.push({
-        value: '',
-        icon: '',
-        hint: '',
-        isEmpty: true
-      })
-    }
-
+  for (let index = 0; index < items.length; index += rowColumns) {
     rows.push({
       key: 'row-' + index,
-      items: cells
+      items: items.slice(index, index + rowColumns)
     })
   }
   return rows
 }
 
-function createTypeGroup(label, themeClass, items) {
+function createTypeGroup(label, themeClass, items, rowColumns) {
   return {
     label: label,
     themeClass: themeClass,
     items: items,
-    rows: chunkTypeRows(items)
+    rowColumns: rowColumns,
+    rows: chunkTypeRows(items, rowColumns)
   }
 }
 
@@ -68,7 +59,8 @@ function getTypeGroups() {
         { value: '检查', icon: '查', hint: '影像化验' },
         { value: '住院', icon: '院', hint: '入院出院' },
         { value: '其他', icon: '记', hint: '补充记录' }
-      ]
+      ],
+      3
     ),
     createTypeGroup(
       '用药 / 不适',
@@ -76,7 +68,8 @@ function getTypeGroups() {
       [
         { value: '用药情况', icon: '药', hint: '药名剂量' },
         { value: '身体不适', icon: '感', hint: '日常症状' }
-      ]
+      ],
+      2
     )
   ]
 }
