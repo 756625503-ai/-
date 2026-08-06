@@ -127,7 +127,7 @@
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 46rpx minmax(0, 1fr);
-  width: 100%;
+  width: calc(100% - 16rpx);
   min-width: 0;
   height: 100%;
   min-height: 0;
@@ -143,10 +143,17 @@
   text-align: left;
 }
 
+.type-chip:nth-child(2n + 1) {
+  justify-self: start;
+}
+
+.type-chip:nth-child(2n) {
+  justify-self: end;
+}
+
 .type-chip.type-other {
   grid-column: 1 / 2;
-  justify-self: stretch;
-  width: 100%;
+  justify-self: start;
 }
 
 .type-chip::after {
