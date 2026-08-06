@@ -20,17 +20,22 @@
       <text class="group-label">{{group.label}}</text>
       <view class="type-chip-rows">
         <view class="type-chip-row" wx:for="{{group.rows}}" wx:for-item="row" wx:key="key">
-          <button
-            class="type-chip {{group.themeClass}} {{record.type === item.value ? 'type-active' : ''}} {{row.items.length === 1 ? 'type-chip-single' : ''}}"
+          <view
+            class="type-chip-cell {{item.isEmpty ? 'type-chip-cell-empty' : ''}}"
             wx:for="{{row.items}}"
             wx:for-item="item"
             wx:key="value"
-            data-type="{{item.value}}"
-            bindtap="onTypeTap"
           >
-            <text class="type-icon">{{item.icon}}</text>
-            <text class="type-name">{{item.value}}</text>
-          </button>
+            <button
+              wx:if="{{!item.isEmpty}}"
+              class="type-chip {{group.themeClass}} {{record.type === item.value ? 'type-active' : ''}}"
+              data-type="{{item.value}}"
+              bindtap="onTypeTap"
+            >
+              <text class="type-icon">{{item.icon}}</text>
+              <text class="type-name">{{item.value}}</text>
+            </button>
+          </view>
         </view>
       </view>
     </view>

@@ -124,12 +124,22 @@
   width: 100%;
 }
 
+.type-chip-cell {
+  box-sizing: border-box;
+  flex: 0 0 calc((100% - 34rpx) / 2);
+  width: calc((100% - 34rpx) / 2);
+  min-width: 0;
+}
+
+.type-chip-cell-empty {
+  pointer-events: none;
+}
+
 .type-chip {
   position: relative;
   display: flex;
   box-sizing: border-box;
-  flex: 0 0 calc((100% - 34rpx) / 2);
-  width: calc((100% - 34rpx) / 2);
+  width: 100%;
   min-width: 0;
   height: 62rpx;
   min-height: 62rpx;
@@ -144,11 +154,6 @@
   box-shadow: 0 6rpx 14rpx rgba(38, 65, 89, 0.08);
   line-height: 1.2;
   text-align: left;
-}
-
-.type-chip-single {
-  flex-grow: 0;
-  margin-right: auto;
 }
 
 .type-chip::after {

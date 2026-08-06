@@ -30,9 +30,19 @@ function getDefaultRecord() {
 function chunkTypeRows(items) {
   const rows = []
   for (let index = 0; index < items.length; index += 2) {
+    const cells = items.slice(index, index + 2)
+    while (cells.length < 2) {
+      cells.push({
+        value: '',
+        icon: '',
+        hint: '',
+        isEmpty: true
+      })
+    }
+
     rows.push({
       key: 'row-' + index,
-      items: items.slice(index, index + 2)
+      items: cells
     })
   }
   return rows
