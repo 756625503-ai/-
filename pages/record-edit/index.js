@@ -89,15 +89,30 @@ function getOcrPreview(text) {
 }
 
 function normalizeAttachment(file, index, fallbackDate) {
+  const ocrStatus = file.ocrStatus
   return Object.assign({}, file, {
     title: file.title || getDefaultAttachmentTitle(index),
     date: file.date || file.uploadDate || fallbackDate || getToday(),
     ocrText: file.ocrText || '',
-    ocrStatus: file.ocrStatus || (file.ocrText ? 'done' : ''),
-    ocrStatusText: getOcrStatusText(file),
+    ocrStatus: ocrStatus || (file.ocrText ? 'done' : ''),
+    ocrStatusText: getOcrStatusText(Object.assign({}, file, { ocrStatus: ocrStatus })),
     ocrPreview: getOcrPreview(file.ocrText),
     canRecognize: ocr.canRecognizeAttachment(file)
   })
+}
+
+function hasRecordContent(record) {
+  return Boolean(
+    record.title ||
+    record.hospital ||
+    record.department ||
+    record.doctor ||
+    record.summary ||
+    record.diagnosis ||
+    record.medicines ||
+    record.advice ||
+    (record.files || []).length
+  )
 }
 
 Page({
@@ -164,6 +179,8 @@ Page({
     const field = event.currentTarget.dataset.field
     this.setData({
       ['record.' + field]: event.detail.value
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -174,6 +191,8 @@ Page({
       typeIndex: index,
       typeThemeClass: getTypeThemeClass(type),
       'record.type': type
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -184,6 +203,8 @@ Page({
       typeIndex: typeIndex,
       typeThemeClass: getTypeThemeClass(type),
       'record.type': type
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -197,12 +218,16 @@ Page({
       activeProfileName: storage.getProfileDisplayName(profile),
       'record.profileId': profile.id,
       'record.profileName': storage.getProfileDisplayName(profile)
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
   onDateChange(event) {
     this.setData({
       'record.visitDate': event.detail.value
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -217,6 +242,8 @@ Page({
 
     this.setData({
       'record.files': files
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -231,6 +258,8 @@ Page({
 
     this.setData({
       'record.files': files
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -246,6 +275,8 @@ Page({
 
     this.setData({
       'record.files': files
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -268,6 +299,8 @@ Page({
     }), index, this.data.record.visitDate)
     this.setData({
       'record.files': files
+    }, () => {
+      this.persistRecordSilently()
     })
 
     wx.showLoading({
@@ -286,6 +319,8 @@ Page({
       }), index, this.data.record.visitDate)
       this.setData({
         'record.files': latestFiles
+      }, () => {
+        this.persistRecordSilently()
       })
 
       wx.showToast({
@@ -300,6 +335,8 @@ Page({
         }), index, this.data.record.visitDate)
         this.setData({
           'record.files': latestFiles
+        }, () => {
+          this.persistRecordSilently()
         })
       }
 
@@ -414,6 +451,8 @@ Page({
     const nextFiles = existingFiles.concat(filesWithMeta).slice(0, MAX_ATTACHMENTS)
     this.setData({
       'record.files': nextFiles
+    }, () => {
+      this.persistRecordSilently()
     })
   },
 
@@ -432,9 +471,38 @@ Page({
         })
         this.setData({
           'record.files': files
+        }, () => {
+          this.persistRecordSilently()
         })
       }
     })
+  },
+
+  persistRecordSilently() {
+    const record = Object.assign({}, this.data.record)
+    if (!hasRecordContent(record)) {
+      if (record.id) {
+        storage.deleteRecord(record.id)
+        this.setData({
+          isEditing: false,
+          'record.id': '',
+          'record.createdAt': '',
+          'record.updatedAt': ''
+        })
+      }
+      return null
+    }
+
+    const savedRecord = storage.saveRecord(record)
+    this.setData({
+      isEditing: true,
+      'record.id': savedRecord.id,
+      'record.profileId': savedRecord.profileId,
+      'record.profileName': savedRecord.profileName,
+      'record.createdAt': savedRecord.createdAt,
+      'record.updatedAt': savedRecord.updatedAt
+    })
+    return savedRecord
   },
 
   previewAttachment(event) {
