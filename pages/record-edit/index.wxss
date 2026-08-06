@@ -121,13 +121,14 @@
 .type-chip-row {
   display: flex;
   gap: 34rpx;
+  justify-content: flex-start;
   width: 100%;
 }
 
 .type-chip-cell {
   box-sizing: border-box;
-  flex: 0 0 calc((100% - 34rpx) / 2);
-  width: calc((100% - 34rpx) / 2);
+  flex: 0 0 210rpx;
+  width: 210rpx;
   min-width: 0;
 }
 
@@ -147,7 +148,7 @@
   gap: 10rpx;
   margin: 0;
   overflow: hidden;
-  padding: 0 18rpx;
+  padding: 0 14rpx;
   border: 1rpx solid rgba(255, 255, 255, 0.68);
   border-radius: 18rpx;
   background: rgba(255, 255, 255, 0.72);
