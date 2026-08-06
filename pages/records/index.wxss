@@ -117,23 +117,25 @@
   padding: 44rpx 34rpx 64rpx;
 }
 
-.timeline::before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2rpx;
-  transform: translateX(-1rpx);
-  background: #58beb4;
-  content: "";
-}
-
 .timeline-add {
   position: relative;
   display: flex;
   height: 82rpx;
   align-items: center;
   justify-content: center;
+}
+
+.timeline-add::before,
+.timeline-row::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: 0;
+  width: 2rpx;
+  transform: translateX(-1rpx);
+  background: #58beb4;
+  content: "";
 }
 
 .timeline-plus {
@@ -162,8 +164,13 @@
   align-items: center;
 }
 
+.timeline-row-last::before {
+  bottom: 50%;
+}
+
 .date-bubble {
   position: relative;
+  z-index: 1;
   display: flex;
   box-sizing: border-box;
   width: 224rpx;
@@ -208,6 +215,8 @@
 }
 
 .record-brief {
+  position: relative;
+  z-index: 1;
   box-sizing: border-box;
   width: 88%;
   min-width: 0;

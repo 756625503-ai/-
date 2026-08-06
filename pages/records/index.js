@@ -141,11 +141,16 @@ Page({
   applyFilters() {
     const keyword = String(this.data.keyword || '').trim().toLowerCase()
     const activeType = this.data.activeType
-    const filteredRecords = this.data.records.filter(function (record) {
+    const matchedRecords = this.data.records.filter(function (record) {
       const typeMatched = activeType === '全部' || record.type === activeType
       const text = buildSearchText(record)
 
       return typeMatched && (!keyword || text.indexOf(keyword) >= 0)
+    })
+    const filteredRecords = matchedRecords.map(function (record, index) {
+      return Object.assign({}, record, {
+        isLastTimelineRecord: index === matchedRecords.length - 1
+      })
     })
 
     this.setData({

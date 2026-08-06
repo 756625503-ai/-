@@ -23,7 +23,7 @@
 
       <block wx:if="{{filteredRecords.length}}">
         <view
-          class="timeline-row"
+          class="timeline-row {{item.isLastTimelineRecord ? 'timeline-row-last' : ''}}"
           wx:for="{{filteredRecords}}"
           wx:key="id"
           data-id="{{item.id}}"
