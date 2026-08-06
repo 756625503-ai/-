@@ -13,20 +13,6 @@
       <input class="search-input" value="{{keyword}}" bindinput="onSearch" placeholder="搜索日期、标题、识别内容或附件..." />
       <text class="search-icon">⌕</text>
     </view>
-
-    <scroll-view scroll-x class="member-scroll">
-      <view class="member-row">
-        <button
-          class="member-chip {{activeProfileId === item.id ? 'member-active' : ''}}"
-          wx:for="{{profiles}}"
-          wx:key="id"
-          data-id="{{item.id}}"
-          bindtap="changeProfile"
-        >
-          {{item.displayName}}
-        </button>
-      </view>
-    </scroll-view>
   </view>
 
   <scroll-view scroll-y class="timeline-scroll">
