@@ -148,6 +148,7 @@
 
 .type-chip-single {
   flex-grow: 0;
+  margin-right: auto;
 }
 
 .type-chip::after {
