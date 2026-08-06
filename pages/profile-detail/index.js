@@ -151,5 +151,16 @@ Page({
       title: '已保存',
       icon: 'success'
     })
+    setTimeout(function () {
+      const pages = getCurrentPages()
+      if (pages.length > 1) {
+        wx.navigateBack()
+        return
+      }
+
+      wx.switchTab({
+        url: '/pages/profile/index'
+      })
+    }, 500)
   }
 })
