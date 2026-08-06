@@ -1,7 +1,7 @@
 .compare-page {
   min-height: 100vh;
   padding: 28rpx 28rpx 34rpx;
-  background: #f7f9fb;
+  background: #efefef;
 }
 
 .compare-hero {
@@ -10,10 +10,11 @@
   justify-content: space-between;
   gap: 22rpx;
   padding: 30rpx;
-  border-radius: 8rpx;
-  color: #ffffff;
-  background: #147d7e;
-  box-shadow: 0 16rpx 36rpx rgba(20, 125, 126, 0.18);
+  border: 1rpx solid #b9dce5;
+  border-radius: 16rpx;
+  color: #1d2b3a;
+  background: #cde9f2;
+  box-shadow: 0 8rpx 20rpx rgba(67, 119, 130, 0.08);
 }
 
 .hero-kicker,
@@ -32,14 +33,14 @@
 }
 
 .hero-kicker {
-  color: rgba(255, 255, 255, 0.76);
+  color: #5b7880;
   font-size: 26rpx;
   font-weight: 700;
 }
 
 .hero-name {
   margin-top: 8rpx;
-  color: #ffffff;
+  color: #1d2b3a;
   font-size: 44rpx;
   font-weight: 800;
 }
@@ -48,8 +49,8 @@
   min-width: 126rpx;
   padding: 10rpx 18rpx;
   border-radius: 999rpx;
-  color: #0d6f67;
-  background: #ffffff;
+  color: #355d3f;
+  background: #d6ebb4;
   font-size: 26rpx;
   font-weight: 800;
   text-align: center;
@@ -79,27 +80,28 @@
   align-items: center;
   justify-content: center;
   padding: 0 22rpx;
-  border: 1rpx solid #d0d5dd;
-  color: #344054;
+  border: 1rpx solid #d3e0e3;
+  border-radius: 999rpx;
+  color: #405961;
   background: #ffffff;
   font-size: 25rpx;
   font-weight: 700;
 }
 
 .member-active {
-  color: #ffffff;
-  background: #147d7e;
-  border-color: #147d7e;
+  color: #173f48;
+  background: #72b0be;
+  border-color: #72b0be;
 }
 
 .select-panel,
 .compare-section,
 .empty-compare {
   margin-top: 24rpx;
-  border: 1rpx solid #e4e7ec;
-  border-radius: 8rpx;
+  border: 1rpx solid #dfe8ea;
+  border-radius: 16rpx;
   background: #ffffff;
-  box-shadow: 0 10rpx 26rpx rgba(16, 24, 40, 0.04);
+  box-shadow: 0 8rpx 20rpx rgba(41, 75, 84, 0.06);
 }
 
 .select-panel {
@@ -130,8 +132,9 @@
   width: 104rpx;
   min-width: 104rpx;
   min-height: 58rpx;
-  color: #147d7e;
-  background: #e7f8f5;
+  border-radius: 999rpx;
+  color: #315f6a;
+  background: #cde9f2;
   font-size: 26rpx;
   font-weight: 800;
 }
@@ -149,15 +152,15 @@
   width: 324rpx;
   min-height: 230rpx;
   padding: 22rpx;
-  border: 2rpx solid #e4e7ec;
-  border-radius: 8rpx;
+  border: 2rpx solid #dfe8ea;
+  border-radius: 16rpx;
   background: #ffffff;
 }
 
 .report-selected {
-  border-color: #147d7e;
-  background: #f0fdfa;
-  box-shadow: 0 12rpx 26rpx rgba(20, 125, 126, 0.12);
+  border-color: #a7cb83;
+  background: #f2f9e7;
+  box-shadow: 0 10rpx 22rpx rgba(98, 133, 66, 0.12);
 }
 
 .report-topline {
@@ -168,7 +171,7 @@
 }
 
 .report-year {
-  color: #147d7e;
+  color: #4b858f;
   font-size: 36rpx;
   font-weight: 900;
 }
@@ -183,8 +186,8 @@
 }
 
 .report-selected .report-check {
-  color: #ffffff;
-  background: #147d7e;
+  color: #355d3f;
+  background: #d6ebb4;
 }
 
 .report-title {
@@ -220,7 +223,7 @@
 
 .report-metrics {
   margin-top: 8rpx;
-  color: #147d7e;
+  color: #4b858f;
   font-weight: 800;
 }
 
@@ -253,7 +256,7 @@
 }
 
 .table-head {
-  background: #f9fafb;
+  background: #cde9f2;
 }
 
 .table-label,
@@ -269,7 +272,7 @@
 
 .table-label {
   color: #101828;
-  background: #f9fafb;
+  background: #efefef;
   font-weight: 800;
 }
 
@@ -278,7 +281,7 @@
 }
 
 .head-year {
-  color: #147d7e;
+  color: #4b858f;
   font-size: 30rpx;
   font-weight: 900;
 }
@@ -299,8 +302,9 @@
 
 .detail-button {
   min-height: 68rpx;
-  color: #175cd3;
-  background: #eaf2ff;
+  border-radius: 12rpx;
+  color: #315f6a;
+  background: #cde9f2;
   font-size: 25rpx;
   font-weight: 800;
 }

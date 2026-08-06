@@ -2,12 +2,12 @@
   position: relative;
   min-height: 100vh;
   padding-bottom: calc(150rpx + env(safe-area-inset-bottom));
-  background: #f7f9fb;
+  background: #efefef;
 }
 
 .profile-list {
   padding-top: 12rpx;
-  background: #f7f9fb;
+  background: #efefef;
 }
 
 .profile-row {
@@ -15,11 +15,11 @@
   grid-template-columns: 86rpx 1fr 88rpx;
   min-height: 160rpx;
   align-items: center;
-  margin: 0 24rpx 18rpx;
-  border: 1rpx solid #e4e7ec;
-  border-radius: 8rpx;
+  margin: 0 28rpx 18rpx;
+  border: 1rpx solid #dfe8ea;
+  border-radius: 16rpx;
   background: #ffffff;
-  box-shadow: 0 8rpx 20rpx rgba(16, 24, 40, 0.04);
+  box-shadow: 0 8rpx 20rpx rgba(41, 75, 84, 0.06);
 }
 
 .check-wrap {
@@ -35,14 +35,14 @@
   height: 34rpx;
   align-items: center;
   justify-content: center;
-  border: 4rpx solid #b6b8bb;
-  border-radius: 4rpx;
+  border: 4rpx solid #b8d6de;
+  border-radius: 50%;
   color: #ffffff;
 }
 
 .check-active {
-  border-color: #147d7e;
-  background: #147d7e;
+  border-color: #72b0be;
+  background: #72b0be;
 }
 
 .check-mark {
@@ -71,7 +71,7 @@
   flex: 0 1 auto;
   max-width: 220rpx;
   overflow: hidden;
-  color: #333333;
+  color: #1d2b3a;
   font-size: 34rpx;
   font-weight: 500;
   text-overflow: ellipsis;
@@ -82,7 +82,7 @@
   flex: 1;
   min-width: 0;
   overflow: hidden;
-  color: #8b8d91;
+  color: #71858b;
   font-size: 31rpx;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -102,17 +102,19 @@
 }
 
 .gender-male {
-  background: #8da7f7;
+  color: #315f6a;
+  background: #cde9f2;
 }
 
 .gender-female {
-  background: #ff8fa3;
+  color: #355d3f;
+  background: #d6ebb4;
 }
 
 .birth-text {
   min-width: 0;
   overflow: hidden;
-  color: #b8babd;
+  color: #71858b;
   font-size: 31rpx;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -123,7 +125,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  color: #7d7f83;
+  color: #5b8792;
   font-size: 42rpx;
   font-weight: 700;
 }
@@ -149,9 +151,9 @@
   padding: 0;
   border-radius: 50%;
   color: #ffffff;
-  background: #147d7e;
+  background: #72b0be;
   font-size: 72rpx;
   font-weight: 300;
   line-height: 1;
-  box-shadow: 0 14rpx 30rpx rgba(20, 125, 126, 0.26);
+  box-shadow: 0 14rpx 30rpx rgba(67, 119, 130, 0.22);
 }

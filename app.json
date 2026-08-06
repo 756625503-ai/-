@@ -8,15 +8,15 @@
   ],
   "window": {
     "navigationBarTitleText": "健康档案",
-    "navigationBarBackgroundColor": "#f7f9fb",
+    "navigationBarBackgroundColor": "#efefef",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f7f9fb"
+    "backgroundColor": "#efefef"
   },
   "tabBar": {
-    "color": "#667085",
-    "selectedColor": "#147d7e",
+    "color": "#71858b",
+    "selectedColor": "#4b858f",
     "backgroundColor": "#ffffff",
-    "borderStyle": "black",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/records/index",

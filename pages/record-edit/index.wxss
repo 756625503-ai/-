@@ -11,14 +11,14 @@
 }
 
 .edit-title {
-  color: #101828;
+  color: #1d2b3a;
   font-size: 38rpx;
   font-weight: 800;
 }
 
 .edit-meta {
   margin-top: 12rpx;
-  color: #667085;
+  color: #71858b;
   font-size: 25rpx;
 }
 
@@ -38,9 +38,9 @@
   overflow: hidden;
   margin-top: 24rpx;
   padding: 30rpx 30rpx 34rpx;
-  border: 2rpx solid #c7eadc;
-  border-radius: 28rpx;
-  background: #e4f6ee;
+  border: 2rpx solid #c4e0a6;
+  border-radius: 20rpx;
+  background: #d6ebb4;
   box-shadow: inset 0 1rpx 0 rgba(255, 255, 255, 0.68);
 }
 
@@ -63,7 +63,7 @@
 }
 
 .priority-label {
-  color: #1d2b3a;
+  color: #243b31;
   font-size: 32rpx;
   font-weight: 800;
 }
@@ -95,6 +95,16 @@
   white-space: nowrap;
 }
 
+.type-current.type-green {
+  color: #355d3f;
+  background: #eff8dc;
+}
+
+.type-current.type-purple {
+  color: #6d3bd1;
+  background: #f3e8ff;
+}
+
 .type-group {
   margin-top: 30rpx;
 }
@@ -106,7 +116,7 @@
 
 .group-label {
   margin-bottom: 20rpx;
-  color: #335f4f;
+  color: #477054;
   font-size: 28rpx;
   font-weight: 800;
 }
@@ -148,10 +158,10 @@
   margin: 0;
   overflow: hidden;
   padding: 0 20rpx;
-  border: 1rpx solid rgba(209, 246, 231, 0.92);
+  border: 1rpx solid #e1ecee;
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 8rpx 18rpx rgba(20, 125, 126, 0.12);
+  background: #ffffff;
+  box-shadow: 0 8rpx 18rpx rgba(67, 119, 130, 0.12);
   line-height: 1.2;
   text-align: left;
 }
@@ -183,16 +193,16 @@
 }
 
 .type-chip.type-green {
-  border-color: rgba(255, 255, 255, 0.72);
+  border-color: #e1ecee;
 }
 
 .type-chip.type-purple {
-  border-color: rgba(255, 255, 255, 0.72);
+  border-color: #eadfff;
 }
 
 .type-chip.type-green .type-icon {
-  color: #08756f;
-  background: #e7f8f5;
+  color: #315f6a;
+  background: #cde9f2;
 }
 
 .type-chip.type-purple .type-icon {
@@ -203,8 +213,8 @@
 .attachment-panel {
   margin-top: 24rpx;
   padding: 26rpx 0 30rpx;
-  border: 1rpx solid #eef2f6;
-  border-radius: 8rpx;
+  border: 1rpx solid #dfe8ea;
+  border-radius: 16rpx;
   background: #ffffff;
 }
 
@@ -242,7 +252,7 @@
   justify-content: center;
   border-radius: 50%;
   color: #ffffff;
-  background: #22b9aa;
+  background: #72b0be;
   font-weight: 300;
   line-height: 1;
 }
@@ -271,9 +281,9 @@
   flex: 0 0 auto;
   width: 520rpx;
   padding: 24rpx;
-  border-radius: 8rpx;
+  border-radius: 16rpx;
   background: #ffffff;
-  box-shadow: 0 12rpx 34rpx rgba(16, 24, 40, 0.08);
+  box-shadow: 0 10rpx 24rpx rgba(41, 75, 84, 0.08);
 }
 
 .attachment-delete,
@@ -298,9 +308,9 @@
 }
 
 .attachment-ocr {
-  border-color: #b7ebe5;
-  color: #147d7e;
-  background: #e7f8f5;
+  border-color: #b6dbe4;
+  color: #315f6a;
+  background: #cde9f2;
 }
 
 .attachment-delete::after,
@@ -363,8 +373,8 @@
 .file-badge {
   padding: 10rpx 18rpx;
   border-radius: 8rpx;
-  color: #175cd3;
-  background: #eaf2ff;
+  color: #315f6a;
+  background: #cde9f2;
   font-size: 24rpx;
   font-weight: 800;
 }
@@ -399,9 +409,9 @@
 .ocr-panel {
   margin-top: 24rpx;
   padding: 20rpx;
-  border: 1rpx solid #e4e7ec;
-  border-radius: 8rpx;
-  background: #f9fafb;
+  border: 1rpx solid #cde3e8;
+  border-radius: 12rpx;
+  background: #f4fafb;
 }
 
 .ocr-head {
@@ -426,8 +436,8 @@
 .ocr-status {
   padding: 4rpx 12rpx;
   border-radius: 999rpx;
-  color: #147d7e;
-  background: #e7f8f5;
+  color: #315f6a;
+  background: #cde9f2;
   font-size: 23rpx;
   font-weight: 800;
 }
@@ -467,10 +477,10 @@
   justify-content: center;
   gap: 18rpx;
   margin: 24rpx 26rpx 0;
-  border: 2rpx dashed #b7ebe5;
-  border-radius: 8rpx;
-  color: #667085;
-  background: #f7fffd;
+  border: 2rpx dashed #b6dbe4;
+  border-radius: 16rpx;
+  color: #63767c;
+  background: #f5fbfc;
   font-size: 26rpx;
 }
 

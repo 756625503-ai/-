@@ -1,15 +1,13 @@
 .records-page {
   min-height: 100vh;
   padding-bottom: env(safe-area-inset-bottom);
-  background: #ffffff;
+  background: #efefef;
 }
 
 .records-header {
-  padding: 34rpx 34rpx 38rpx;
-  border-bottom-left-radius: 48rpx;
-  border-bottom-right-radius: 48rpx;
-  color: #ffffff;
-  background: #19b9a7;
+  padding: 34rpx 34rpx 28rpx;
+  color: #1d2b3a;
+  background: #efefef;
 }
 
 .person-row {
@@ -31,7 +29,7 @@
 
 .greeting {
   margin-bottom: 6rpx;
-  color: rgba(255, 255, 255, 0.78);
+  color: #708087;
   font-size: 26rpx;
   font-weight: 700;
 }
@@ -39,7 +37,7 @@
 .person-name {
   max-width: 100%;
   overflow: hidden;
-  color: #ffffff;
+  color: #1d2b3a;
   font-size: 42rpx;
   font-weight: 800;
   text-overflow: ellipsis;
@@ -54,9 +52,10 @@
   gap: 18rpx;
   margin-top: 24rpx;
   padding: 0 26rpx;
-  border-radius: 8rpx;
+  border: 1rpx solid #dfe8ea;
+  border-radius: 16rpx;
   background: #ffffff;
-  box-shadow: 0 10rpx 22rpx rgba(13, 111, 103, 0.12);
+  box-shadow: 0 8rpx 22rpx rgba(41, 75, 84, 0.08);
 }
 
 .search-input {
@@ -68,7 +67,7 @@
 
 .search-icon {
   flex: 0 0 auto;
-  color: #475467;
+  color: #5b8792;
   font-size: 46rpx;
   font-weight: 700;
   line-height: 1;
@@ -81,22 +80,22 @@
   min-height: 64rpx;
   align-items: center;
   justify-content: center;
-  border: 1rpx solid rgba(255, 255, 255, 0.72);
-  border-radius: 8rpx;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.20);
+  border: 1rpx solid #b6dbe4;
+  border-radius: 999rpx;
+  color: #315f6a;
+  background: #cde9f2;
   font-size: 25rpx;
   font-weight: 800;
 }
 
 .timeline-scroll {
-  height: calc(100vh - 350rpx - env(safe-area-inset-bottom));
+  height: calc(100vh - 318rpx - env(safe-area-inset-bottom));
 }
 
 .timeline {
   position: relative;
   min-height: 100%;
-  padding: 44rpx 34rpx 64rpx;
+  padding: 36rpx 34rpx 64rpx;
 }
 
 .timeline-add {
@@ -116,7 +115,7 @@
   z-index: 0;
   width: 2rpx;
   transform: translateX(-1rpx);
-  background: #58beb4;
+  background: #72b0be;
   content: "";
 }
 
@@ -132,7 +131,7 @@
   justify-content: center;
   border-radius: 50%;
   color: #ffffff;
-  background: #22b9aa;
+  background: #72b0be;
   font-size: 60rpx;
   font-weight: 300;
   line-height: 1;
@@ -162,15 +161,15 @@
   justify-self: end;
   margin-right: 10rpx;
   padding: 0 22rpx;
-  border: 1rpx solid rgba(255, 255, 255, 0.36);
-  border-radius: 8rpx;
-  color: #ffffff;
-  background: #159185;
+  border: 1rpx solid #a6d2dc;
+  border-radius: 16rpx;
+  color: #1f4f5b;
+  background: #72b0be;
   font-size: 28rpx;
   font-weight: 800;
   line-height: 1.2;
   text-align: center;
-  box-shadow: 0 10rpx 22rpx rgba(21, 145, 133, 0.18);
+  box-shadow: 0 8rpx 18rpx rgba(67, 119, 130, 0.16);
 }
 
 .date-bubble::after {
@@ -181,7 +180,7 @@
   height: 0;
   border-top: 14rpx solid transparent;
   border-bottom: 14rpx solid transparent;
-  border-left: 28rpx solid #159185;
+  border-left: 28rpx solid #72b0be;
   transform: translateY(-50%);
   content: "";
 }
@@ -193,17 +192,35 @@
   height: 20rpx;
   margin: 0 auto;
   border-radius: 50%;
-  background: #159185;
+  background: #72b0be;
+  border: 6rpx solid #efefef;
+  box-shadow: 0 0 0 2rpx #72b0be;
 }
 
 .record-brief {
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  width: 88%;
+  width: 94%;
   min-width: 0;
-  padding-left: 22rpx;
-  border-bottom: 3rpx solid #159185;
+  padding: 20rpx 22rpx;
+  border: 1rpx solid #dfe8ea;
+  border-radius: 16rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 20rpx rgba(41, 75, 84, 0.07);
+}
+
+.record-brief::before {
+  position: absolute;
+  top: 50%;
+  left: -18rpx;
+  width: 0;
+  height: 0;
+  border-top: 14rpx solid transparent;
+  border-bottom: 14rpx solid transparent;
+  border-right: 18rpx solid #ffffff;
+  transform: translateY(-50%);
+  content: "";
 }
 
 .brief-title,
@@ -213,7 +230,7 @@
 
 .brief-title {
   overflow: hidden;
-  color: #159185;
+  color: #28434a;
   font-size: 36rpx;
   font-weight: 500;
   text-overflow: ellipsis;
@@ -223,13 +240,14 @@
 .brief-meta {
   margin-top: 8rpx;
   overflow: hidden;
-  color: #6baaa4;
+  color: #71858b;
   font-size: 23rpx;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .date-bubble.event-purple {
+  color: #ffffff;
   background: #8b5cf6;
   box-shadow: 0 10rpx 22rpx rgba(139, 92, 246, 0.18);
 }
@@ -243,7 +261,12 @@
 }
 
 .record-brief.event-purple {
-  border-bottom-color: #8b5cf6;
+  border-color: #ded0fa;
+  background: #f5efff;
+}
+
+.record-brief.event-purple::before {
+  border-right-color: #f5efff;
 }
 
 .record-brief.event-purple .brief-title {
@@ -255,26 +278,32 @@
 }
 
 .date-bubble.event-green {
-  background: #159185;
+  color: #1f4f5b;
+  background: #72b0be;
 }
 
 .date-bubble.event-green::after {
-  border-left-color: #159185;
+  border-left-color: #72b0be;
 }
 
 .node.event-green {
-  background: #159185;
+  background: #72b0be;
 }
 
 .record-brief.event-green {
-  border-bottom-color: #159185;
+  border-color: #dfe8ea;
+  background: #ffffff;
+}
+
+.record-brief.event-green::before {
+  border-right-color: #ffffff;
 }
 
 .empty-timeline {
   position: relative;
   z-index: 2;
   margin-top: 80rpx;
-  color: #98a2b3;
+  color: #71858b;
   font-size: 28rpx;
   text-align: center;
 }

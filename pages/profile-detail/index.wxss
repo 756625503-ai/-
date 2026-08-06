@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20rpx;
+  gap: 24rpx;
 }
 
 .profile-name,
@@ -11,23 +11,24 @@
 }
 
 .profile-name {
-  color: #101828;
+  color: #1d2b3a;
   font-size: 38rpx;
   font-weight: 800;
 }
 
 .profile-meta {
   margin-top: 12rpx;
-  color: #667085;
+  color: #71858b;
   font-size: 25rpx;
 }
 
 .advice-card {
   margin-bottom: 16rpx;
-  padding: 24rpx;
-  border: 1rpx solid #d1e9ff;
-  border-radius: 8rpx;
-  background: #f5fbff;
+  padding: 26rpx;
+  border: 1rpx solid #b9dce5;
+  border-radius: 16rpx;
+  background: #cde9f2;
+  box-shadow: 0 8rpx 18rpx rgba(67, 119, 130, 0.07);
 }
 
 .advice-title,
@@ -36,14 +37,14 @@
 }
 
 .advice-title {
-  color: #175cd3;
+  color: #315f6a;
   font-size: 29rpx;
   font-weight: 800;
 }
 
 .advice-text {
   margin-top: 12rpx;
-  color: #344054;
+  color: #29444c;
   font-size: 26rpx;
   line-height: 1.55;
 }

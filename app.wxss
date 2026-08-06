@@ -1,7 +1,7 @@
 page {
   min-height: 100%;
-  background: #f7f9fb;
-  color: #182230;
+  background: #efefef;
+  color: #1d2b3a;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -41,22 +41,23 @@ button[disabled] {
 }
 
 .section {
-  margin-top: 28rpx;
+  margin-top: 32rpx;
 }
 
 .section-title {
   display: block;
-  margin-bottom: 16rpx;
-  color: #344054;
+  margin-bottom: 18rpx;
+  color: #38535b;
   font-size: 30rpx;
   font-weight: 700;
 }
 
 .card {
-  padding: 24rpx;
-  border: 1rpx solid #e4e7ec;
-  border-radius: 8rpx;
+  padding: 28rpx;
+  border: 1rpx solid #dfe8ea;
+  border-radius: 16rpx;
   background: #ffffff;
+  box-shadow: 0 8rpx 22rpx rgba(41, 75, 84, 0.06);
 }
 
 .muted {
@@ -65,9 +66,9 @@ button[disabled] {
 
 .empty {
   padding: 40rpx 24rpx;
-  border: 1rpx dashed #cbd5e1;
-  border-radius: 8rpx;
-  color: #667085;
+  border: 1rpx dashed #b8d6de;
+  border-radius: 16rpx;
+  color: #63767c;
   text-align: center;
   background: #ffffff;
 }
@@ -80,18 +81,18 @@ button[disabled] {
   align-items: center;
   justify-content: center;
   padding: 0 24rpx;
-  border-radius: 8rpx;
+  border-radius: 16rpx;
   font-weight: 700;
 }
 
 .primary-button {
-  color: #ffffff;
-  background: #147d7e;
+  color: #173f48;
+  background: #72b0be;
 }
 
 .secondary-button {
-  color: #175cd3;
-  background: #eaf2ff;
+  color: #315f6a;
+  background: #cde9f2;
 }
 
 .danger-button {
@@ -117,9 +118,9 @@ button[disabled] {
   width: 100%;
   min-height: 84rpx;
   padding: 20rpx 22rpx;
-  border: 1rpx solid #d0d5dd;
-  border-radius: 8rpx;
-  color: #182230;
+  border: 1rpx solid #d3e0e3;
+  border-radius: 12rpx;
+  color: #1d2b3a;
   background: #ffffff;
   font-size: 30rpx;
 }
@@ -134,15 +135,15 @@ button[disabled] {
   min-height: 48rpx;
   padding: 8rpx 18rpx;
   border-radius: 999rpx;
-  color: #175cd3;
-  background: #eff8ff;
+  color: #315f6a;
+  background: #cde9f2;
   font-size: 24rpx;
   font-weight: 700;
 }
 
 .pill-green {
-  color: #067647;
-  background: #ecfdf3;
+  color: #355d3f;
+  background: #d6ebb4;
 }
 
 .pill-amber {
