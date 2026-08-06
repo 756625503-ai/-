@@ -15,8 +15,31 @@
 .person-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 28rpx;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.profile-avatar {
+  display: flex;
+  width: 92rpx;
+  height: 92rpx;
+  min-width: 92rpx;
+  min-height: 92rpx;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx solid rgba(255, 255, 255, 0.58);
+  border-radius: 50%;
+  color: #0d6f67;
+  background: #ffffff;
+  font-size: 38rpx;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 10rpx 24rpx rgba(13, 111, 103, 0.14);
+}
+
+.person-copy {
+  flex: 1;
+  min-width: 0;
 }
 
 .greeting,
@@ -32,10 +55,10 @@
 }
 
 .person-name {
-  max-width: 470rpx;
+  max-width: 100%;
   overflow: hidden;
   color: #ffffff;
-  font-size: 48rpx;
+  font-size: 42rpx;
   font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -43,7 +66,7 @@
 
 .member-scroll {
   width: 100%;
-  margin-top: 26rpx;
+  margin-top: 18rpx;
   white-space: nowrap;
 }
 
@@ -99,26 +122,23 @@
   line-height: 1;
 }
 
-.records-actions {
-  margin-top: 16rpx;
-}
-
 .compare-entry {
   display: flex;
-  width: 100%;
-  min-height: 72rpx;
+  width: 156rpx;
+  min-width: 156rpx;
+  min-height: 64rpx;
   align-items: center;
   justify-content: center;
   border: 1rpx solid rgba(255, 255, 255, 0.72);
   border-radius: 8rpx;
   color: #ffffff;
   background: rgba(255, 255, 255, 0.20);
-  font-size: 27rpx;
+  font-size: 25rpx;
   font-weight: 800;
 }
 
 .timeline-scroll {
-  height: calc(100vh - 430rpx - env(safe-area-inset-bottom));
+  height: calc(100vh - 420rpx - env(safe-area-inset-bottom));
 }
 
 .timeline {
