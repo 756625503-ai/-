@@ -33,6 +33,9 @@
 }
 
 .type-priority {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
   margin-top: 24rpx;
   padding: 28rpx;
   border: 1rpx solid #e4e7ec;
@@ -54,6 +57,11 @@
   gap: 18rpx;
 }
 
+.type-priority-head > view:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
 .priority-label {
   color: #101828;
   font-size: 32rpx;
@@ -61,7 +69,10 @@
 }
 
 .type-current {
+  box-sizing: border-box;
   display: flex;
+  flex: 0 0 auto;
+  max-width: 180rpx;
   min-width: 132rpx;
   min-height: 56rpx;
   align-items: center;
@@ -71,6 +82,16 @@
   font-size: 25rpx;
   font-weight: 800;
   line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.type-current text {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -92,20 +113,24 @@
 
 .type-chip-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14rpx;
+  width: 100%;
 }
 
 .type-chip {
   position: relative;
   display: grid;
-  grid-template-columns: 50rpx 1fr;
+  box-sizing: border-box;
+  grid-template-columns: 46rpx minmax(0, 1fr);
   width: 100%;
+  min-width: 0;
   min-height: 92rpx;
   align-items: center;
-  gap: 14rpx;
+  gap: 12rpx;
   margin: 0;
-  padding: 16rpx 18rpx;
+  overflow: hidden;
+  padding: 16rpx 16rpx;
   border: 2rpx solid #eef2f6;
   border-radius: 8rpx;
   background: #ffffff;
@@ -119,8 +144,10 @@
 
 .type-icon {
   display: flex;
-  width: 50rpx;
-  height: 50rpx;
+  width: 46rpx;
+  height: 46rpx;
+  min-width: 46rpx;
+  min-height: 46rpx;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
