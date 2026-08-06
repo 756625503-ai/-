@@ -17,6 +17,11 @@
 4. AppID 可以先使用测试号，或保留 `project.config.json` 中的 `touristappid` 进行本地体验。
 5. 点击“编译”运行。
 
+## 照片识别
+
+- 点击附件里的“识别内容”需要先开通微信云开发，并在微信开发者工具里上传并部署 `cloudfunctions/ocrReport` 云函数。
+- `cloudfunctions/ocrReport/config.json` 已声明 `ocr.printedText` 权限；如果仍提示没有权限，请重新上传部署云函数，并确认当前 AppID 已开通 OCR 能力。
+
 ## 后续建议
 
 - 接入微信云开发，把本地缓存改成云数据库。

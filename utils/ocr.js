@@ -30,6 +30,11 @@ function recognizeAttachment(file) {
           },
           success: function (res) {
             const result = res.result || {}
+            if (result.error) {
+              reject(new Error(result.errorMessage || '识别失败'))
+              return
+            }
+
             resolve({
               text: result.text || '',
               raw: result.raw || null,
