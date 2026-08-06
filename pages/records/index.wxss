@@ -157,15 +157,16 @@
   z-index: 1;
   display: flex;
   box-sizing: border-box;
-  width: 224rpx;
+  width: 94%;
+  min-width: 0;
   min-height: 62rpx;
   align-items: center;
   justify-content: center;
   justify-self: end;
-  margin-right: 10rpx;
+  margin-right: 0;
   padding: 0 22rpx;
   border: 1rpx solid #a6d2dc;
-  border-radius: 16rpx;
+  border-radius: 999rpx;
   color: #1f4f5b;
   background: #72b0be;
   font-size: 28rpx;
@@ -178,12 +179,12 @@
 .date-bubble::after {
   position: absolute;
   top: 50%;
-  right: -28rpx;
+  right: -18rpx;
   width: 0;
   height: 0;
   border-top: 14rpx solid transparent;
   border-bottom: 14rpx solid transparent;
-  border-left: 28rpx solid #72b0be;
+  border-left: 18rpx solid #72b0be;
   transform: translateY(-50%);
   content: "";
 }
@@ -206,6 +207,7 @@
   box-sizing: border-box;
   width: 94%;
   min-width: 0;
+  justify-self: start;
   padding: 20rpx 22rpx;
   border: 1rpx solid #dfe8ea;
   border-radius: 16rpx;
