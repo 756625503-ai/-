@@ -120,15 +120,15 @@
 
 .type-chip-row {
   display: flex;
-  gap: 34rpx;
+  gap: 80rpx;
   justify-content: flex-start;
   width: 100%;
 }
 
 .type-chip-cell {
   box-sizing: border-box;
-  flex: 0 0 160rpx;
-  width: 160rpx;
+  flex: 0 0 120rpx;
+  width: 120rpx;
   min-width: 0;
 }
 
