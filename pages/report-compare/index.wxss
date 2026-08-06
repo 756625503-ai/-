@@ -311,3 +311,21 @@
   font-size: 28rpx;
   text-align: center;
 }
+
+.empty-title,
+.empty-note {
+  display: block;
+}
+
+.empty-title {
+  color: #344054;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.empty-note {
+  margin-top: 12rpx;
+  color: #667085;
+  font-size: 24rpx;
+  line-height: 1.5;
+}

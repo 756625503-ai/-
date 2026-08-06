@@ -106,6 +106,7 @@
   </view>
 
   <view wx:else class="empty-compare">
-    <text>请至少选择2份报告进行对比</text>
+    <text class="empty-title">请至少选择2份报告进行对比</text>
+    <text class="empty-note">如果没有指标，请先到记录详情里点击附件下方的“识别内容”。</text>
   </view>
 </view>
