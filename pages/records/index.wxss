@@ -157,12 +157,13 @@
   z-index: 1;
   display: flex;
   box-sizing: border-box;
-  width: 94%;
+  width: 88%;
   min-width: 0;
   min-height: 62rpx;
   align-items: center;
   justify-content: center;
-  justify-self: end;
+  justify-self: start;
+  margin-left: 6%;
   margin-right: 0;
   padding: 0 22rpx;
   border: 1rpx solid #a6d2dc;
@@ -179,12 +180,12 @@
 .date-bubble::after {
   position: absolute;
   top: 50%;
-  right: -18rpx;
+  right: -36rpx;
   width: 0;
   height: 0;
   border-top: 14rpx solid transparent;
   border-bottom: 14rpx solid transparent;
-  border-left: 18rpx solid #72b0be;
+  border-left: 36rpx solid #72b0be;
   transform: translateY(-50%);
   content: "";
 }
