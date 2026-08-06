@@ -127,7 +127,7 @@
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 46rpx minmax(0, 1fr);
-  width: calc(100% - 16rpx);
+  width: calc(100% - 36rpx);
   min-width: 0;
   height: 100%;
   min-height: 0;
