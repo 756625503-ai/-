@@ -121,8 +121,7 @@
 .type-chip-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 18rpx;
+  justify-content: space-between;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
@@ -131,9 +130,9 @@
 
 .type-chip-row--2 .type-chip,
 .type-chip-row--3 .type-chip {
-  flex: 0 0 calc(50% - 9rpx);
-  width: calc(50% - 9rpx);
-  max-width: calc(50% - 9rpx);
+  flex: 0 0 49%;
+  width: 49%;
+  max-width: 49%;
 }
 
 .type-chip {
@@ -199,36 +198,6 @@
 .type-chip.type-purple .type-icon {
   color: #7c3aed;
   background: #f3e8ff;
-}
-
-.type-chip.type-active.type-green {
-  background: #e9fbf8;
-  border-color: #149483;
-  box-shadow: 0 8rpx 16rpx rgba(21, 145, 133, 0.16);
-}
-
-.type-chip.type-active.type-green .type-name {
-  color: #08756f;
-}
-
-.type-chip.type-active.type-green .type-icon {
-  color: #ffffff;
-  background: #159185;
-}
-
-.type-chip.type-active.type-purple {
-  background: #f7efff;
-  border-color: #7c3aed;
-  box-shadow: 0 8rpx 16rpx rgba(139, 92, 246, 0.14);
-}
-
-.type-chip.type-active.type-purple .type-name {
-  color: #7c3aed;
-}
-
-.type-chip.type-active.type-purple .type-icon {
-  color: #ffffff;
-  background: #8b5cf6;
 }
 
 .attachment-panel {
