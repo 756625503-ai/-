@@ -71,19 +71,13 @@
   background: #ffffff;
 }
 
-.records-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 14rpx;
-  margin-top: 24rpx;
-}
-
 .search-box {
   display: flex;
-  flex: 1;
+  width: 100%;
   min-height: 88rpx;
   align-items: center;
   gap: 18rpx;
+  margin-top: 24rpx;
   padding: 0 26rpx;
   border-radius: 8rpx;
   background: #ffffff;
@@ -105,10 +99,13 @@
   line-height: 1;
 }
 
+.records-actions {
+  margin-top: 16rpx;
+}
+
 .compare-entry {
   display: flex;
-  width: 120rpx;
-  min-width: 120rpx;
+  width: 100%;
   min-height: 72rpx;
   align-items: center;
   justify-content: center;
@@ -121,7 +118,7 @@
 }
 
 .timeline-scroll {
-  height: calc(100vh - 360rpx - env(safe-area-inset-bottom));
+  height: calc(100vh - 430rpx - env(safe-area-inset-bottom));
 }
 
 .timeline {

@@ -21,13 +21,13 @@
       </view>
     </scroll-view>
 
-    <view class="records-toolbar">
-      <view class="search-box">
-        <input class="search-input" value="{{keyword}}" bindinput="onSearch" placeholder="搜索日期、标题、识别内容或附件..." />
-        <text class="search-icon">⌕</text>
-      </view>
+    <view class="search-box">
+      <input class="search-input" value="{{keyword}}" bindinput="onSearch" placeholder="搜索日期、标题、识别内容或附件..." />
+      <text class="search-icon">⌕</text>
+    </view>
 
-      <button class="compare-entry" bindtap="goCompare">对比</button>
+    <view class="records-actions">
+      <button class="compare-entry" bindtap="goCompare">体检报告对比</button>
     </view>
   </view>
 
