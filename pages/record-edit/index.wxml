@@ -28,11 +28,7 @@
           bindtap="onTypeTap"
         >
           <text class="type-icon">{{item.icon}}</text>
-          <view class="type-copy">
-            <text class="type-name">{{item.value}}</text>
-            <text class="type-hint">{{item.hint}}</text>
-          </view>
-          <text wx:if="{{record.type === item.value}}" class="type-check">✓</text>
+          <text class="type-name">{{item.value}}</text>
         </button>
       </view>
     </view>

@@ -37,16 +37,16 @@
   width: 100%;
   overflow: hidden;
   margin-top: 24rpx;
-  padding: 28rpx;
-  border: 1rpx solid #e4e7ec;
-  border-radius: 8rpx;
-  background: #ffffff;
+  padding: 28rpx 30rpx 32rpx;
+  border: 1rpx solid #c8d7e5;
+  border-radius: 28rpx;
+  background: #d8e6f2;
+  box-shadow: inset 0 1rpx 0 rgba(255, 255, 255, 0.58);
 }
 
 .priority-label,
 .group-label,
-.type-name,
-.type-hint {
+.type-name {
   display: block;
 }
 
@@ -63,8 +63,8 @@
 }
 
 .priority-label {
-  color: #101828;
-  font-size: 32rpx;
+  color: #1d2b3a;
+  font-size: 30rpx;
   font-weight: 800;
 }
 
@@ -74,12 +74,12 @@
   flex: 0 0 auto;
   max-width: 180rpx;
   min-width: 132rpx;
-  min-height: 56rpx;
+  min-height: 52rpx;
   align-items: center;
   justify-content: center;
   padding: 0 18rpx;
-  border-radius: 8rpx;
-  font-size: 25rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
   font-weight: 800;
   line-height: 1.2;
   overflow: hidden;
@@ -101,12 +101,12 @@
 
 .type-group + .type-group {
   padding-top: 24rpx;
-  border-top: 1rpx solid #eef2f6;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.52);
 }
 
 .group-label {
   margin-bottom: 14rpx;
-  color: #475467;
+  color: #2f4960;
   font-size: 25rpx;
   font-weight: 800;
 }
@@ -115,7 +115,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  row-gap: 16rpx;
+  row-gap: 14rpx;
   width: 100%;
 }
 
@@ -123,19 +123,20 @@
   position: relative;
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: 42rpx minmax(0, 1fr);
-  width: calc((100% - 52rpx) / 2);
+  grid-template-columns: 34rpx minmax(0, 1fr);
+  width: calc((100% - 34rpx) / 2);
   min-width: 0;
-  height: 104rpx;
-  min-height: 104rpx;
+  height: 62rpx;
+  min-height: 62rpx;
   align-items: center;
   gap: 10rpx;
   margin: 0;
   overflow: hidden;
-  padding: 14rpx 36rpx 14rpx 14rpx;
-  border: 2rpx solid #eef2f6;
-  border-radius: 8rpx;
-  background: #ffffff;
+  padding: 0 18rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.68);
+  border-radius: 18rpx;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 6rpx 14rpx rgba(38, 65, 89, 0.08);
   line-height: 1.2;
   text-align: left;
 }
@@ -150,62 +151,32 @@
 
 .type-icon {
   display: flex;
-  width: 42rpx;
-  height: 42rpx;
-  min-width: 42rpx;
-  min-height: 42rpx;
+  width: 34rpx;
+  height: 34rpx;
+  min-width: 34rpx;
+  min-height: 34rpx;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 22rpx;
+  font-size: 20rpx;
   font-weight: 900;
-}
-
-.type-copy {
-  min-width: 0;
 }
 
 .type-name {
   overflow: hidden;
-  color: #344054;
-  font-size: 27rpx;
-  font-weight: 900;
+  color: #26384c;
+  font-size: 24rpx;
+  font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.type-hint {
-  margin-top: 8rpx;
-  overflow: hidden;
-  color: #98a2b3;
-  font-size: 22rpx;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.type-check {
-  position: absolute;
-  top: 12rpx;
-  right: 10rpx;
-  display: flex;
-  width: 30rpx;
-  height: 30rpx;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #ffffff;
-  font-size: 20rpx;
-  font-weight: 900;
-  line-height: 1;
 }
 
 .type-chip.type-green {
-  border-color: #d0f2ee;
+  border-color: rgba(255, 255, 255, 0.72);
 }
 
 .type-chip.type-purple {
-  border-color: #eadcff;
+  border-color: rgba(255, 255, 255, 0.72);
 }
 
 .type-chip.type-green .type-icon {
@@ -219,32 +190,30 @@
 }
 
 .type-chip.type-active.type-green {
-  background: #f3fffd;
-  border-color: #0f766e;
-  box-shadow: 0 10rpx 24rpx rgba(21, 145, 133, 0.12);
+  background: #e9fbf8;
+  border-color: #149483;
+  box-shadow: 0 8rpx 16rpx rgba(21, 145, 133, 0.16);
 }
 
 .type-chip.type-active.type-green .type-name {
   color: #08756f;
 }
 
-.type-chip.type-active.type-green .type-check,
 .type-chip.type-active.type-green .type-icon {
   color: #ffffff;
   background: #159185;
 }
 
 .type-chip.type-active.type-purple {
-  background: #fbf8ff;
+  background: #f7efff;
   border-color: #7c3aed;
-  box-shadow: 0 10rpx 24rpx rgba(139, 92, 246, 0.12);
+  box-shadow: 0 8rpx 16rpx rgba(139, 92, 246, 0.14);
 }
 
 .type-chip.type-active.type-purple .type-name {
   color: #7c3aed;
 }
 
-.type-chip.type-active.type-purple .type-check,
 .type-chip.type-active.type-purple .type-icon {
   color: #ffffff;
   background: #8b5cf6;
