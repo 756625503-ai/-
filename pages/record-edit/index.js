@@ -408,13 +408,13 @@ Page({
 
   chooseImage() {
     const remaining = MAX_ATTACHMENTS - (this.data.record.files || []).length
-    wx.chooseMedia({
+    // chooseImage works in older base libraries and test environments where chooseMedia is unavailable.
+    wx.chooseImage({
       count: Math.min(9, remaining),
-      mediaType: ['image'],
       sourceType: ['album', 'camera'],
       success: (res) => {
-        Promise.all(res.tempFiles.map(function (file, index) {
-          return saveTempFile(file.tempFilePath).then(function (savedPath) {
+        Promise.all(res.tempFilePaths.map(function (tempFilePath, index) {
+          return saveTempFile(tempFilePath).then(function (savedPath) {
             return {
               name: '报告图片-' + (index + 1) + '.jpg',
               path: savedPath,
@@ -423,6 +423,13 @@ Page({
           })
         })).then((files) => {
           this.appendFiles(files)
+        })
+      },
+      fail: (error) => {
+        if (error && error.errMsg && error.errMsg.indexOf('cancel') >= 0) return
+        wx.showToast({
+          title: '图片选择不可用，请检查小程序权限',
+          icon: 'none'
         })
       }
     })
@@ -445,32 +452,37 @@ Page({
         })).then((files) => {
           this.appendFiles(files)
         })
+      },
+      fail: (error) => {
+        if (error && error.errMsg && error.errMsg.indexOf('cancel') >= 0) return
+        wx.showToast({
+          title: '当前环境暂不支持选择微信文件',
+          icon: 'none'
+        })
       }
     })
   },
 
   chooseVideo() {
     const remaining = MAX_ATTACHMENTS - (this.data.record.files || []).length
-    wx.chooseMedia({
-      count: Math.min(9, remaining),
-      mediaType: ['video'],
+    // chooseVideo avoids the chooseMedia component check on test accounts.
+    wx.chooseVideo({
       sourceType: ['album', 'camera'],
       success: (res) => {
-        Promise.all(res.tempFiles.map(function (file, index) {
-          return Promise.all([
-            saveTempFile(file.tempFilePath),
-            file.thumbTempFilePath ? saveTempFile(file.thumbTempFilePath) : Promise.resolve('')
-          ]).then(function (result) {
-            return {
-              name: '胶片视频-' + (index + 1) + '.mp4',
-              path: result[0],
-              poster: result[1] || '',
-              duration: file.duration || 0,
-              type: 'video'
-            }
-          })
-        })).then((files) => {
-          this.appendFiles(files)
+        saveTempFile(res.tempFilePath).then((savedPath) => {
+          this.appendFiles([{
+            name: '胶片视频-' + ((this.data.record.files || []).length + 1) + '.mp4',
+            path: savedPath,
+            duration: res.duration || 0,
+            type: 'video'
+          }])
+        })
+      },
+      fail: (error) => {
+        if (error && error.errMsg && error.errMsg.indexOf('cancel') >= 0) return
+        wx.showToast({
+          title: '视频选择不可用，请检查小程序权限',
+          icon: 'none'
         })
       }
     })
