@@ -5,14 +5,15 @@
       wx:for="{{profiles}}"
       wx:key="id"
     >
-      <button
+      <view
+        wx:if="{{revealedDeleteId === item.id}}"
         class="profile-delete"
         data-id="{{item.id}}"
         data-name="{{item.displayName}}"
         catchtap="deleteProfile"
       >
         <text class="profile-delete-text">删除</text>
-      </button>
+      </view>
 
       <view
         class="profile-row {{revealedDeleteId === item.id ? 'profile-row-revealed' : ''}}"
