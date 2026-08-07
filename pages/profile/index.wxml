@@ -1,31 +1,45 @@
 <view class="profile-page">
   <view class="profile-list">
     <view
-      class="profile-row"
+      class="profile-swipe"
       wx:for="{{profiles}}"
       wx:key="id"
-      data-id="{{item.id}}"
-      bindtap="openProfile"
     >
-      <view class="check-wrap" data-id="{{item.id}}" catchtap="selectProfile">
-        <view class="check-box {{activeProfileId === item.id ? 'check-active' : ''}}">
-          <text wx:if="{{activeProfileId === item.id}}" class="check-mark">✓</text>
-        </view>
-      </view>
+      <button
+        class="profile-delete"
+        data-id="{{item.id}}"
+        data-name="{{item.displayName}}"
+        catchtap="deleteProfile"
+      >删除</button>
 
-      <view class="profile-main">
-        <view class="name-line">
-          <text class="person-name">{{item.displayName}}</text>
-          <text class="person-location">（{{item.locationText}}）</text>
+      <view
+        class="profile-row {{revealedDeleteId === item.id ? 'profile-row-revealed' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="openProfile"
+        bindtouchstart="onProfileTouchStart"
+        bindtouchend="onProfileTouchEnd"
+        catchlongpress="onProfileLongPress"
+      >
+        <view class="check-wrap" data-id="{{item.id}}" catchtap="selectProfile">
+          <view class="check-box {{activeProfileId === item.id ? 'check-active' : ''}}">
+            <text wx:if="{{activeProfileId === item.id}}" class="check-mark">✓</text>
+          </view>
         </view>
-        <view class="birth-line">
-          <text class="gender-dot {{item.gender === '男' ? 'gender-male' : 'gender-female'}}">{{item.genderIcon}}</text>
-          <text class="birth-text">{{item.birthText}}</text>
-        </view>
-      </view>
 
-      <view class="open-icon">
-        <text>↗</text>
+        <view class="profile-main">
+          <view class="name-line">
+            <text class="person-name">{{item.displayName}}</text>
+            <text class="person-location">（{{item.locationText}}）</text>
+          </view>
+          <view class="birth-line">
+            <text class="gender-dot {{item.gender === '男' ? 'gender-male' : 'gender-female'}}">{{item.genderIcon}}</text>
+            <text class="birth-text">{{item.birthText}}</text>
+          </view>
+        </view>
+
+        <view class="open-icon">
+          <text>↗</text>
+        </view>
       </view>
     </view>
   </view>

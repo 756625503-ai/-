@@ -140,6 +140,50 @@ function addProfile(relation) {
   return profile
 }
 
+function deleteProfile(id) {
+  const profiles = getProfiles()
+
+  if (profiles.length <= 1) {
+    return {
+      deleted: false,
+      reason: 'last-profile',
+      profiles: profiles,
+      deletedRecordCount: 0
+    }
+  }
+
+  const nextProfiles = profiles.filter(function (profile) {
+    return profile.id !== id
+  })
+
+  if (nextProfiles.length === profiles.length) {
+    return {
+      deleted: false,
+      reason: 'not-found',
+      profiles: profiles,
+      deletedRecordCount: 0
+    }
+  }
+
+  const records = getRecords()
+  const nextRecords = records.filter(function (record) {
+    return record.profileId !== id
+  })
+
+  wx.setStorageSync(PROFILES_KEY, nextProfiles)
+  wx.setStorageSync(RECORDS_KEY, nextRecords)
+
+  if (wx.getStorageSync(SELECTED_PROFILE_KEY) === id) {
+    wx.setStorageSync(SELECTED_PROFILE_KEY, nextProfiles[0].id)
+  }
+
+  return {
+    deleted: true,
+    profiles: nextProfiles,
+    deletedRecordCount: records.length - nextRecords.length
+  }
+}
+
 function getProfileDisplayName(profile) {
   if (!profile) return '未选择成员'
   return profile.name || profile.relation || '未命名成员'
@@ -240,6 +284,7 @@ function getStats() {
 
 module.exports = {
   addProfile: addProfile,
+  deleteProfile: deleteProfile,
   deleteRecord: deleteRecord,
   ensureData: ensureData,
   formatDate: formatDate,
