@@ -122,6 +122,10 @@
   content: "";
 }
 
+.timeline-add::before {
+  top: 50%;
+}
+
 .timeline-plus {
   position: relative;
   z-index: 2;
