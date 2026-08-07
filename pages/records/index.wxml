@@ -40,7 +40,7 @@
       </block>
 
       <view wx:else class="empty-timeline">
-        <text>开始记录健康状况</text>
+        <text>{{keyword ? '暂无匹配记录' : '开始记录健康状况'}}</text>
       </view>
     </view>
   </scroll-view>
