@@ -309,7 +309,7 @@
 .empty-timeline {
   position: relative;
   z-index: 2;
-  margin-top: 80rpx;
+  margin-top: 18rpx;
   color: #71858b;
   font-size: 28rpx;
   text-align: center;
