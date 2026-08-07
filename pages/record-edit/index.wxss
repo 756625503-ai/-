@@ -289,8 +289,10 @@
 .attachment-delete,
 .attachment-ocr {
   display: flex;
-  flex: 1;
-  width: auto;
+  flex: 0 0 48%;
+  box-sizing: border-box;
+  width: 48%;
+  max-width: 48%;
   min-width: 0;
   height: 52rpx;
   min-height: 52rpx;
@@ -463,10 +465,19 @@
 }
 
 .attachment-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14rpx;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
   margin-top: 28rpx;
+}
+
+.attachment-actions button:only-child {
+  flex-basis: 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 .attachment-empty {
