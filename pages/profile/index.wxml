@@ -10,7 +10,9 @@
         data-id="{{item.id}}"
         data-name="{{item.displayName}}"
         catchtap="deleteProfile"
-      >删除</button>
+      >
+        <text class="profile-delete-text">删除</text>
+      </button>
 
       <view
         class="profile-row {{revealedDeleteId === item.id ? 'profile-row-revealed' : ''}}"
