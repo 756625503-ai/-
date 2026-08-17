@@ -1,4 +1,4 @@
-const CLOUD_ENV_ID = 'a20260817-d8gzfervr3e25b34f'
+const CLOUD_ENV_ID = 'cloud1-d2gne6k3g8c609034'
 
 App({
   globalData: {

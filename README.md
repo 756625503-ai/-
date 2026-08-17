@@ -19,7 +19,7 @@
 
 ## 云开发
 
-- 小程序端已在 `app.js` 中通过 `wx.cloud.init` 绑定云环境 `a20260817-d8gzfervr3e25b34f`。
+- 小程序端已在 `app.js` 中通过 `wx.cloud.init` 绑定云环境 `cloud1-d2gne6k3g8c609034`。
 - 云函数端使用 `cloud.DYNAMIC_CURRENT_ENV`，会访问云函数当前部署环境中的存储和开放能力。
 - 在微信开发者工具中右键 `cloudfunctions/ocrReport`，选择该环境后执行“上传并部署：云端安装依赖”。
 - 云函数部署成功后重新编译小程序；可以在云开发控制台的“云函数 → 日志”中检查调用结果。
