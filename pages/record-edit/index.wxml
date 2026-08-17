@@ -63,7 +63,7 @@
               <view class="video-play">▶</view>
             </view>
             <view wx:else class="attachment-file">
-              <text class="file-badge">FILE</text>
+              <text class="file-badge">{{item.isPdf ? 'PDF' : 'FILE'}}</text>
               <text class="file-card-name">{{item.name}}</text>
             </view>
           </view>

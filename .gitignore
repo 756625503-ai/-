@@ -1,1 +1,4 @@
 project.private.config.json
+node_modules/
+.pnpm-store/
+cloudfunctions/*/pnpm-workspace.yaml

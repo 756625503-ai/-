@@ -1,4 +1,5 @@
 const storage = require('../../utils/storage')
+const auth = require('../../utils/auth')
 const ocr = require('../../utils/ocr')
 const MAX_ATTACHMENTS = 100
 
@@ -131,6 +132,7 @@ function normalizeAttachment(file, index, fallbackDate) {
     ocrStatus: ocrStatus || (file.ocrText ? 'done' : ''),
     ocrStatusText: getOcrStatusText(Object.assign({}, file, { ocrStatus: ocrStatus })),
     ocrPreview: getOcrPreview(file.ocrText),
+    isPdf: ocr.isPdfAttachment(file),
     canRecognize: ocr.canRecognizeAttachment(file)
   })
 }
@@ -165,6 +167,9 @@ Page({
   },
 
   onLoad(options) {
+    const query = options.id ? '?id=' + options.id : ''
+    if (!auth.requireLogin('/pages/record-edit/index' + query)) return
+
     const profiles = storage.getProfiles()
     const activeProfileId = storage.getSelectedProfileId()
     const profileNames = profiles.map(function (profile) {
@@ -446,7 +451,7 @@ Page({
             return {
               name: file.name,
               path: savedPath,
-              type: 'file'
+              type: /\.pdf$/i.test(file.name || '') ? 'pdf' : 'file'
             }
           })
         })).then((files) => {

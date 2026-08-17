@@ -1,5 +1,11 @@
+function isPdfAttachment(file) {
+  if (!file) return false
+  const source = String(file.name || file.path || '')
+  return file.type === 'pdf' || /\.pdf(?:$|[?#])/i.test(source)
+}
+
 function canRecognizeAttachment(file) {
-  return Boolean(file && file.type === 'image' && file.path)
+  return Boolean(file && file.path && (file.type === 'image' || isPdfAttachment(file)))
 }
 
 function getCloudPath(file) {
@@ -10,7 +16,7 @@ function getCloudPath(file) {
 function recognizeAttachment(file) {
   return new Promise(function (resolve, reject) {
     if (!canRecognizeAttachment(file)) {
-      reject(new Error('当前只支持图片识别'))
+      reject(new Error('当前只支持图片或 PDF 识别'))
       return
     }
 
@@ -26,7 +32,9 @@ function recognizeAttachment(file) {
         wx.cloud.callFunction({
           name: 'ocrReport',
           data: {
-            fileID: uploadRes.fileID
+            fileID: uploadRes.fileID,
+            fileType: isPdfAttachment(file) ? 'pdf' : 'image',
+            fileName: file.name || ''
           },
           success: function (res) {
             const result = res.result || {}
@@ -51,5 +59,6 @@ function recognizeAttachment(file) {
 
 module.exports = {
   canRecognizeAttachment: canRecognizeAttachment,
+  isPdfAttachment: isPdfAttachment,
   recognizeAttachment: recognizeAttachment
 }
