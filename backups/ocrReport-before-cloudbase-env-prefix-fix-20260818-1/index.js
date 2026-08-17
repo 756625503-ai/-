@@ -32,14 +32,14 @@ function hmac(key, value, encoding) {
 }
 
 function getTencentConfig() {
-  const secretId = process.env.TX_OCR_SECRET_ID || process.env.TENCENTCLOUD_SECRET_ID || ''
-  const secretKey = process.env.TX_OCR_SECRET_KEY || process.env.TENCENTCLOUD_SECRET_KEY || ''
+  const secretId = process.env.TENCENTCLOUD_SECRET_ID || ''
+  const secretKey = process.env.TENCENTCLOUD_SECRET_KEY || ''
   if (!secretId || !secretKey) throw new Error('TENCENT_OCR_CONFIG_MISSING')
   return {
     secretId: secretId,
     secretKey: secretKey,
-    region: process.env.TX_OCR_REGION || process.env.TENCENTCLOUD_REGION || 'ap-guangzhou',
-    token: process.env.TX_OCR_SESSION_TOKEN || process.env.TENCENTCLOUD_SESSION_TOKEN || ''
+    region: process.env.TENCENTCLOUD_REGION || 'ap-guangzhou',
+    token: process.env.TENCENTCLOUD_SESSION_TOKEN || ''
   }
 }
 
