@@ -21,7 +21,7 @@ function recognizeAttachment(file) {
     }
 
     if (!wx.cloud || !wx.cloud.uploadFile || !wx.cloud.callFunction) {
-      reject(new Error('请先开通并配置微信云开发 OCR'))
+      reject(new Error('请先开通并配置微信云开发'))
       return
     }
 

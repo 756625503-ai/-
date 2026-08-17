@@ -27,8 +27,9 @@
 ## 照片识别
 
 - 点击附件里的“识别内容”需要先开通微信云开发，并在微信开发者工具里上传并部署 `cloudfunctions/ocrReport` 云函数。
-- `cloudfunctions/ocrReport/config.json` 已声明 `ocr.printedText` 权限；如果仍提示没有权限，请重新上传部署云函数，并确认当前 AppID 已开通 OCR 能力。
-- 图片使用微信 OCR 识别；带文字层的 PDF 由云函数直接提取文字。
+- 图片使用腾讯云 OCR 的 `GeneralAccurateOCR` 接口识别；带文字层的 PDF 由云函数直接提取文字。
+- 在 CloudBase 云函数设置中配置 `TENCENTCLOUD_SECRET_ID`、`TENCENTCLOUD_SECRET_KEY`，可选配置 `TENCENTCLOUD_REGION`（默认 `ap-guangzhou`）和 `TENCENTCLOUD_SESSION_TOKEN`。
+- 腾讯云 OCR 的服务开通、调用额度和计费与 CloudBase 套餐资源点分开计算。
 - 扫描型 PDF 如果没有文字层，需要先将报告页面保存为图片后再识别。
 
 ## 后续建议
