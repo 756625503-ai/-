@@ -17,6 +17,13 @@
 4. AppID 可以先使用测试号，或保留 `project.config.json` 中的 `touristappid` 进行本地体验。
 5. 点击“编译”运行。
 
+## 云开发
+
+- 小程序端已在 `app.js` 中通过 `wx.cloud.init` 绑定云环境 `a20260817-d8gzfervr3e25b34f`。
+- 云函数端使用 `cloud.DYNAMIC_CURRENT_ENV`，会访问云函数当前部署环境中的存储和开放能力。
+- 在微信开发者工具中右键 `cloudfunctions/ocrReport`，选择该环境后执行“上传并部署：云端安装依赖”。
+- 云函数部署成功后重新编译小程序；可以在云开发控制台的“云函数 → 日志”中检查调用结果。
+
 ## 照片识别
 
 - 点击附件里的“识别内容”需要先开通微信云开发，并在微信开发者工具里上传并部署 `cloudfunctions/ocrReport` 云函数。
