@@ -18,7 +18,7 @@ function getErrorMessage(error) {
   if (message.indexOf('IMAGE_DOWNLOAD_FAILED') >= 0) return '图片下载失败，请重新上传后再识别。'
   if (message.indexOf('missing_image_url') >= 0) return '没有拿到图片地址，请重新上传照片后再识别。'
   if (message.indexOf('RequestLimitExceeded') >= 0 || message.indexOf('LimitExceeded') >= 0) return '腾讯云 OCR 调用额度或频率已达到限制，请到腾讯云 OCR 控制台查看额度。'
-  if (message.indexOf('FailedOperation.UnOpenError') >= 0 || message.indexOf('FailedOperation.UnOpenService') >= 0 || message.indexOf('UnauthorizedOperation') >= 0) return '腾讯云 OCR 服务尚未开通，请先在腾讯云控制台开通 OCR。'
+  if (message.indexOf('FailedOperation.UnOpenService') >= 0 || message.indexOf('UnauthorizedOperation') >= 0) return '腾讯云 OCR 服务尚未开通，请先在腾讯云控制台开通 OCR。'
   if (message.indexOf('AuthFailure') >= 0 || message.indexOf('SecretId') >= 0) return '腾讯云 OCR 鉴权失败，请检查云函数中的 SecretId 和 SecretKey。'
   return message || 'OCR 识别失败，请稍后重试'
 }
