@@ -447,6 +447,7 @@
 .ocr-textarea {
   width: 100%;
   min-height: 280rpx;
+  max-height: 680rpx;
   margin-top: 14rpx;
   padding: 16rpx;
   border: 1rpx solid #eef2f6;
