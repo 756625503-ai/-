@@ -126,27 +126,31 @@ function uploadImage(file) {
 }
 
 function recognizeImageDirectly(file) {
-  // 体验版云函数可能只有 3 秒，先压缩并直接传 Base64，绕开云存储上传耗时。
-  return compressImage(file.path).then(readImageBase64).then(function (imageBase64) {
-    if (imageBase64.length <= 900 * 1024) {
+  return uploadImage(file).then(function (uploadRes) {
+    return callOcrFunction({
+      fileID: uploadRes.fileID,
+      fileType: 'image',
+      fileName: file.name || ''
+    }).then(function (result) {
+      return Object.assign({}, result, {
+        cloudFileID: uploadRes.fileID || ''
+      })
+    })
+  }, function (uploadError) {
+    // 云存储临时不可用时，用压缩图兜底，并限制调用数据大小。
+    return compressImage(file.path).then(readImageBase64).then(function (imageBase64) {
+      if (imageBase64.length > 900 * 1024) {
+        throw new Error('图片较大且云存储上传失败，请检查云开发存储权限后重试')
+      }
       return callOcrFunction({
         imageBase64: imageBase64,
         fileType: 'image',
         fileName: file.name || ''
       })
-    }
-
-    // Base64 仍然过大时，交给云函数通过临时 URL 读取，避免传输超大请求体。
-    return uploadImage(file).then(function (uploadRes) {
-      return callOcrFunction({
-        fileID: uploadRes.fileID,
-        fileType: 'image',
-        fileName: file.name || ''
-      }).then(function (result) {
-        return Object.assign({}, result, {
-          cloudFileID: uploadRes.fileID || ''
-        })
-      })
+    }).catch(function (fallbackError) {
+      const fallbackMessage = getErrorMessage(fallbackError)
+      const uploadMessage = getErrorMessage(uploadError)
+      throw new Error(fallbackMessage + '；上传错误：' + uploadMessage)
     })
   })
 }

@@ -139,17 +139,14 @@ async function recognizeImage(fileID, imgUrl, imageBase64) {
     if (!fileContent.length) throw new Error('IMAGE_CONTENT_EMPTY')
     if (fileContent.length > 5 * 1024 * 1024) throw new Error('TENCENT_OCR_IMAGE_TOO_LARGE')
     requestData.ImageBase64 = fileContent.toString('base64')
+  } else if (fileID) {
+    const downloadResult = await cloud.downloadFile({ fileID: fileID })
+    const fileContent = downloadResult.fileContent
+    if (!fileContent) throw new Error('IMAGE_DOWNLOAD_FAILED')
+    if (fileContent.length > 5 * 1024 * 1024) throw new Error('TENCENT_OCR_IMAGE_TOO_LARGE')
+    requestData.ImageBase64 = fileContent.toString('base64')
   } else if (imgUrl) {
     requestData.ImageUrl = imgUrl
-  } else if (fileID) {
-    // 直接给腾讯云 OCR 临时 URL，避免云函数先下载整张图片再编码。
-    const tempFileRes = await cloud.getTempFileURL({
-      fileList: [fileID]
-    })
-    const file = tempFileRes.fileList && tempFileRes.fileList[0]
-    const tempFileURL = file && file.tempFileURL ? file.tempFileURL : ''
-    if (!tempFileURL) throw new Error('IMAGE_DOWNLOAD_FAILED')
-    requestData.ImageUrl = tempFileURL
   } else {
     throw new Error('missing_image_url')
   }
