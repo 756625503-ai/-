@@ -279,7 +279,7 @@
 
 .attachment-card {
   flex: 0 0 auto;
-  width: 640rpx;
+  width: 520rpx;
   padding: 24rpx;
   border-radius: 16rpx;
   background: #ffffff;
