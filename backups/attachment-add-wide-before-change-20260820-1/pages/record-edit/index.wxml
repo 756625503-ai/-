@@ -41,10 +41,7 @@
         <text class="attachment-title">上传附件</text>
         <text class="attachment-count">{{record.files.length}}/{{maxAttachments}}</text>
       </view>
-      <view class="attachment-add" bindtap="chooseAttachment">
-        <text class="attachment-add-icon">+</text>
-        <text class="attachment-add-label">添加附件</text>
-      </view>
+      <view class="attachment-add" bindtap="chooseAttachment">+</view>
     </view>
 
     <view wx:if="{{record.files.length > 1}}" class="attachment-swipe-hint">
@@ -95,6 +92,7 @@
               wx:if="{{item.ocrText}}"
               class="ocr-textarea"
               value="{{item.ocrText}}"
+              auto-height="true"
               data-index="{{index}}"
               bindinput="onAttachmentOcrInput"
               placeholder="识别出的报告文字"
