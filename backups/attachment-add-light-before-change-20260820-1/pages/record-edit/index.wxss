@@ -263,10 +263,7 @@
   min-width: 320rpx;
   min-height: 72rpx;
   gap: 12rpx;
-  border: 1rpx solid #b6dbe4;
   border-radius: 36rpx;
-  color: #315f6a;
-  background: #cde9f2;
 }
 
 .attachment-add-icon {
