@@ -44,12 +44,6 @@
       <view class="attachment-add" bindtap="chooseAttachment">+</view>
     </view>
 
-    <view wx:if="{{record.files.length > 1}}" class="attachment-swipe-hint">
-      <text class="swipe-arrow">←</text>
-      <text>左右滑动查看其他附件</text>
-      <text class="swipe-arrow">→</text>
-    </view>
-
     <scroll-view wx:if="{{record.files.length}}" scroll-x class="attachment-scroll">
       <view class="attachment-strip">
         <view
@@ -92,6 +86,7 @@
               wx:if="{{item.ocrText}}"
               class="ocr-textarea"
               value="{{item.ocrText}}"
+              auto-height="true"
               data-index="{{index}}"
               bindinput="onAttachmentOcrInput"
               placeholder="识别出的报告文字"
