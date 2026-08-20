@@ -13,9 +13,6 @@ function getErrorMessage(error) {
   }
   if (message.indexOf('PDF_FILE_TOO_LARGE') >= 0) return 'PDF 文件超过 20MB，请压缩后重新上传。'
   if (message.indexOf('PDF_PASSWORD_REQUIRED') >= 0) return '这个 PDF 受密码保护，暂时无法识别。'
-  if (message.indexOf('PDF_DOWNLOAD_FAILED') >= 0) return 'PDF 下载失败，请重新上传后再识别。'
-  if (message.indexOf('PDF_INVALID_FILE') >= 0) return '上传的文件不是有效 PDF，请重新选择文件。'
-  if (message.indexOf('PDF_SCAN_OCR_CONFIG_MISSING') >= 0) return '这是扫描版 PDF，需要先配置腾讯云 OCR 才能识别。'
   if (message.indexOf('TENCENT_OCR_CONFIG_MISSING') >= 0) return '腾讯云 OCR 尚未配置，请检查云函数环境变量。'
   if (message.indexOf('IMAGE_CONTENT_EMPTY') >= 0) return '图片内容为空，请重新上传图片。'
   if (message.indexOf('TENCENT_OCR_IMAGE_TOO_LARGE') >= 0) return '图片超过腾讯云 OCR 支持的 5MB 大小，请压缩后重新上传。'
@@ -198,52 +195,6 @@ async function recognizeWechatImage(fileID, imgUrl) {
   }
 }
 
-async function getTempFileUrl(fileID) {
-  const tempFileRes = await cloud.getTempFileURL({
-    fileList: [fileID]
-  })
-  const file = tempFileRes.fileList && tempFileRes.fileList[0]
-  return file && file.tempFileURL ? file.tempFileURL : ''
-}
-
-function getTencentText(result) {
-  return (result.TextDetections || []).map(function (item) {
-    return item.DetectedText
-  }).filter(Boolean).join('\n')
-}
-
-async function recognizePdfPage(fileID, pageNumber) {
-  if (!hasTencentConfig()) throw new Error('PDF_SCAN_OCR_CONFIG_MISSING')
-  const imageUrl = await getTempFileUrl(fileID)
-  if (!imageUrl) throw new Error('PDF_DOWNLOAD_FAILED')
-
-  const result = await callTencentOcr({
-    ImageUrl: imageUrl,
-    IsPdf: true,
-    PdfPageNumber: pageNumber
-  })
-  return {
-    text: getTencentText(result),
-    raw: {
-      provider: 'tencentcloud',
-      action: 'GeneralAccurateOCR',
-      isPdf: true,
-      pageNumber: pageNumber,
-      requestId: result.RequestId || ''
-    }
-  }
-}
-
-function isUsefulPdfText(text) {
-  return String(text || '').replace(/\s+/g, '').length >= 40
-}
-
-function estimatePdfPageCount(fileContent) {
-  const source = fileContent.toString('latin1')
-  const matches = source.match(/\/Type\s*\/Page\b/g)
-  return Math.max(1, Math.min(matches ? matches.length : 1, 100))
-}
-
 async function extractPdfText(fileID) {
   const downloadResult = await cloud.downloadFile({
     fileID: fileID
@@ -252,7 +203,6 @@ async function extractPdfText(fileID) {
 
   if (!fileContent) throw new Error('PDF_DOWNLOAD_FAILED')
   if (fileContent.length > 20 * 1024 * 1024) throw new Error('PDF_FILE_TOO_LARGE')
-  if (fileContent.slice(0, 5).toString() !== '%PDF-') throw new Error('PDF_INVALID_FILE')
 
   const pdfParse = require('pdf-parse')
   let parsed
@@ -261,27 +211,17 @@ async function extractPdfText(fileID) {
   } catch (error) {
     const message = String(error && error.message || '')
     if (message.toLowerCase().indexOf('password') >= 0) throw new Error('PDF_PASSWORD_REQUIRED')
-    return {
-      text: '',
-      needsPdfOcr: true,
-      pageCount: estimatePdfPageCount(fileContent),
-      raw: {
-        provider: 'pdf-parse',
-        parseError: message || 'PDF_PARSE_FAILED'
-      }
-    }
+    throw error
   }
 
   const text = String(parsed.text || '').replace(/\r\n/g, '\n').trim()
-  if (!isUsefulPdfText(text)) {
+  if (!text) {
     return {
       text: '',
-      needsPdfOcr: true,
-      pageCount: parsed.numpages || estimatePdfPageCount(fileContent),
+      error: 'pdf_no_text',
+      errorMessage: '这个 PDF 没有可提取的文字，可能是扫描件。请将报告页面保存为图片后再识别。',
       raw: {
-        provider: 'pdf-parse',
-        pageCount: parsed.numpages || 0,
-        textLength: text.replace(/\s+/g, '').length
+        pageCount: parsed.numpages || 0
       }
     }
   }
@@ -307,9 +247,6 @@ exports.main = async function (event) {
           error: 'missing_pdf_file',
           errorMessage: '没有拿到 PDF 文件，请重新上传后再识别'
         }
-      }
-      if (event.pdfPageNumber) {
-        return await recognizePdfPage(event.fileID, Math.max(1, Number(event.pdfPageNumber) || 1))
       }
       return await extractPdfText(event.fileID)
     }
@@ -339,9 +276,9 @@ exports.main = async function (event) {
       error: 'ocr_failed',
       errorMessage: getErrorMessage(error),
       raw: {
-        errCode: String(error && error.errCode || ''),
-        errMsg: String(error && error.errMsg || ''),
-        message: String(error && error.message || '')
+        errCode: error && error.errCode,
+        errMsg: error && error.errMsg,
+        message: error && error.message
       }
     }
   }

@@ -26,9 +26,6 @@ function getErrorMessage(error) {
   if (raw.indexOf('501000') >= 0) {
     return '云函数调用失败（errcode 501000），请确认小程序与云函数使用同一个云环境，并重新编译后再试'
   }
-  if (/undefined.*valid JSON|valid JSON.*undefined/i.test(raw)) {
-    return 'PDF 云函数返回异常，请重新部署 ocrReport 后再试'
-  }
   if (/timeout|timed out|超时/i.test(raw)) {
     return 'OCR 处理超时，请稍后重试；若持续出现，请检查 ocrReport 云函数超时时间'
   }
@@ -154,45 +151,6 @@ function recognizeImageDirectly(file) {
   })
 }
 
-function recognizePdfPages(fileID, fileName, pageCount) {
-  const totalPages = Math.max(1, Math.min(Number(pageCount) || 1, 30))
-  const pageTexts = []
-  let sequence = Promise.resolve()
-
-  for (let pageNumber = 1; pageNumber <= totalPages; pageNumber += 1) {
-    sequence = sequence.then(function () {
-      if (wx.showLoading) {
-        wx.showLoading({
-          title: '识别第' + pageNumber + '/' + totalPages + '页',
-          mask: true
-        })
-      }
-      return callOcrFunction({
-        fileID: fileID,
-        fileType: 'pdf',
-        fileName: fileName || '',
-        pdfPageNumber: pageNumber
-      }).then(function (result) {
-        if (result.text) {
-          pageTexts.push('第' + pageNumber + '页\n' + result.text)
-        }
-      })
-    })
-  }
-
-  return sequence.then(function () {
-    return {
-      text: pageTexts.join('\n\n'),
-      raw: {
-        provider: 'tencentcloud-pdf',
-        pageCount: totalPages,
-        truncated: Number(pageCount) > totalPages
-      },
-      cloudFileID: fileID
-    }
-  })
-}
-
 function recognizeAttachment(file) {
   return new Promise(function (resolve, reject) {
     if (!canRecognizeAttachment(file)) {
@@ -231,17 +189,11 @@ function recognizeAttachment(file) {
           fileType: 'pdf',
           fileName: file.name || ''
         }).then(function (result) {
-          if (result.needsPdfOcr) {
-            return recognizePdfPages(uploadRes.fileID, file.name || '', result.pageCount || 1)
-          }
           resolve({
             text: result.text || '',
             raw: result.raw || null,
             cloudFileID: uploadRes.fileID
           })
-          return null
-        }).then(function (pdfOcrResult) {
-          if (pdfOcrResult) resolve(pdfOcrResult)
         }).catch(reject)
       },
       fail: function (error) {
